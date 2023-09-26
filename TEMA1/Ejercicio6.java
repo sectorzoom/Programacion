@@ -13,6 +13,7 @@ public class Ejercicio6 {
         }
         if (a==0){
             System.out.println("El número es 0");
+
         }
     }
 }
