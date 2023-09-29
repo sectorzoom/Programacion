@@ -6,6 +6,9 @@ public class Ejercicio26 {
         System.out.println("Escriba su supuesto numero primo: ");
         int numero = in.nextInt();
         boolean esprimo = true;
+        if (numero <= 1) {
+            esprimo = false;
+        }
         for (int i = 2; i < numero; i++) {
             if (numero % i == 0) {
                 esprimo = false;
