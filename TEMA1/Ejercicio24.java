@@ -9,13 +9,17 @@ public class Ejercicio24 {
         int suspendidos = 0;
         do {
             nota = in.nextDouble();
-            if (nota>=5){
+            if ((nota>=5) && (nota<=10)){
                 aprobados++;
                 System.out.println("Aprobados: " + aprobados + ".");
-            } else {
+            }
+            if ((nota<5) && (nota>=0)) {
                 suspendidos++;
                 System.out.println("Suspendidos: " + suspendidos + ".");
             }
-        } while (nota<10);
+            if ((nota<0) || (nota>10)) {
+                System.out.println("Error, nota inválida.");
+            }
+        } while (nota==nota);
     }
 }
