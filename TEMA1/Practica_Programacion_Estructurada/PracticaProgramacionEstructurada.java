@@ -61,7 +61,7 @@ public class PracticaProgramacionEstructurada {
                     ataque_1 = 150;
                     defensa_1 = 100;
                     velocidad_1 = 150;
-                    System.out.println("Especial - Furia Berserker: aumenta todos los stats 2 rounds.");
+                    System.out.println("Especial - Furia Berserker: aumenta todos los stats.");
                     break;
                 case 4:
                     System.out.println("Has elegido a " + nombre_personaje + ". Estos son sus stats: ");
@@ -189,7 +189,7 @@ public class PracticaProgramacionEstructurada {
                     ataque_2 = 150;
                     defensa_2 = 100;
                     velocidad_2 = 150;
-                    System.out.println("Especial - Furia Berserker: aumenta todos los stats 2 rounds.");
+                    System.out.println("Especial - Furia Berserker: aumenta todos los stats.");
                     break;
                 case 4:
                     System.out.println("Has elegido a " + nombre_personaje_2 + ". Estos son sus stats: ");
@@ -400,14 +400,14 @@ public class PracticaProgramacionEstructurada {
                 }
                 if ((accion_1 == 1) && (accion_2 == 4) && (critico_1 >= 25)) {
                     vit_2 = vit_2 - (ataque_jugador1);
-                    vit_2 = vit_2 + (Math.random() * 50);
+                    vit_2 = vit_2 + (int) (Math.random() * 50);
                     System.out.println(name_1 + " golpe desde la cintura a " + name_2 + ", que, ante los daños, decide utilizar una poción de curación.");
                     System.out.println("A " + name_2 + " le quedan " + vit_2 + " de vida.");
                     System.out.println("A " + name_1 + " le quedan " + vit_1 + " de vida.");
                 }
                 if ((accion_1 == 1) && (accion_2 == 4) && (critico_1 <= 25)) {
                     vit_2 = vit_2 - ((ataque_jugador1) * 2);
-                    vit_2 = vit_2 + (Math.random() * 50);
+                    vit_2 = vit_2 + (int) (Math.random() * 50);
                     System.out.println(name_1 + " golpe desde la cintura a " + name_2 + " realizando un giro de 360º de gran fiereza, " + name_2 + " ante los enormes daños, decide utilizar una poción de curación.");
                     System.out.println("A " + name_2 + " le quedan " + vit_2 + " de vida.");
                     System.out.println("A " + name_1 + " le quedan " + vit_1 + " de vida.");
@@ -451,33 +451,33 @@ public class PracticaProgramacionEstructurada {
                     System.out.println("A " + name_1 + " le quedan " + vit_1 + " de vida.");
                 }
                 if ((accion_1 == 3) && (accion_2 == 4)) {
-                    vit_2 = vit_2 + (Math.random() * 50);
+                    vit_2 = vit_2 + (int) (Math.random() * 50);
                     System.out.println(name_1 + " carga su ataque especial, " + name_2 + ", ante la gran cantidad de daño que se le viene, decide utilizar una poción.");
                     System.out.println("A " + name_2 + " le quedan " + vit_2 + " de vida.");
                     System.out.println("A " + name_1 + " le quedan " + vit_1 + " de vida.");
                 }
                 if ((accion_1 == 4) && (accion_2 == 1)) {
                     vit_1 = vit_1 - ataque_jugador2;
-                    vit_1 = vit_1 + (Math.random() * 50);
+                    vit_1 = vit_1 + (int) (Math.random() * 50);
                     System.out.println(name_2 + " aprovecha para atacar mientras " + name_1 + " decide utilizar una poción.");
                     System.out.println("A " + name_2 + " le quedan " + vit_2 + " de vida.");
                     System.out.println("A " + name_1 + " le quedan " + vit_1 + " de vida.");
                 }
                 if ((accion_1 == 4) && (accion_2 == 2)) {
-                    vit_1 = vit_1 + (Math.random() * 50);
+                    vit_1 = vit_1 + (int) (Math.random() * 50);
                     System.out.println(name_2 + " decide cubrirse y " + name_1 + " aprovecha la situación para curarse.");
                     System.out.println("A " + name_2 + " le quedan " + vit_2 + " de vida.");
                     System.out.println("A " + name_1 + " le quedan " + vit_1 + " de vida.");
                 }
                 if ((accion_1 == 4) && (accion_2 == 3)) {
-                    vit_1 = vit_1 + (Math.random() * 50);
+                    vit_1 = vit_1 + (int) (Math.random() * 50);
                     System.out.println(name_2 + " utiliza su ataque especial, sorprendiendo a " + name_1 + " que decide curarse usando una poción por si las moscas.");
                     System.out.println("A " + name_2 + " le quedan " + vit_2 + " de vida.");
                     System.out.println("A " + name_1 + " le quedan " + vit_1 + " de vida.");
                 }
                 if ((accion_1 == 4) && (accion_2 == 4)) {
-                    vit_1 = vit_1 + (Math.random() * 50);
-                    vit_2 = vit_2 + (Math.random() * 50);
+                    vit_1 = vit_1 + (int) (Math.random() * 50);
+                    vit_2 = vit_2 + (int) (Math.random() * 50);
                     System.out.println("Ambos oponentes se alejan el uno del otro y aprovechan para curarse.");
                     System.out.println("A " + name_1 + " le quedan " + vit_1 + " de vida.");
                     System.out.println("A " + name_2 + " le quedan " + vit_2 + " de vida.");
@@ -597,14 +597,14 @@ segundo jugador que el primero */
                 }
                 if ((accion_2 == 1) && (accion_1 == 4) && (critico_2 >= 25)) {
                     vit_1 = vit_1 - (ataque_jugador2);
-                    vit_1 = vit_1 + (Math.random() * 50);
+                    vit_1 = vit_1 + (int) (Math.random() * 50);
                     System.out.println(name_2 + " golpe desde la cintura a " + name_1 + ", que, ante los daños, decide utilizar una poción de curación.");
                     System.out.println("A " + name_1 + " le quedan " + vit_1 + " de vida.");
                     System.out.println("A " + name_2 + " le quedan " + vit_2 + " de vida.");
                 }
                 if ((accion_2 == 1) && (accion_1 == 4) && (critico_2 <= 25)) {
                     vit_1 = vit_1 - (ataque_critico_jugador2 * 2);
-                    vit_1 = vit_1 + (Math.random() * 50);
+                    vit_1 = vit_1 + (int) (Math.random() * 50);
                     System.out.println(name_2 + " golpe desde la cintura a " + name_1 + " realizando un giro de 360º de gran fiereza, " + name_1 + " ante los enormes daños, decide utilizar una poción de curación.");
                     System.out.println("A " + name_1 + " le quedan " + vit_1 + " de vida.");
                     System.out.println("A " + name_2 + " le quedan " + vit_2 + " de vida.");
@@ -626,7 +626,7 @@ segundo jugador que el primero */
                     System.out.println("A " + name_2 + " le quedan " + vit_2 + " de vida.");
                 }
                 if ((accion_2 == 2) && (accion_1 == 4)) {
-                    vit_1 = vit_1 + (Math.random() * 50);
+                    vit_1 = vit_1 + (int) (Math.random() * 50);
                     System.out.println(name_2 + " decide defenderse y " + name_1 + " aprovecha la guardia del rival para sacar una poción y recuperarse.");
                     System.out.println("A " + name_1 + " le quedan " + vit_1 + " de vida.");
                     System.out.println("A " + name_2 + " le quedan " + vit_2 + " de vida.");
@@ -648,33 +648,33 @@ segundo jugador que el primero */
                     System.out.println("A " + name_2 + " le quedan " + vit_2 + " de vida.");
                 }
                 if ((accion_2 == 3) && (accion_1 == 4)) {
-                    vit_1 = vit_1 + (Math.random() * 50);
+                    vit_1 = vit_1 + (int) (Math.random() * 50);
                     System.out.println(name_2 + " carga su ataque especial, " + name_1 + ", ante la gran cantidad de daño que se le viene, decide utilizar una poción.");
                     System.out.println("A " + name_1 + " le quedan " + vit_1 + " de vida.");
                     System.out.println("A " + name_2 + " le quedan " + vit_2 + " de vida.");
                 }
                 if ((accion_2 == 4) && (accion_1 == 1)) {
                     vit_2 = vit_2 - ataque_jugador1;
-                    vit_2 = vit_2 + (Math.random() * 50);
+                    vit_2 = vit_2 + (int) (Math.random() * 50);
                     System.out.println(name_1 + " aprovecha para atacar mientras " + name_2 + " decide utilizar una poción.");
                     System.out.println("A " + name_1 + " le quedan " + vit_1 + " de vida.");
                     System.out.println("A " + name_2 + " le quedan " + vit_2 + " de vida.");
                 }
                 if ((accion_2 == 4) && (accion_1 == 2)) {
-                    vit_2 = vit_2 + (Math.random() * 50);
+                    vit_2 = vit_2 + (int) (Math.random() * 50);
                     System.out.println(name_1 + " decide cubrirse y " + name_2 + " aprovecha la situación para curarse.");
                     System.out.println("A " + name_1 + " le quedan " + vit_1 + " de vida.");
                     System.out.println("A " + name_2 + " le quedan " + vit_2 + " de vida.");
                 }
                 if ((accion_2 == 4) && (accion_1 == 3)) {
-                    vit_2 = vit_2 + (Math.random() * 50);
+                    vit_2 = vit_2 + (int) (Math.random() * 50);
                     System.out.println(name_1 + " carga su ataque especial, " + name_2 + " decide curarse usando una poción.");
                     System.out.println("A " + name_1 + " le quedan " + vit_1 + " de vida.");
                     System.out.println("A " + name_2 + " le quedan " + vit_2 + " de vida.");
                 }
                 if ((accion_2 == 4) && (accion_1 == 4)) {
-                    vit_2 = vit_2 + (Math.random() * 50);
-                    vit_1 = vit_1 + (Math.random() * 50);
+                    vit_2 = vit_2 + (int) (Math.random() * 50);
+                    vit_1 = vit_1 + (int) (Math.random() * 50);
                     System.out.println("Ambos oponentes se alejan el uno del otro y aprovechan para curarse.");
                     System.out.println("A " + name_1 + " le quedan " + vit_1 + " de vida.");
                     System.out.println("A " + name_2 + " le quedan " + vit_2 + " de vida.");
