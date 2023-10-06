@@ -287,6 +287,7 @@ public class PracticaProgramacionEstructurada {
             int accion_1, accion_2;
             double ataque_jugador1 = (int) random.nextDouble(ataque_1), defensa_jugador1 = (int) random.nextDouble(defensa_1);
             double ataque_jugador2 = (int) random.nextDouble(ataque_2), defensa_jugador2 = (int) random.nextDouble(defensa_2);
+            double ataque_critico_jugador1 = (int) random.nextDouble(50, ataque_1), ataque_critico_jugador2 = (int) random.nextDouble(50, ataque_2);
 
             //Aquí empiezan los turnos, este primer bloque indica qué pasaría si atacase primero el jugador 1.
             if (primer_ataque_1 > primer_ataque_2) {
@@ -373,7 +374,7 @@ public class PracticaProgramacionEstructurada {
                     System.out.println("A " + name_1 + " le quedan " + vit_1 + " de vida.");
                 }
                 if ((accion_1 == 1) && (accion_2 == 1) && (critico_1 <= 25)) {
-                    vit_2 = vit_2 - (ataque_jugador1 * 2);
+                    vit_2 = vit_2 - ((ataque_critico_jugador1) * 2);
                     vit_1 = vit_1 - (ataque_jugador2);
                     System.out.println(name_1 + " golpea a " + name_2 + " con gran fiereza, dañando a " + name_2 + " severamente. " + name_2 + " intenta responder como puede, aunque sin tanto éxito.");
                     System.out.println("A " + name_2 + " le quedan " + vit_2 + " de vida.");
@@ -392,7 +393,7 @@ public class PracticaProgramacionEstructurada {
                     System.out.println("A " + name_1 + " le quedan " + vit_1 + " de vida.");
                 }
                 if ((accion_1 == 1) && (accion_2 == 3) && (critico_1 <= 25)) {
-                    vit_2 = vit_2 - ((ataque_jugador1) * 2);
+                    vit_2 = vit_2 - ((ataque_critico_jugador1) * 2);
                     System.out.println(name_1 + " realiza su ataque con tremenda fiereza, golpeando a " + name_2 + ", que cae al suelo e intenta sorprender a su rival con un su habilidad especial.");
                     System.out.println("A " + name_2 + " le quedan " + vit_2 + " de vida.");
                     System.out.println("A " + name_1 + " le quedan " + vit_1 + " de vida.");
@@ -561,122 +562,122 @@ segundo jugador que el primero */
                             }
                         }
                     }
-                    if ((accion_2 == 1) && (accion_1 == 1) && (critico_2 >= 25)) {
-                        vit_1 = vit_1 - (ataque_jugador2);
-                        vit_2 = vit_2 - (ataque_jugador1);
-                        System.out.println(name_2 + " golpea a " + name_1 + " con un golpe frontal, " + name_1 + " lo imita.");
-                        System.out.println("A " + name_1 + " le quedan " + vit_1 + " de vida.");
-                        System.out.println("A " + name_2 + " le quedan " + vit_2 + " de vida.");
-                    }
-                    if ((accion_2 == 1) && (accion_1 == 1) && (critico_2 <= 25)) {
-                        vit_1 = vit_1 - (ataque_jugador2 * 2);
-                        vit_2 = vit_2 - (ataque_jugador1);
-                        System.out.println(name_2 + " golpea a " + name_1 + " con gran fiereza, dañando a " + name_1 + " severamente. " + name_1 + " intenta responder como puede, aunque sin tanto éxito.");
-                        System.out.println("A " + name_1 + " le quedan " + vit_1 + " de vida.");
-                        System.out.println("A " + name_2 + " le quedan " + vit_2 + " de vida.");
-                    }
-                    if ((accion_2 == 1) && (accion_1 == 2)) {
-                        vit_1 = vit_1 - (ataque_jugador2 - (defensa_jugador1 / 2));
-                        System.out.println(name_2 + " intenta golpear a " + name_1 + ", pero éste se defiende, mitigando el daño.");
-                        System.out.println("A " + name_1 + " le quedan " + vit_1 + " de vida.");
-                        System.out.println("A " + name_2 + " le quedan " + vit_2 + " de vida.");
-                    }
-                    if ((accion_2 == 1) && (accion_1 == 3) && (critico_2 >= 25)) {
-                        vit_1 = vit_1 - (ataque_jugador2);
-                        System.out.println(name_2 + " realiza un golpeo tremendo haciendo tambalear a " + name_1 + " e hiriéndolo de gravedad. " + name_1 + "realiza su habilidad especial buscando una ventaja.");
-                        System.out.println("A " + name_1 + " le quedan " + vit_1 + " de vida.");
-                        System.out.println("A " + name_2 + " le quedan " + vit_2 + " de vida.");
-                    }
-                    if ((accion_2 == 1) && (accion_1 == 3) && (critico_2 <= 25)) {
-                        vit_1 = vit_1 - ((ataque_jugador2) * 2);
-                        System.out.println(name_2 + " realiza su ataque con tremenda fiereza, golpeando a " + name_1 + ", que cae al suelo e intenta sorprender cargando su habilidad especial.");
-                        System.out.println("A " + name_1 + " le quedan " + vit_1 + " de vida.");
-                        System.out.println("A " + name_2 + " le quedan " + vit_2 + " de vida.");
-                    }
-                    if ((accion_2 == 1) && (accion_1 == 4) && (critico_2 >= 25)) {
-                        vit_1 = vit_1 - (ataque_jugador2);
-                        vit_1 = vit_1 + (Math.random() * 50);
-                        System.out.println(name_2 + " golpe desde la cintura a " + name_1 + ", que, ante los daños, decide utilizar una poción de curación.");
-                        System.out.println("A " + name_1 + " le quedan " + vit_1 + " de vida.");
-                        System.out.println("A " + name_2 + " le quedan " + vit_2 + " de vida.");
-                    }
-                    if ((accion_2 == 1) && (accion_1 == 4) && (critico_2 <= 25)) {
-                        vit_1 = vit_1 - ((ataque_jugador2) * 2);
-                        vit_1 = vit_1 + (Math.random() * 50);
-                        System.out.println(name_2 + " golpe desde la cintura a " + name_1 + " realizando un giro de 360º de gran fiereza, " + name_1 + " ante los enormes daños, decide utilizar una poción de curación.");
-                        System.out.println("A " + name_1 + " le quedan " + vit_1 + " de vida.");
-                        System.out.println("A " + name_2 + " le quedan " + vit_2 + " de vida.");
-                    }
-                    if ((accion_2 == 2) && (accion_1 == 1)) {
-                        vit_2 = ataque_jugador1 - (defensa_jugador2 / 2);
-                        System.out.println(name_2 + " se pone en guardia a la espera del ataque de " + name_1 + " mitigando gran parte del daño.");
-                        System.out.println("A " + name_1 + " le quedan " + vit_1 + " de vida.");
-                        System.out.println("A " + name_2 + " le quedan " + vit_2 + " de vida.");
-                    }
-                    if ((accion_2 == 2) && (accion_1 == 2)) {
-                        System.out.println("Ambos se defienden, sin que ninguno se atreva a dar el primer paso.");
-                        System.out.println("A " + name_1 + " le quedan " + vit_1 + " de vida.");
-                        System.out.println("A " + name_2 + " le quedan " + vit_2 + " de vida.");
-                    }
-                    if ((accion_2 == 2) && (accion_1 == 3)) {
-                        System.out.println(name_2 + " decide defenderse y " + name_1 + " aprovecha la situación para intentar su ataque especial.");
-                        System.out.println("A " + name_1 + " le quedan " + vit_1 + " de vida.");
-                        System.out.println("A " + name_2 + " le quedan " + vit_2 + " de vida.");
-                    }
-                    if ((accion_2 == 2) && (accion_1 == 4)) {
-                        vit_1 = vit_1 + (Math.random() * 50);
-                        System.out.println(name_2 + " decide defenderse y " + name_1 + " aprovecha la guardia del rival para sacar una poción y recuperarse.");
-                        System.out.println("A " + name_1 + " le quedan " + vit_1 + " de vida.");
-                        System.out.println("A " + name_2 + " le quedan " + vit_2 + " de vida.");
-                    }
-                    if ((accion_2 == 3) && (accion_1 == 1)) {
-                        vit_2 = vit_2 - ataque_jugador1;
-                        System.out.println(name_2 + " carga su ataque especial, " + name_1 + " responde con un golpe desde la cintura.");
-                        System.out.println("A " + name_1 + " le quedan " + vit_1 + " de vida.");
-                        System.out.println("A " + name_2 + " le quedan " + vit_2 + " de vida.");
-                    }
-                    if ((accion_2 == 3) && (accion_1 == 2)) {
-                        System.out.println(name_2 + " carga su ataque especial, " + name_1 + ", que se lo espera, intenta mitigar el daño cubriéndose.");
-                        System.out.println("A " + name_1 + " le quedan " + vit_1 + " de vida.");
-                        System.out.println("A " + name_2 + " le quedan " + vit_2 + " de vida.");
-                    }
-                    if ((accion_2 == 3) && (accion_1 == 3)) {
-                        System.out.println("Ambos rivales realizan sendos ataques especiales generando una ráfaga de energía intercalada sin control.");
-                        System.out.println("A " + name_1 + " le quedan " + vit_1 + " de vida.");
-                        System.out.println("A " + name_2 + " le quedan " + vit_2 + " de vida.");
-                    }
-                    if ((accion_2 == 3) && (accion_1 == 4)) {
-                        vit_1 = vit_1 + (Math.random() * 50);
-                        System.out.println(name_2 + " carga su ataque especial, " + name_1 + ", ante la gran cantidad de daño que se le viene, decide utilizar una poción.");
-                        System.out.println("A " + name_1 + " le quedan " + vit_1 + " de vida.");
-                        System.out.println("A " + name_2 + " le quedan " + vit_2 + " de vida.");
-                    }
-                    if ((accion_2 == 4) && (accion_1 == 1)) {
-                        vit_2 = vit_2 - ataque_jugador1;
-                        vit_2 = vit_2 + (Math.random() * 50);
-                        System.out.println(name_1 + " aprovecha para atacar mientras " + name_2 + " decide utilizar una poción.");
-                        System.out.println("A " + name_1 + " le quedan " + vit_1 + " de vida.");
-                        System.out.println("A " + name_2 + " le quedan " + vit_2 + " de vida.");
-                    }
-                    if ((accion_2 == 4) && (accion_1 == 2)) {
-                        vit_2 = vit_2 + (Math.random() * 50);
-                        System.out.println(name_1 + " decide cubrirse y " + name_2 + " aprovecha la situación para curarse.");
-                        System.out.println("A " + name_1 + " le quedan " + vit_1 + " de vida.");
-                        System.out.println("A " + name_2 + " le quedan " + vit_2 + " de vida.");
-                    }
-                    if ((accion_2 == 4) && (accion_1 == 3)) {
-                        vit_2 = vit_2 + (Math.random() * 50);
-                        System.out.println(name_1 + " carga su ataque especial, " + name_2 + " decide curarse usando una poción.");
-                        System.out.println("A " + name_1 + " le quedan " + vit_1 + " de vida.");
-                        System.out.println("A " + name_2 + " le quedan " + vit_2 + " de vida.");
-                    }
-                    if ((accion_2 == 4) && (accion_1 == 4)) {
-                        vit_2 = vit_2 + (Math.random() * 50);
-                        vit_1 = vit_1 + (Math.random() * 50);
-                        System.out.println("Ambos oponentes se alejan el uno del otro y aprovechan para curarse.");
-                        System.out.println("A " + name_1 + " le quedan " + vit_1 + " de vida.");
-                        System.out.println("A " + name_2 + " le quedan " + vit_2 + " de vida.");
-                    }
+                }
+                if ((accion_2 == 1) && (accion_1 == 1) && (critico_2 >= 25)) {
+                    vit_1 = vit_1 - (ataque_jugador2);
+                    vit_2 = vit_2 - (ataque_jugador1);
+                    System.out.println(name_2 + " golpea a " + name_1 + " con un golpe frontal, " + name_1 + " lo imita.");
+                    System.out.println("A " + name_1 + " le quedan " + vit_1 + " de vida.");
+                    System.out.println("A " + name_2 + " le quedan " + vit_2 + " de vida.");
+                }
+                if ((accion_2 == 1) && (accion_1 == 1) && (critico_2 <= 25)) {
+                    vit_1 = vit_1 - (ataque_critico_jugador2 * 2);
+                    vit_2 = vit_2 - (ataque_jugador1);
+                    System.out.println(name_2 + " golpea a " + name_1 + " con gran fiereza, dañando a " + name_1 + " severamente. " + name_1 + " intenta responder como puede, aunque sin tanto éxito.");
+                    System.out.println("A " + name_1 + " le quedan " + vit_1 + " de vida.");
+                    System.out.println("A " + name_2 + " le quedan " + vit_2 + " de vida.");
+                }
+                if ((accion_2 == 1) && (accion_1 == 2)) {
+                    vit_1 = vit_1 - (ataque_jugador2 - (defensa_jugador1 / 2));
+                    System.out.println(name_2 + " intenta golpear a " + name_1 + ", pero éste se defiende, mitigando el daño.");
+                    System.out.println("A " + name_1 + " le quedan " + vit_1 + " de vida.");
+                    System.out.println("A " + name_2 + " le quedan " + vit_2 + " de vida.");
+                }
+                if ((accion_2 == 1) && (accion_1 == 3) && (critico_2 >= 25)) {
+                    vit_1 = vit_1 - (ataque_jugador2);
+                    System.out.println(name_2 + " realiza un golpeo tremendo haciendo tambalear a " + name_1 + " e hiriéndolo de gravedad. " + name_1 + "realiza su habilidad especial buscando una ventaja.");
+                    System.out.println("A " + name_1 + " le quedan " + vit_1 + " de vida.");
+                    System.out.println("A " + name_2 + " le quedan " + vit_2 + " de vida.");
+                }
+                if ((accion_2 == 1) && (accion_1 == 3) && (critico_2 <= 25)) {
+                    vit_1 = vit_1 - ((ataque_critico_jugador2) * 2);
+                    System.out.println(name_2 + " realiza su ataque con tremenda fiereza, golpeando a " + name_1 + ", que cae al suelo e intenta sorprender cargando su habilidad especial.");
+                    System.out.println("A " + name_1 + " le quedan " + vit_1 + " de vida.");
+                    System.out.println("A " + name_2 + " le quedan " + vit_2 + " de vida.");
+                }
+                if ((accion_2 == 1) && (accion_1 == 4) && (critico_2 >= 25)) {
+                    vit_1 = vit_1 - (ataque_jugador2);
+                    vit_1 = vit_1 + (Math.random() * 50);
+                    System.out.println(name_2 + " golpe desde la cintura a " + name_1 + ", que, ante los daños, decide utilizar una poción de curación.");
+                    System.out.println("A " + name_1 + " le quedan " + vit_1 + " de vida.");
+                    System.out.println("A " + name_2 + " le quedan " + vit_2 + " de vida.");
+                }
+                if ((accion_2 == 1) && (accion_1 == 4) && (critico_2 <= 25)) {
+                    vit_1 = vit_1 - (ataque_critico_jugador2 * 2);
+                    vit_1 = vit_1 + (Math.random() * 50);
+                    System.out.println(name_2 + " golpe desde la cintura a " + name_1 + " realizando un giro de 360º de gran fiereza, " + name_1 + " ante los enormes daños, decide utilizar una poción de curación.");
+                    System.out.println("A " + name_1 + " le quedan " + vit_1 + " de vida.");
+                    System.out.println("A " + name_2 + " le quedan " + vit_2 + " de vida.");
+                }
+                if ((accion_2 == 2) && (accion_1 == 1)) {
+                    vit_2 = ataque_jugador1 - (defensa_jugador2 / 2);
+                    System.out.println(name_2 + " se pone en guardia a la espera del ataque de " + name_1 + " mitigando gran parte del daño.");
+                    System.out.println("A " + name_1 + " le quedan " + vit_1 + " de vida.");
+                    System.out.println("A " + name_2 + " le quedan " + vit_2 + " de vida.");
+                }
+                if ((accion_2 == 2) && (accion_1 == 2)) {
+                    System.out.println("Ambos se defienden, sin que ninguno se atreva a dar el primer paso.");
+                    System.out.println("A " + name_1 + " le quedan " + vit_1 + " de vida.");
+                    System.out.println("A " + name_2 + " le quedan " + vit_2 + " de vida.");
+                }
+                if ((accion_2 == 2) && (accion_1 == 3)) {
+                    System.out.println(name_2 + " decide defenderse y " + name_1 + " aprovecha la situación para intentar su ataque especial.");
+                    System.out.println("A " + name_1 + " le quedan " + vit_1 + " de vida.");
+                    System.out.println("A " + name_2 + " le quedan " + vit_2 + " de vida.");
+                }
+                if ((accion_2 == 2) && (accion_1 == 4)) {
+                    vit_1 = vit_1 + (Math.random() * 50);
+                    System.out.println(name_2 + " decide defenderse y " + name_1 + " aprovecha la guardia del rival para sacar una poción y recuperarse.");
+                    System.out.println("A " + name_1 + " le quedan " + vit_1 + " de vida.");
+                    System.out.println("A " + name_2 + " le quedan " + vit_2 + " de vida.");
+                }
+                if ((accion_2 == 3) && (accion_1 == 1)) {
+                    vit_2 = vit_2 - ataque_jugador1;
+                    System.out.println(name_2 + " carga su ataque especial, " + name_1 + " responde con un golpe desde la cintura.");
+                    System.out.println("A " + name_1 + " le quedan " + vit_1 + " de vida.");
+                    System.out.println("A " + name_2 + " le quedan " + vit_2 + " de vida.");
+                }
+                if ((accion_2 == 3) && (accion_1 == 2)) {
+                    System.out.println(name_2 + " carga su ataque especial, " + name_1 + ", que se lo espera, intenta mitigar el daño cubriéndose.");
+                    System.out.println("A " + name_1 + " le quedan " + vit_1 + " de vida.");
+                    System.out.println("A " + name_2 + " le quedan " + vit_2 + " de vida.");
+                }
+                if ((accion_2 == 3) && (accion_1 == 3)) {
+                    System.out.println("Ambos rivales realizan sendos ataques especiales generando una ráfaga de energía intercalada sin control.");
+                    System.out.println("A " + name_1 + " le quedan " + vit_1 + " de vida.");
+                    System.out.println("A " + name_2 + " le quedan " + vit_2 + " de vida.");
+                }
+                if ((accion_2 == 3) && (accion_1 == 4)) {
+                    vit_1 = vit_1 + (Math.random() * 50);
+                    System.out.println(name_2 + " carga su ataque especial, " + name_1 + ", ante la gran cantidad de daño que se le viene, decide utilizar una poción.");
+                    System.out.println("A " + name_1 + " le quedan " + vit_1 + " de vida.");
+                    System.out.println("A " + name_2 + " le quedan " + vit_2 + " de vida.");
+                }
+                if ((accion_2 == 4) && (accion_1 == 1)) {
+                    vit_2 = vit_2 - ataque_jugador1;
+                    vit_2 = vit_2 + (Math.random() * 50);
+                    System.out.println(name_1 + " aprovecha para atacar mientras " + name_2 + " decide utilizar una poción.");
+                    System.out.println("A " + name_1 + " le quedan " + vit_1 + " de vida.");
+                    System.out.println("A " + name_2 + " le quedan " + vit_2 + " de vida.");
+                }
+                if ((accion_2 == 4) && (accion_1 == 2)) {
+                    vit_2 = vit_2 + (Math.random() * 50);
+                    System.out.println(name_1 + " decide cubrirse y " + name_2 + " aprovecha la situación para curarse.");
+                    System.out.println("A " + name_1 + " le quedan " + vit_1 + " de vida.");
+                    System.out.println("A " + name_2 + " le quedan " + vit_2 + " de vida.");
+                }
+                if ((accion_2 == 4) && (accion_1 == 3)) {
+                    vit_2 = vit_2 + (Math.random() * 50);
+                    System.out.println(name_1 + " carga su ataque especial, " + name_2 + " decide curarse usando una poción.");
+                    System.out.println("A " + name_1 + " le quedan " + vit_1 + " de vida.");
+                    System.out.println("A " + name_2 + " le quedan " + vit_2 + " de vida.");
+                }
+                if ((accion_2 == 4) && (accion_1 == 4)) {
+                    vit_2 = vit_2 + (Math.random() * 50);
+                    vit_1 = vit_1 + (Math.random() * 50);
+                    System.out.println("Ambos oponentes se alejan el uno del otro y aprovechan para curarse.");
+                    System.out.println("A " + name_1 + " le quedan " + vit_1 + " de vida.");
+                    System.out.println("A " + name_2 + " le quedan " + vit_2 + " de vida.");
                 }
             }
             //Aquí termina este bloque de ataque si lo hace primero el jugador 2.
@@ -690,6 +691,7 @@ segundo jugador que el primero */
             porcentaje_vida_2 = vit_2 / vit_maxima_2;
             guiones_quedan_1 = (int) (porcentaje_vida_1 * longitud_barra_vida_1);
             guiones_quedan_2 = (int) (porcentaje_vida_2 * longitud_barra_vida_2);
+
             StringBuilder barra_vida_1 = new StringBuilder("[");
             for (int i = 0; i < longitud_barra_vida_1; i++) {
                 if (i < guiones_quedan_1) {
@@ -712,33 +714,33 @@ segundo jugador que el primero */
             barra_vida_2.append("]");
             System.out.println("Barra de Vida de " + name_2 + ": " + barra_vida_2);
             //Aquí termina la representación gráfica de la vida
-        }
 
+        }
         //Aquí, un pequeño ASCII Art de victoria, según el vencedor.
         if ((vit_1 > vit_2) && (vit_2 == 0)) {
             System.out.println(name_1 + " ha vencido!");
             String asciiart =
-"           ##                                                            ###                                                    ##\n  " +
-"                                                                          ##                                                   ###\n  " +
-"##   ##   ###     #####    #####     ####    ######            ######     ##      ####    ##  ##    ####    ######              ##\n  " +
-"## # ##    ##     ##  ##   ##  ##   ##  ##    ##  ##            ##  ##    ##         ##   ##  ##   ##  ##    ##  ##             ##\n  " +
-"#######    ##     ##  ##   ##  ##   ######    ##                ##  ##    ##      #####   ##  ##   ######    ##                 ##\n  " +
-"#######    ##     ##  ##   ##  ##   ##        ##                #####     ##     ##  ##    #####   ##        ##                 ##\n  " +
-" ## ##    ####    ##  ##   ##  ##    #####   ####               ##       ####     #####       ##    #####   ####              ######\n" +
-"                                                               ####                        #####                                      ";
+                "           ##                                                            ###                                                    ##\n  " +
+                "                                                                          ##                                                   ###\n  " +
+                "##   ##   ###     #####    #####     ####    ######            ######     ##      ####    ##  ##    ####    ######              ##\n  " +
+                "## # ##    ##     ##  ##   ##  ##   ##  ##    ##  ##            ##  ##    ##         ##   ##  ##   ##  ##    ##  ##             ##\n  " +
+                "#######    ##     ##  ##   ##  ##   ######    ##                ##  ##    ##      #####   ##  ##   ######    ##                 ##\n  " +
+                "#######    ##     ##  ##   ##  ##   ##        ##                #####     ##     ##  ##    #####   ##        ##                 ##\n  " +
+                " ## ##    ####    ##  ##   ##  ##    #####   ####               ##       ####     #####       ##    #####   ####              ######\n" +
+                "                                                               ####                        #####                                      ";
             System.out.println(asciiart);
         }
         if ((vit_1 < vit_2) && (vit_1 == 0)) {
             System.out.println(name_2 + " es el vencedor!");
             String asciiart =
-"            ##                                                           ###                                                   ####\n  " +
-"                                                                          ##                                                  ##  ##\n " +
-"##   ##   ###     #####    #####     ####    ######            ######     ##      ####    ##  ##    ####    ######                ##\n  " +
-"## # ##    ##     ##  ##   ##  ##   ##  ##    ##  ##            ##  ##    ##         ##   ##  ##   ##  ##    ##  ##             ###\n   " +
-"#######    ##     ##  ##   ##  ##   ######    ##                ##  ##    ##      #####   ##  ##   ######    ##                ##\n     " +
-"#######    ##     ##  ##   ##  ##   ##        ##                #####     ##     ##  ##    #####   ##        ##               ##  ##\n  " +
-" ## ##    ####    ##  ##   ##  ##    #####   ####               ##       ####     #####       ##    #####   ####              ######\n  " +
-"                                                               ####                        #####\n                                      ";
+                "            ##                                                           ###                                                   ####\n  " +
+                "                                                                          ##                                                  ##  ##\n " +
+                "##   ##   ###     #####    #####     ####    ######            ######     ##      ####    ##  ##    ####    ######                ##\n  " +
+                "## # ##    ##     ##  ##   ##  ##   ##  ##    ##  ##            ##  ##    ##         ##   ##  ##   ##  ##    ##  ##             ###\n   " +
+                "#######    ##     ##  ##   ##  ##   ######    ##                ##  ##    ##      #####   ##  ##   ######    ##                ##\n     " +
+                "#######    ##     ##  ##   ##  ##   ##        ##                #####     ##     ##  ##    #####   ##        ##               ##  ##\n  " +
+                " ## ##    ####    ##  ##   ##  ##    #####   ####               ##       ####     #####       ##    #####   ####              ######\n  " +
+                "                                                               ####                        #####\n                                      ";
             System.out.println(asciiart);
         }
     }
