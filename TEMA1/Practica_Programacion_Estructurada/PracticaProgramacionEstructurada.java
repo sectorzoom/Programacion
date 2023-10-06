@@ -1,14 +1,18 @@
 package Practica_Programacion_Estructurada;
+
 import java.util.Random;
 import java.util.Scanner;
+
 public class PracticaProgramacionEstructurada {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         Random random = new Random();
         System.out.println("Bienvenidos a Battle Craft, el simulador de batallas de David Giménez.");
         System.out.println("Dime, ¿cómo te llamas?");
+        System.out.print("Nombre: ");
         String name_1 = in.next();
         System.out.println("Hola contrincante de " + name_1 + " , ¿cómo te llamas?");
+        System.out.print("Nombre: ");
         String name_2 = in.next();
         boolean confirmacion_personaje_1 = false, confirmacion_personaje_2 = false;
         int suma = 0;
@@ -16,12 +20,19 @@ public class PracticaProgramacionEstructurada {
         double vit_2 = 0, ataque_2 = 0, defensa_2 = 0, velocidad_2 = 0, especial_2 = 0;
         int personaje_1 = 0, personaje_2 = 0;
 
-//Aquí empieza el bloque que permite la selección del primer personaje.
+        //Aquí empieza el bloque que permite la selección del primer personaje.
         while (!confirmacion_personaje_1) {
             System.out.println("Muy bien " + name_1 + " elige a tu campeón.");
-            System.out.println("Caballero Cebolla (1) / Conan el Bárbaro (2) / Berserker del Crisol (3) / Aleatorio (4) / Personalizado (5)");
-            personaje_1 = in.nextInt();
-            String nombre_personaje = "nombre";
+            System.out.println("Caballero Cebolla (1) \nConan el Bárbaro (2) \nBerserker del Crisol (3) \nAleatorio (4) \nPersonalizado (5)");
+            System.out.println("NOTA: Escribe sólo el número que hay dentro del paréntesis de tu elección.");
+            do {
+                System.out.print("Elección de personaje: ");
+                personaje_1 = in.nextInt();
+                if ((personaje_1 >= 6) || (personaje_1 <= 0)) {
+                    System.out.println("Introduce un comando válido");
+                }
+            } while ((personaje_1 <= 0) || (personaje_1 >= 6));
+            String nombre_personaje;
             if (personaje_1 == 1) {
                 nombre_personaje = "al Caballero Cebolla";
             } else if (personaje_1 == 2) {
@@ -30,9 +41,11 @@ public class PracticaProgramacionEstructurada {
                 nombre_personaje = "al Berserker del Crisol";
             } else if (personaje_1 == 4) {
                 System.out.println("Por favor, dale un nombre a tu campeón.");
+                System.out.print("Nombre Campeón: ");
                 nombre_personaje = in.next();
-            } else if (personaje_1 == 5) {
+            } else {
                 System.out.println("Por favor, dale un nombre a tu campeón.");
+                System.out.print("Nombre Campeón: ");
                 nombre_personaje = in.next();
             }
             switch (personaje_1) {
@@ -76,9 +89,16 @@ public class PracticaProgramacionEstructurada {
                     System.out.println("Ataque: " + ataque_1);
                     System.out.println("Defensa: " + defensa_1);
                     System.out.println("Velocidad: " + velocidad_1);
-                    System.out.println("Selecciona uno de los 3 especiales. NOTA: escribe 1,2 o 3.");
-                    System.out.println("Corazon Valeroso (1): aumenta la defensa del Caballero y duplica su VIT.\nGrito de Guerra (2): aumenta el ataque pero reduce su VIT.\nFuria Berserker (3): aumenta todos los stats 2 rounds.");
-                    especial_1 = in.nextInt();
+                    System.out.println("Selecciona uno de los 3 especiales");
+                    System.out.println("Corazon Valeroso (1): aumenta la defensa del Caballero y duplica su VIT.\nGrito de Guerra (2): aumenta el ataque pero reduce su VIT.\nFuria Berserker (3): aumenta todos los stats.");
+                    System.out.println("NOTA: Escribe sólo el número que hay dentro del paréntesis de tu elección.");
+                    do {
+                        System.out.print("Habilidad Especial: ");
+                        especial_1 = in.nextInt();
+                        if ((especial_1 >= 4) || (especial_1 <= 0)) {
+                            System.out.println("Introduce un comando válido");
+                        }
+                    } while ((especial_1 <= 0) || (especial_1 >= 4));
                     break;
                 case 5:
                     System.out.println("Muy bien, define los stats de " + nombre_personaje + ".");
@@ -99,7 +119,7 @@ public class PracticaProgramacionEstructurada {
                         suma = (int) vit_1;
                         System.out.println("Te quedan " + (500 - suma) + " para repartir.");
                         while ((ataque_1 > 200) || (ataque_1 <= 0)) {
-                            System.out.println("Ataque: ");
+                            System.out.print("Ataque: ");
                             ataque_1 = (int) in.nextDouble();
                             if ((ataque_1 > 200) || (ataque_1 <= 0)) {
                                 System.out.println("Valor erróneo, vuelve a escribir un valor correcto.");
@@ -108,7 +128,7 @@ public class PracticaProgramacionEstructurada {
                         suma = (int) vit_1 + (int) ataque_1;
                         System.out.println("Te quedan " + (500 - suma) + " para repartir.");
                         while ((defensa_1 > 200) || (defensa_1 <= 0)) {
-                            System.out.println("Defensa: ");
+                            System.out.print("Defensa: ");
                             defensa_1 = (int) in.nextDouble();
                             if ((defensa_1 > 200) || (defensa_1 <= 0)) {
                                 System.out.println("Valor erróneo, vuelve a escribir un valor correcto.");
@@ -117,7 +137,7 @@ public class PracticaProgramacionEstructurada {
                         suma = (int) vit_1 + (int) ataque_1 + (int) defensa_1;
                         System.out.println("Te quedan " + (500 - suma) + " para repartir.");
                         while ((velocidad_1 > 200) || (velocidad_1 <= 0)) {
-                            System.out.println("Velocidad: ");
+                            System.out.print("Velocidad: ");
                             velocidad_1 = (int) in.nextDouble();
                             if ((velocidad_1 > 200) || (velocidad_1 <= 0)) {
                                 System.out.println("Valor erróneo, vuelve a escribir un valor correcto.");
@@ -131,25 +151,39 @@ public class PracticaProgramacionEstructurada {
                             System.out.println("Te has pasado de puntos. Debes repartir 500. Vuelve a empezar.");
                         }
                     }
-                    System.out.println("Selecciona uno de los 3 especiales. NOTA: escribe 1,2 o 3.");
-                    System.out.println("Corazon Valeroso (1): aumenta la defensa del Caballero y duplica su VIT.\nGrito de Guerra (2): aumenta el ataque pero reduce su VIT.\nFuria Berserker (3): aumenta todos los stats 2 rounds.");
-                    especial_1 = in.nextInt();
+                    System.out.println("Selecciona uno de los 3 especiales.");
+                    System.out.println("Corazon Valeroso (1): aumenta la defensa del Caballero y duplica su VIT.\nGrito de Guerra (2): aumenta el ataque pero reduce su VIT.\nFuria Berserker (3): aumenta todos los stats.");
+                    System.out.println("NOTA: Escribe sólo el número que hay dentro del paréntesis de tu elección");
+                    do {
+                        System.out.print("Habilidad Especial: ");
+                        especial_1 = in.nextInt();
+                        if ((especial_1 >= 4) || (especial_1 <= 0)) {
+                            System.out.println("Introduce un comando válido");
+                        }
+                    } while ((especial_1 <= 0) || (especial_1 >= 4));
                     break;
             }
-            System.out.println("Es correcto?");
+            System.out.println("Es correcto? (Escribe 'S' o 's' / 'N' o 'n')");
             char seleccion = in.next().charAt(0);
             if ((seleccion == 'S') || (seleccion == 's')) {
                 confirmacion_personaje_1 = true;
             }
         }
-// Final del primer bloque de selección de campeón.
+        // Final del primer bloque de selección de campeón.
 
-// Aquí empieza  la segunda selección de campeón, idéntica a la primera.
+        // Aquí empieza  la segunda selección de campeón, idéntica a la primera.
         while (!confirmacion_personaje_2) {
             System.out.println("Muy bien " + name_2 + " elige a tu campeón.");
             System.out.println("Caballero Cebolla (1) / Conan el Bárbaro (2) / Berserker del Crisol (3) / Aleatorio (4) / Personalizado (5)");
-            personaje_2 = in.nextInt();
-            String nombre_personaje_2 = "nombre";
+            System.out.println("NOTA: Escribe sólo el número que hay dentro del paréntesis de tu elección.");
+            do {
+                System.out.print("Elección de personaje: ");
+                personaje_2 = in.nextInt();
+                if ((personaje_2 >= 6) || (personaje_2 <= 0)) {
+                    System.out.println("Introduce un comando válido");
+                }
+            } while ((personaje_2 <= 0) || (personaje_2 >= 6));
+            String nombre_personaje_2;
             if (personaje_2 == 1) {
                 nombre_personaje_2 = "al Caballero Cebolla";
             } else if (personaje_2 == 2) {
@@ -158,9 +192,11 @@ public class PracticaProgramacionEstructurada {
                 nombre_personaje_2 = "al Berserker del Crisol";
             } else if (personaje_2 == 4) {
                 System.out.println("Por favor, dale un nombre a tu campeón.");
+                System.out.print("Nombre Campeón: ");
                 nombre_personaje_2 = in.next();
-            } else if (personaje_2 == 5) {
+            } else {
                 System.out.println("Por favor, dale un nombre a tu campeón.");
+                System.out.print("Nombre Campeón: ");
                 nombre_personaje_2 = in.next();
             }
             switch (personaje_2) {
@@ -204,9 +240,16 @@ public class PracticaProgramacionEstructurada {
                     System.out.println("Ataque: " + ataque_2);
                     System.out.println("Defensa: " + defensa_2);
                     System.out.println("Velocidad: " + velocidad_2);
-                    System.out.println("Selecciona uno de los 3 especiales. NOTA: escribe 1,2 o 3.");
-                    System.out.println("Corazon Valeroso (1): aumenta la defensa del Caballero y duplica su VIT.\nGrito de Guerra (2): aumenta el ataque pero reduce su VIT.\nFuria Berserker (3): aumenta todos los stats 2 rounds.");
-                    especial_2 = in.nextInt();
+                    System.out.println("Selecciona uno de los 3 especiales.");
+                    System.out.println("Corazon Valeroso (1): aumenta la defensa del Caballero y duplica su VIT.\nGrito de Guerra (2): aumenta el ataque pero reduce su VIT.\nFuria Berserker (3): aumenta todos los stats.");
+                    System.out.println("NOTA: Escribe sólo el número que hay dentro del paréntesis de tu elección.");
+                    do {
+                        System.out.print("Habilidad Especial: ");
+                        especial_2 = in.nextInt();
+                        if ((especial_2 >= 4) || (especial_2 <= 0)) {
+                            System.out.println("Introduce un comando válido");
+                        }
+                    } while ((especial_2 <= 0) || (especial_2 >= 4));
                     break;
                 case 5:
                     System.out.println("Muy bien, define los stats de " + nombre_personaje_2 + ".");
@@ -227,7 +270,7 @@ public class PracticaProgramacionEstructurada {
                         suma = (int) vit_2;
                         System.out.println("Te quedan " + (500 - suma) + " para repartir.");
                         while ((ataque_2 > 200) || (ataque_2 <= 0)) {
-                            System.out.println("Ataque: ");
+                            System.out.print("Ataque: ");
                             ataque_2 = (int) in.nextDouble();
                             if ((ataque_2 > 200) || (ataque_2 <= 0)) {
                                 System.out.println("Valor erróneo, vuelve a escribir un valor correcto.");
@@ -236,7 +279,7 @@ public class PracticaProgramacionEstructurada {
                         suma = (int) vit_2 + (int) ataque_2;
                         System.out.println("Te quedan " + (500 - suma) + " para repartir.");
                         while ((defensa_2 > 200) || (defensa_2 <= 0)) {
-                            System.out.println("Defensa: ");
+                            System.out.print("Defensa: ");
                             defensa_2 = (int) in.nextDouble();
                             if ((defensa_2 > 200) || (defensa_2 <= 0)) {
                                 System.out.println("Valor erróneo, vuelve a escribir un valor correcto.");
@@ -245,7 +288,7 @@ public class PracticaProgramacionEstructurada {
                         suma = (int) vit_2 + (int) ataque_2 + (int) defensa_2;
                         System.out.println("Te quedan " + (500 - suma) + " para repartir.");
                         while ((velocidad_2 > 200) || (velocidad_2 <= 0)) {
-                            System.out.println("Velocidad: ");
+                            System.out.print("Velocidad: ");
                             velocidad_2 = (int) in.nextDouble();
                             if ((velocidad_2 > 200) || (velocidad_2 <= 0)) {
                                 System.out.println("Valor erróneo, vuelve a escribir un valor correcto.");
@@ -259,20 +302,27 @@ public class PracticaProgramacionEstructurada {
                             System.out.println("Te has pasado de puntos. Debes repartir 500. Vuelve a empezar.");
                         }
                     }
-                    System.out.println("Selecciona uno de los 3 especiales. NOTA: escribe 1,2 o 3.");
-                    System.out.println("Corazon Valeroso (1): aumenta la defensa del Caballero y duplica su VIT.\nGrito de Guerra (2): aumenta el ataque pero reduce su VIT.\nFuria Berserker (3): aumenta todos los stats 2 rounds.");
-                    especial_2 = in.nextInt();
+                    System.out.println("Selecciona uno de los 3 especiales.");
+                    System.out.println("Corazon Valeroso (1): aumenta la defensa del Caballero y duplica su VIT.\nGrito de Guerra (2): aumenta el ataque pero reduce su VIT.\nFuria Berserker (3): aumenta todos los stats.");
+                    System.out.println("NOTA: Escribe sólo el número que hay dentro del paréntesis de tu elección.");
+                    do {
+                        System.out.print("Habilidad Especial: ");
+                        especial_2 = in.nextInt();
+                        if ((especial_2 >= 4) || (especial_2 <= 0)) {
+                            System.out.println("Introduce un comando válido");
+                        }
+                    } while ((especial_2 <= 0) || (especial_2 >= 4));
                     break;
             }
-            System.out.println("Es correcto?");
+            System.out.println("Es correcto? (Escribe 'S' o 's' / 'N' o 'n')");
             char seleccion = in.next().charAt(0);
             if ((seleccion == 'S') || (seleccion == 's')) {
                 confirmacion_personaje_2 = true;
             }
         }
-// Aquí termina el código de la segunda selección de campeón, idéntica a la primera,
+        // Aquí termina el código de la segunda selección de campeón, idéntica a la primera,
 
-// Aquí están los parámetros con los que se irán empezando cada turno y serán utilizados según el comando de cada ronda.
+        // Aquí están los parámetros con los que se irán empezando cada turno y serán utilizados según el comando de cada ronda.
         System.out.println("Muy bien " + name_1 + " y " + name_2 + ", ¡comienza el combate!");
         int round = 1;
         double vit_maxima_1 = vit_1, vit_maxima_2 = vit_2;
@@ -483,10 +533,10 @@ public class PracticaProgramacionEstructurada {
                     System.out.println("A " + name_2 + " le quedan " + vit_2 + " de vida.");
                 }
             }
-//Aquí termina este bloque de código, referente a qué ocurre si pega primero el jugador 1.
+            //Aquí termina este bloque de código, referente a qué ocurre si pega primero el jugador 1.
 
-/* De aquí para abajo es el mismo código que justo arriba pero cambiando el orden de pelea, pega antes el
-segundo jugador que el primero */
+            /* De aquí para abajo es el mismo código que justo arriba pero cambiando el orden de pelea, pega antes el
+            segundo jugador que el primero */
             if (primer_ataque_1 < primer_ataque_2) {
                 System.out.println(name_2 + " ataca primero.");
                 System.out.println(name_2 + " elige qué hacer: atacar (1), defender (2), especial (3), curar (4)");
