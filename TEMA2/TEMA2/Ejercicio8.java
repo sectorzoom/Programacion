@@ -5,16 +5,15 @@ public class Ejercicio8 {
         boolean correct = false;
         if (month >= 1 && month <= 12 && day >= 1 && day <= 31) {
             if (month == 4 || month == 6 || month == 9 || month == 11) {
-                return day <= 30;
+                correct = day <= 30;
             }
             if (month == 2) {
                 if (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)) {
-                    return day <= 29;
+                    correct = day <= 29;
                 } else {
-                    return day <= 28;
+                    correct = day <= 28;
                 }
             }
-            correct = true;
         }
         return correct;
     }
