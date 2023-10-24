@@ -5,7 +5,7 @@ public class Ejercicio6 {
         System.out.println("Todas las tablas de multiplicar del 1 al 10");
 
         for (int number = 1; number <= 10; number++) {
-            Ejercicio5.multiplication_table(number);
+            Ejercicio5.multiplicationTable(number);
         }
 
     }
