@@ -3,15 +3,14 @@ import java.util.Scanner;
 public class Ejercicio7 {
 
     public static boolean prime_number (int number) {
-        if (number <= 1) {
-            return false;
-        }
+        boolean prime = number > 1;
         for (int i = 2; i < number; i++) {
             if (number % i == 0) {
-                return false;
+                prime = false;
+                break;
             }
         }
-        return true;
+        return prime;
     }
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
@@ -21,9 +20,10 @@ public class Ejercicio7 {
             number = in.nextInt();
             if (prime_number(number)) {
                 System.out.println("Es primo.");
-            } else {
+            } else if (number != 0) {
                 System.out.println("No es primo.");
             }
         }
+        System.out.println("¡Adiós!");
     }
 }
