@@ -16,7 +16,7 @@ public class Ejercicio7 {
         Scanner in = new Scanner(System.in);
         int number = 1;
         while (number !=0) {
-            System.out.println("Escriba su supuesto número primo: ");
+            System.out.println("Escriba su supuesto número primo (Pon 0 para cerrar): ");
             number = in.nextInt();
             if (prime_number(number)) {
                 System.out.println("Es primo.");
