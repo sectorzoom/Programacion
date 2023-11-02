@@ -1,4 +1,5 @@
 import TEMA2.Utils;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -55,5 +56,13 @@ class UtilsTest {
         assertTrue(Utils.isValidNIF(12345678,'Z'));
         assertTrue(Utils.isValidNIF(12345678,'z'));
         assertFalse(Utils.isValidNIF(12345678,'A'));
+    }
+    @Test
+    void calculateIRPFTest() {
+        Assertions.assertEquals( 0, Utils.calculateIRPF(-1),"No están aceptados números negativos");
+        assertEquals( 0, Utils.calculateIRPF(0));
+        assertEquals( 2365.31, Utils.calculateIRPF(12449));
+        assertEquals( 2365.55, Utils.calculateIRPF(12450));
+        assertEquals( 125900.42, Utils.calculateIRPF(300000));
     }
 }

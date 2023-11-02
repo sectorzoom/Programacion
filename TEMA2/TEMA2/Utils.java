@@ -90,4 +90,29 @@ public class Utils {
     public static boolean isValidNIF (int dni, char nif) {
         return nif == getNIF(dni) || nif == Character.toLowerCase(getNIF(dni));
     }
+    public static double calculateIRPF (double wages) {
+        double irpf = 0;
+        if (wages < 0) {
+            irpf = 0;
+        }
+        if (wages <= 12449 && wages >= 0) {
+            irpf = wages * 0.19;
+        }
+        if (wages >= 12450 && wages <= 20199) {
+            irpf = 12449*0.19 + (wages-12449) * 0.24;
+        }
+        if (wages >= 20200 && wages <= 35199) {
+            irpf = 12449*0.19 + ((20199-12450) * 0.24) + (wages-20199) * 0.3;
+        }
+        if (wages >= 35200 && wages <= 59999) {
+            irpf = 12449*0.19 + ((20199-12450) * 0.24) + ((35199-20200) * 0.3) + (wages-35199) * 0.37;
+        }
+        if (wages >= 60000 && wages <= 299999) {
+            irpf = 12449*0.19 + ((20199-12450) * 0.24) + ((35199-20200) * 0.3) +((59999-35200) * 0.37) + (wages-59999) * 0.45;
+        }
+        if (wages >= 300000) {
+            irpf = 12449*0.19 + ((20199-12450) * 0.24) + ((35199-20200) * 0.3) +((59999-35200) * 0.37) + ((299999-60000) * 0.45) + (wages-299999) * 0.47;
+        }
+        return (Math.round (irpf * 100) / 100.0);
+    }
 }
