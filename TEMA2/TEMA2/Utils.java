@@ -92,10 +92,7 @@ public class Utils {
     }
     public static double calculateIRPF (double wages) {
         double irpf = 0;
-        if (wages < 0) {
-            irpf = 0;
-        }
-        if (wages <= 12449 && wages >= 0) {
+        if (wages <= 12449 && wages > 0) {
             irpf = wages * 0.19;
         }
         if (wages >= 12450 && wages <= 20199) {
@@ -113,6 +110,6 @@ public class Utils {
         if (wages >= 300000) {
             irpf = 12449*0.19 + ((20199-12450) * 0.24) + ((35199-20200) * 0.3) +((59999-35200) * 0.37) + ((299999-60000) * 0.45) + (wages-299999) * 0.47;
         }
-        return (Math.round (irpf * 100) / 100.0);
+        return irpf;
     }
 }
