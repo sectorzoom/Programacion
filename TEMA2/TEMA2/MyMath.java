@@ -2,55 +2,43 @@ package TEMA2;
 
 public class MyMath {
     public static double squarePerimeter (double lado) {
-        double squarePerimeter;
-        if (lado < 0) {
-            squarePerimeter = 0;
-        } else {
+        double squarePerimeter = 0;
+        if (lado > 0) {
             squarePerimeter = (lado * 4);
         }
         return squarePerimeter;
     }
     public static double squareArea (double lado) {
-        double squareArea;
-        if (lado < 0) {
-            squareArea = 0;
-        } else {
+        double squareArea = 0;
+        if (lado > 0) {
             squareArea = (lado * lado);
         }
         return squareArea;
     }
     public static double rectanglePerimeter (double lado1, double lado2) {
-        double rectanglePerimeter;
-        if (lado1 <= 0 || lado2 <=  0) {
-            rectanglePerimeter = 0;
-        } else {
+        double rectanglePerimeter = 0;
+        if (lado1 > 0 && lado2 >  0) {
             rectanglePerimeter = (lado1*2 + lado2*2);
         }
         return rectanglePerimeter;
     }
     public static double rectangleArea (double lado1, double lado2) {
-        double rectangleAreaTest;
-        if (lado1 <= 0 || lado2 <= 0) {
-            rectangleAreaTest = 0;
-        } else {
+        double rectangleAreaTest = 0;
+        if (lado1 > 0 && lado2 >  0) {
             rectangleAreaTest = lado1 * lado2;
         }
         return  rectangleAreaTest;
     }
     public static double circlePerimeter (double radius) {
-        double circlePerimeter;
-        if (radius <= 0) {
-            circlePerimeter = 0;
-        } else {
+        double circlePerimeter = 0;
+        if (radius > 0) {
             circlePerimeter = 2* Math.PI * radius;
         }
         return circlePerimeter;
     }
     public static double circleArea (double radius) {
-        double circleArea;
-        if (radius <= 0) {
-            circleArea = 0;
-        } else {
+        double circleArea = 0;
+        if (radius > 0) {
             circleArea = Math.PI * Math.pow(radius,2);
         }
         return circleArea;
@@ -92,15 +80,7 @@ public class MyMath {
         return count;
     }
     public static int oddFigureCount (int number) {
-        number = Math.abs (number);
-        int count = 0;
-        while (number > 0) {
-            if (number % 2 != 0) {
-                count++;
-            }
-            number /= 10;
-        }
-        return count;
+        return figureCount(number)-evenFigureCount(number);
     }
     public static int factorial (int number) {
         int factorial = 0;
