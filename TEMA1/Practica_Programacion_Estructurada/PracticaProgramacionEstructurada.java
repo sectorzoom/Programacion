@@ -13,7 +13,7 @@ public class PracticaProgramacionEstructurada {
     static int defense; static int defense_1; static int defense_2; static int defenseRandom_1; static int defenseRandom_2;
     static int speed; static int speed_1; static int speed_2; static int speedRandom_1; static int speedRandom_2;
     static int special; static int special_1; static int special_2;
-    static int specialCounter; static int specialCounter_1 = 0; static int specialCounter_2 = 0;
+    static int specialCounter_1 = 0; static int specialCounter_2 = 0;
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
@@ -42,7 +42,6 @@ public class PracticaProgramacionEstructurada {
         champion = in.nextInt();
     }
     public static void selectChampionStats(int championPlayer) {
-        int maxStat = 0;
         switch (championPlayer) {
             case 1:
                 champion1();
@@ -115,7 +114,6 @@ public class PracticaProgramacionEstructurada {
             System.out.println("Nota: Recuerda, no debes poner mas de 200 en un atributo y como mínimo 1 en cada uno\n" +
                     "La suma de todos no puede ser mayor a 500");
             vit = 0; attack = 0; defense = 0; speed = 0;
-            maxStat = 0;
             nameStat = "vit";
             vit = statsCustomizerChampion(nameStat, vit);
             maxStat = vit;
@@ -171,27 +169,6 @@ public class PracticaProgramacionEstructurada {
             }
         }
     }
-    public static int randomParameters(int stat) {
-        Random random = new Random();
-        return random.nextInt(10, stat);
-    }
-
-    public static int crticalAttackChampion(int attack) {
-        Random random = new Random();
-        return (random.nextInt(50, attack) * 2);
-    }
-    public static int action (String selectActionName_1, String selectActionName_2) {
-        System.out.println(selectActionName_1 + " ataca primero:");
-        int action = selectAction(selectActionName_1);
-        System.out.println("Te toca " + selectActionName_2);
-        return action;
-    }
-    public static int selectAction(String name) {
-        Scanner in = new Scanner(System.in);
-        System.out.println(name + " elige qué hacer: atacar (1), defender (2), especial (3), curar (4)");
-        System.out.println("NOTA: Escribe el numero reflejado entre paréntesis para hacer la acción " + "()");
-        return in.nextInt();
-    }
     public static void game (String name_1, String name_2) {
         Scanner in = new Scanner(System.in);
         while (vit_1 > 0 && vit_2 > 0) {
@@ -238,6 +215,26 @@ public class PracticaProgramacionEstructurada {
                 criticalAttack_2 = crticalAttackChampion(attack_2);
             }
         }
+    }
+    public static int randomParameters(int stat) {
+        Random random = new Random();
+        return random.nextInt(10, stat);
+    }
+    public static int crticalAttackChampion(int attack) {
+        Random random = new Random();
+        return (random.nextInt(50, attack) * 2);
+    }
+    public static int action (String selectActionName_1, String selectActionName_2) {
+        System.out.println(selectActionName_1 + " ataca primero:");
+        int action = selectAction(selectActionName_1);
+        System.out.println("Te toca " + selectActionName_2);
+        return action;
+    }
+    public static int selectAction(String name) {
+        Scanner in = new Scanner(System.in);
+        System.out.println(name + " elige qué hacer: atacar (1), defender (2), especial (3), curar (4)");
+        System.out.println("NOTA: Escribe el numero reflejado entre paréntesis para hacer la acción " + "()");
+        return in.nextInt();
     }
 
     public static void ifPlayerSelectSpecial (int player, int action, int vit, int attack, int defense, int speed, int special, int specialCounter) {
