@@ -5,13 +5,15 @@ import java.util.Scanner;
 
 public class PracticaProgramacionEstructurada {
     static int champion;
-    static int round;
-    static String nameStat;
-    static int vit;
-    static int attack;
-    static int defense;
-    static int speed;
-    static int special;
+    static int round = 1;
+    static String nameStat; static int player;
+    static int vit; static int vit_1; static int vit_2; static int vit_max_1; static int vit_max_2;
+    static int attack; static int attack_1; static int attack_2; static int attackRandom_1; static int attackRandom_2;
+    static int critical_1; static int critical_2; static int criticalAttack_1; static int criticalAttack_2;
+    static int defense; static int defense_1; static int defense_2; static int defenseRandom_1; static int defenseRandom_2;
+    static int speed; static int speed_1; static int speed_2; static int speedRandom_1; static int speedRandom_2;
+    static int special; static int special_1; static int special_2;
+    static int specialCounter; static int specialCounter_1 = 0; static int specialCounter_2 = 0;
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
@@ -21,129 +23,16 @@ public class PracticaProgramacionEstructurada {
         String name_2 = in.next();
         introduction(name_1);
         int championPlayer_1 = champion;
-        championStats(championPlayer_1);
+        player = 1;
+        selectChampionStats(championPlayer_1);
         confirmation();
-        int vit_1 = vit; int vit_max_1 = vit; int attack_1 = attack; int defense_1 = defense; int speed_1 = speed; int special_1 = special;
         introduction(name_2);
         int championPlayer_2 = champion;
-        championStats(championPlayer_2);
+        player = 2;
+        selectChampionStats(championPlayer_2);
         confirmation();
-        int vit_2 = vit; int vit_max_2 = vit; int attack_2 = attack; int defense_2 = defense; int speed_2 = speed; int special_2 = special;
         System.out.println("Muy bien " + name_1 + " y " + name_2 + ", ¡comienza el combate!");
-        round = 1;
-        int attackRandom_1, defenseRandom_1, speedRandom_1, critical_1, criticalAttack_1 = 0, specialCounter_1 = 0;
-        int attackRandom_2, defenseRandom_2, speedRandom_2, critical_2, criticalAttack_2 = 0, specialCounter_2 = 0;
-        while (vit_1 > 0 && vit_2 > 0) {
-            System.out.println("Ronda " + round + ":");
-            int critical;
-            attackRandom_1 = randomParameters(attack_1);
-            defenseRandom_1 = randomParameters(defense_1);
-            speedRandom_1 = randomParameters(speed_1);
-            critical = 100;
-            critical_1 = randomParameters(critical);
-            if (critical_1 <= 25) {
-                criticalAttack_1 = crticalAttackChampion(attack_1);
-            }
-            attackRandom_2 = randomParameters(attack_2);
-            defenseRandom_2 = randomParameters(defense_2);
-            speedRandom_2 = randomParameters(speed_2);
-            critical_2 = randomParameters(critical);
-            if (critical_2 <= 25) {
-                criticalAttack_2 = crticalAttackChampion(attack_2);
-            }
-            int action_1, action_2;
-            if (speedRandom_1 >= speedRandom_2) {
-                action_1 = action(name_1,name_2);
-                action_2 = in.nextInt();
-            } else {
-                action_2 = action(name_2,name_1);
-                action_1 = in.nextInt();
-            }
-            if ((action_1 == 3) && (specialCounter_1 == 1)) {
-                System.out.println("¡Ya has gastado la habilidad especial! Pierdes el turno.");
-            }
-            if ((action_1 == 3) && (specialCounter_1 == 0)) {
-                specialCounter_1 = 1;
-                if (special_1 == 1) {
-                    defense_1 = defense_1 * 2;
-                    vit_1 = vit_1 * 2;
-                }
-                if (special_1 == 2) {
-                    attack_1 = (int) (attack_1 * 1.5);
-                    vit_1 = (int) (vit_1 * 1.5);
-                }
-                if (special_1 == 3) {
-                    attack_1 = attack_1 + 50;
-                    defense_1 = defense_1 + 50;
-                    speed_1 = speed_1 + 50;
-                }
-            }
-            if ((action_2 == 3) && (specialCounter_2 == 1)) {
-                System.out.println("¡Ya has gastado la habilidad especial! Pierdes el turno.");
-            }
-            if ((action_2 == 3) && (specialCounter_2 == 0)) {
-                specialCounter_2 = 1;
-                if (special_2 == 1) {
-                    defense_2 = defense_2 * 2;
-                    vit_2 = vit_2 * 2;
-                }
-                if (special_2 == 2) {
-                    attack_2 = (int) (attack_2 * 1.5);
-                    vit_2 = (int) (vit_2 * 1.5);
-                }
-                if (special_2 == 3) {
-                    attack_2 = attack_2 + 50;
-                    defense_2 = defense_2 + 50;
-                    speed_2 = speed_2 + 50;
-                }
-            }
-            if (speedRandom_1 > speedRandom_2) {
-                vit_2 = battle(name_1, name_2,action_1,action_2,critical_1,vit_2,attackRandom_1,defenseRandom_2,criticalAttack_1);
-                vit_1 = battle(name_2, name_1,action_2,action_1,critical_2,vit_1,attackRandom_2,defenseRandom_1,criticalAttack_2);
-                vit_1 = heal(action_1,action_2,vit_1);
-                vit_2 = heal(action_2,action_1,vit_2);
-            } else {
-                vit_1 = battle(name_1, name_2,action_2,action_1,critical_2,vit_1,attackRandom_2,defenseRandom_1,criticalAttack_2);
-                vit_2 = battle(name_2, name_1,action_1,action_2,critical_1,vit_2,attackRandom_1,defenseRandom_2,criticalAttack_1);
-                vit_2 = heal(action_2,action_1,vit_2);
-                vit_1 = heal(action_1,action_2,vit_1);
-            }
-            System.out.println("A " + name_1 + " le quedan " + vit_1 + " de vit.");
-            System.out.println("A " + name_2 + " le quedan " + vit_2 + " de vit.");
-            barVit(name_1,vit_1, vit_max_1);
-            barVit(name_2,vit_2, vit_max_2);
-        }
-        //Aquí, un pequeño ASCII Art de victoria, según el vencedor.
-        if ((vit_1 > vit_2) && (vit_2 != 0)) {
-            System.out.println(name_1 + " ha vencido!");
-            String asciiart =
-                    """
-                                                                                                     ###                                                    ##   \s
-                                       ##                                                             ##                                                   ###   \s
-                            ##   ##   ###     #####    #####     ####    ######            ######     ##      ####    ##  ##    ####    ######              ##   \s
-                            ## # ##    ##     ##  ##   ##  ##   ##  ##    ##  ##            ##  ##    ##         ##   ##  ##   ##  ##    ##  ##             ##   \s
-                            #######    ##     ##  ##   ##  ##   ######    ##                ##  ##    ##      #####   ##  ##   ######    ##                 ##   \s
-                            #######    ##     ##  ##   ##  ##   ##        ##                #####     ##     ##  ##    #####   ##        ##                 ##   \s
-                             ## ##    ####    ##  ##   ##  ##    #####   ####               ##       ####     #####       ##    #####   ####              ###### \s
-                                                                                           ####                        #####                                     \s
-                            """;
-            System.out.println(asciiart);
-        }
-        if ((vit_1 < vit_2) && (vit_1 != 0)) {
-            System.out.println(name_2 + " es el vencedor!");
-            String asciiart =
-                    """
-                                                                                                     ###                                                   ####  \s
-                                       ##                                                             ##                                                  ##  ## \s
-                            ##   ##   ###     #####    #####     ####    ######            ######     ##      ####    ##  ##    ####    ######                ## \s
-                            ## # ##    ##     ##  ##   ##  ##   ##  ##    ##  ##            ##  ##    ##         ##   ##  ##   ##  ##    ##  ##             ###  \s
-                            #######    ##     ##  ##   ##  ##   ######    ##                ##  ##    ##      #####   ##  ##   ######    ##                ##    \s
-                            #######    ##     ##  ##   ##  ##   ##        ##                #####     ##     ##  ##    #####   ##        ##               ##  ## \s
-                             ## ##    ####    ##  ##   ##  ##    #####   ####               ##       ####     #####       ##    #####   ####              ###### \s
-                                                                                           ####                        #####                                     \s
-                            """;
-            System.out.println(asciiart);
-        }
+        game(name_1, name_2);
     }
     public static void introduction (String name) {
         Scanner in = new Scanner(System.in);
@@ -152,70 +41,97 @@ public class PracticaProgramacionEstructurada {
         System.out.println("NOTA: Escribe sólo el número que hay dentro del paréntesis de tu elección.");
         champion = in.nextInt();
     }
-    public static void championStats(int championPlayer) {
+    public static void selectChampionStats(int championPlayer) {
         Scanner in = new Scanner(System.in);
         int maxStat = 0;
         switch (championPlayer) {
             case 1:
-                System.out.println("VIT: 200 / Ataque: 100 / Defensa: 150 / Velocidad: 50");
-                vit = 200;
-                attack = 100;
-                defense = 125;
-                speed = 75;
-                special = 1;
-                System.out.println("Especial - Corazón valeroso: aumenta la defensa del Caballero y duplica su VIT");
+                champion1();
                 break;
             case 2:
-                System.out.println("VIT: 150 / Ataque: 200 / Defensa: 50 / Velocidad: 100");
-                vit = 150;
-                attack = 200;
-                defense = 50;
-                speed = 100;
-                special = 2;
-                System.out.println("Especial - Grito de Guerra: aumenta el ataque pero reduce su VIT.");
+                champion2();
                 break;
             case 3:
-                System.out.println("VIT: 100 / Ataque: 150 / Defensa: 100 / Velocidad: 150");
-                vit = 100;
-                attack = 150;
-                defense = 125;
-                speed = 125;
-                special = 3;
-                System.out.println("Especial - Furia Berserker: aumenta todos los stats.");
+                champion3();
                 break;
             case 4:
-                while ((maxStat != 500)) {
-                    vit = (int) (Math.random() * 100) + 50;
-                    attack = (int) (Math.random() * 100) + 50;
-                    defense = (int) (Math.random() * 100) + 50;
-                    speed = (int) (Math.random() * 100) + 50;
-                    maxStat = (vit + attack + defense + speed);
-                }
-                System.out.println("Vitalidad: " + vit);
-                System.out.println("Ataque: " + attack);
-                System.out.println("Defensa: " + defense);
-                System.out.println("Velocidad: " + speed);
+                champion4();
                 break;
             case 5:
-                while ((maxStat != 500)) {
-                    System.out.println("Nota: Recuerda, no debes poner mas de 200 en un atributo y como mínimo 1 en cada uno");
-                    System.out.println("La suma de todos no puede ser mayor a 500");
-                    vit = 0;
-                    attack = 0;
-                    defense = 0;
-                    speed = 0;
-                    maxStat = 0;
-                    nameStat = "vit";
-                    maxStat += statsCustomizerChampion(maxStat, nameStat, vit);
-                    nameStat = "attack";
-                    maxStat += statsCustomizerChampion(maxStat, nameStat, attack);
-                    nameStat = "defense";
-                    maxStat += statsCustomizerChampion(maxStat, nameStat, defense);
-                    nameStat = "speed";
-                    maxStat += statsCustomizerChampion(maxStat, nameStat, speed);
-                }
+                champion5();
                 break;
         }
+        specialChampion4or5(championPlayer);
+        if (player == 1) {
+            vit_1 = vit; vit_max_1 = vit; attack_1 = attack; defense_1 = defense; speed_1 = speed; special_1 = special;
+        }
+        if (player == 2) {
+            vit_2 = vit; vit_max_2 = vit; attack_2 = attack; defense_2 = defense; speed_2 = speed; special_2 = special;
+        }
+    }
+    public static void champion1 () {
+        System.out.println("VIT: 200 / Ataque: 100 / Defensa: 150 / Velocidad: 50");
+        vit = 200;
+        attack = 100;
+        defense = 125;
+        speed = 75;
+        special = 1;
+        System.out.println("Especial - Corazón valeroso: aumenta la defensa del Caballero y duplica su VIT");
+    }
+    public static void champion2 () {
+        System.out.println("VIT: 150 / Ataque: 200 / Defensa: 50 / Velocidad: 100");
+        vit = 150;
+        attack = 200;
+        defense = 50;
+        speed = 100;
+        special = 2;
+        System.out.println("Especial - Grito de Guerra: aumenta el ataque pero reduce su VIT.");
+    }
+    public static void champion3 () {
+        System.out.println("VIT: 100 / Ataque: 150 / Defensa: 100 / Velocidad: 150");
+        vit = 100;
+        attack = 150;
+        defense = 125;
+        speed = 125;
+        special = 3;
+        System.out.println("Especial - Furia Berserker: aumenta todos los stats.");
+    }
+    public static void champion4 () {
+        int maxStat = 0;
+        while ((maxStat != 500)) {
+            vit = (int) (Math.random() * 100) + 50;
+            attack = (int) (Math.random() * 100) + 50;
+            defense = (int) (Math.random() * 100) + 50;
+            speed = (int) (Math.random() * 100) + 50;
+            maxStat = (vit + attack + defense + speed);
+        }
+        System.out.println("Vitalidad: " + vit);
+        System.out.println("Ataque: " + attack);
+        System.out.println("Defensa: " + defense);
+        System.out.println("Velocidad: " + speed);
+    }
+    public static void champion5 () {
+        int maxStat = 0;
+        while ((maxStat != 500)) {
+            System.out.println("Nota: Recuerda, no debes poner mas de 200 en un atributo y como mínimo 1 en cada uno");
+            System.out.println("La suma de todos no puede ser mayor a 500");
+            vit = 0;
+            attack = 0;
+            defense = 0;
+            speed = 0;
+            maxStat = 0;
+            nameStat = "vit";
+            maxStat += statsCustomizerChampion(maxStat, nameStat, vit);
+            nameStat = "attack";
+            maxStat += statsCustomizerChampion(maxStat, nameStat, attack);
+            nameStat = "defense";
+            maxStat += statsCustomizerChampion(maxStat, nameStat, defense);
+            nameStat = "speed";
+            maxStat += statsCustomizerChampion(maxStat, nameStat, speed);
+        }
+    }
+    public static void specialChampion4or5 (int championPlayer) {
+        Scanner in = new Scanner (System.in);
         if (championPlayer == 4 || championPlayer == 5) {
             System.out.println("Selecciona uno de los 3 especiales");
             System.out.println("Corazon Valeroso (1): aumenta la defensa del Caballero y duplica su VIT.\nGrito de Guerra (2): aumenta el ataque pero reduce su VIT.\nFuria Berserker (3): aumenta todos los stats.");
@@ -272,6 +188,98 @@ public class PracticaProgramacionEstructurada {
         System.out.println(name + " elige qué hacer: atacar (1), defender (2), especial (3), curar (4)");
         System.out.println("NOTA: Escribe el numero reflejado entre paréntesis para hacer la acción " + "()");
         return in.nextInt();
+    }
+    public static void game (String name_1, String name_2) {
+        Scanner in = new Scanner(System.in);
+        while (vit_1 > 0 && vit_2 > 0) {
+            System.out.println("Ronda " + round + ":");
+            player = 1;
+            calculatingRandomParameters(player);
+            player = 2;
+            calculatingRandomParameters(player);
+            int action_1, action_2;
+            if (speedRandom_1 >= speedRandom_2) {
+                action_1 = action(name_1,name_2);
+                action_2 = in.nextInt();
+            } else {
+                action_2 = action(name_2,name_1);
+                action_1 = in.nextInt();
+            }
+            player = 1;
+            ifPlayerSelectSpecial(player, action_1, vit_1, attack_1, defense_1, speed_1, special_1, specialCounter_1);
+            player = 2;
+            ifPlayerSelectSpecial(player, action_2, vit_2, attack_2, defense_2, speed_2, special_2, specialCounter_2);
+            gameBattle(name_1, name_2, action_1, action_2);
+            if (vit_1 == 0 || vit_2 == 0) {
+                asciiWhenPlayerWins(name_1, name_2);
+            }
+        }
+    }
+    public static void calculatingRandomParameters (int player) {
+        int critical = 100;
+        if (player == 1) {
+            attackRandom_1 = randomParameters(attack_1);
+            defenseRandom_1 = randomParameters(defense_1);
+            speedRandom_1 = randomParameters(speed_1);
+            critical_1 = randomParameters(critical);
+            if (critical_1 <= 25) {
+                criticalAttack_1 = crticalAttackChampion(attack_1);
+            }
+        }
+        if (player == 2) {
+            attackRandom_2 = randomParameters(attack_2);
+            defenseRandom_2 = randomParameters(defense_2);
+            speedRandom_2 = randomParameters(speed_2);
+            critical_2 = randomParameters(critical);
+            if (critical_2 <= 25) {
+                criticalAttack_2 = crticalAttackChampion(attack_2);
+            }
+        }
+    }
+
+    public static void ifPlayerSelectSpecial (int player, int action, int vit, int attack, int defense, int speed, int special, int specialCounter) {
+        if ((action == 3) && (specialCounter == 1)) {
+            System.out.println("¡Ya has gastado la habilidad especial! Pierdes el turno.");
+        }
+        if ((action == 3) && (specialCounter == 0)) {
+            specialCounter = 1;
+            if (special == 1) {
+                defense = defense * 2;
+                vit = vit * 2;
+            }
+            if (special == 2) {
+                attack = (int) (attack * 1.5);
+                vit = (int) (vit * 1.5);
+            }
+            if (special == 3) {
+                attack = attack + 50;
+                defense = defense + 50;
+                speed = speed + 50;
+            }
+        }
+        if (player == 1) {
+            vit_1 = vit; vit_max_1 = vit; attack_1 = attack; defense_1 = defense; speed_1 = speed; specialCounter_1 = specialCounter;
+        }
+        if (player == 2) {
+            vit_2 = vit; vit_max_2 = vit; attack_2 = attack; defense_2 = defense; speed_2 = speed; specialCounter_2 = specialCounter;
+        }
+    }
+    public static void gameBattle (String name_1, String name_2, int action_1, int action_2) {
+        if (speedRandom_1 > speedRandom_2) {
+            vit_2 = battle(name_1, name_2,action_1,action_2,critical_1,vit_2,attackRandom_1,defenseRandom_2,criticalAttack_1);
+            vit_1 = battle(name_2, name_1,action_2,action_1,critical_2,vit_1,attackRandom_2,defenseRandom_1,criticalAttack_2);
+            vit_1 = heal(action_1,action_2,vit_1);
+            vit_2 = heal(action_2,action_1,vit_2);
+        } else {
+            vit_1 = battle(name_1, name_2,action_2,action_1,critical_2,vit_1,attackRandom_2,defenseRandom_1,criticalAttack_2);
+            vit_2 = battle(name_2, name_1,action_1,action_2,critical_1,vit_2,attackRandom_1,defenseRandom_2,criticalAttack_1);
+            vit_2 = heal(action_2,action_1,vit_2);
+            vit_1 = heal(action_1,action_2,vit_1);
+        }
+        System.out.println("A " + name_1 + " le quedan " + vit_1 + " de vit.");
+        System.out.println("A " + name_2 + " le quedan " + vit_2 + " de vit.");
+        barVit(name_1,vit_1, vit_max_1);
+        barVit(name_2,vit_2, vit_max_2);
     }
     public static int battle(String name_1, String name_2, int action_1, int action_2, int critical_1, int vit_2, int attackRandom_1, int defenseRandom_2, int criticalAttack_1) {
         if (action_1 == 1) {
@@ -331,5 +339,37 @@ public class PracticaProgramacionEstructurada {
         }
         bar_vit_1.append("]");
         System.out.println("Barra de Vida de " + name + ": " + bar_vit_1);
+    }
+    public static void asciiWhenPlayerWins (String name_1, String name_2) {
+        if ((vit_1 > vit_2) && (vit_2 != 0)) {
+            System.out.println(name_1 + " ha vencido!");
+            String asciiart =
+                    """
+                                                                                                     ###                                                    ##   \s
+                                       ##                                                             ##                                                   ###   \s
+                            ##   ##   ###     #####    #####     ####    ######            ######     ##      ####    ##  ##    ####    ######              ##   \s
+                            ## # ##    ##     ##  ##   ##  ##   ##  ##    ##  ##            ##  ##    ##         ##   ##  ##   ##  ##    ##  ##             ##   \s
+                            #######    ##     ##  ##   ##  ##   ######    ##                ##  ##    ##      #####   ##  ##   ######    ##                 ##   \s
+                            #######    ##     ##  ##   ##  ##   ##        ##                #####     ##     ##  ##    #####   ##        ##                 ##   \s
+                             ## ##    ####    ##  ##   ##  ##    #####   ####               ##       ####     #####       ##    #####   ####              ###### \s
+                                                                                           ####                        #####                                     \s
+                            """;
+            System.out.println(asciiart);
+        }
+        if ((vit_1 < vit_2) && (vit_1 != 0)) {
+            System.out.println(name_2 + " es el vencedor!");
+            String asciiart =
+                    """
+                                                                                                     ###                                                   ####  \s
+                                       ##                                                             ##                                                  ##  ## \s
+                            ##   ##   ###     #####    #####     ####    ######            ######     ##      ####    ##  ##    ####    ######                ## \s
+                            ## # ##    ##     ##  ##   ##  ##   ##  ##    ##  ##            ##  ##    ##         ##   ##  ##   ##  ##    ##  ##             ###  \s
+                            #######    ##     ##  ##   ##  ##   ######    ##                ##  ##    ##      #####   ##  ##   ######    ##                ##    \s
+                            #######    ##     ##  ##   ##  ##   ##        ##                #####     ##     ##  ##    #####   ##        ##               ##  ## \s
+                             ## ##    ####    ##  ##   ##  ##    #####   ####               ##       ####     #####       ##    #####   ####              ###### \s
+                                                                                           ####                        #####                                     \s
+                            """;
+            System.out.println(asciiart);
+        }
     }
 }
