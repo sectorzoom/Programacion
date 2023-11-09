@@ -42,7 +42,6 @@ public class PracticaProgramacionEstructurada {
         champion = in.nextInt();
     }
     public static void selectChampionStats(int championPlayer) {
-        Scanner in = new Scanner(System.in);
         int maxStat = 0;
         switch (championPlayer) {
             case 1:
@@ -113,21 +112,26 @@ public class PracticaProgramacionEstructurada {
     public static void champion5 () {
         int maxStat = 0;
         while ((maxStat != 500)) {
-            System.out.println("Nota: Recuerda, no debes poner mas de 200 en un atributo y como mínimo 1 en cada uno");
-            System.out.println("La suma de todos no puede ser mayor a 500");
-            vit = 0;
-            attack = 0;
-            defense = 0;
-            speed = 0;
+            System.out.println("Nota: Recuerda, no debes poner mas de 200 en un atributo y como mínimo 1 en cada uno\n" +
+                    "La suma de todos no puede ser mayor a 500");
+            vit = 0; attack = 0; defense = 0; speed = 0;
             maxStat = 0;
             nameStat = "vit";
-            maxStat += statsCustomizerChampion(maxStat, nameStat, vit);
+            vit = statsCustomizerChampion(nameStat, vit);
+            maxStat = vit;
+            System.out.println("Te quedan " + (500 - maxStat) + " para repartir.");
             nameStat = "attack";
-            maxStat += statsCustomizerChampion(maxStat, nameStat, attack);
+            attack = statsCustomizerChampion(nameStat, attack);
+            maxStat = vit + attack;
+            System.out.println("Te quedan " + (500 - maxStat) + " para repartir.");
             nameStat = "defense";
-            maxStat += statsCustomizerChampion(maxStat, nameStat, defense);
+            defense = statsCustomizerChampion(nameStat, defense);
+            maxStat = vit + attack + defense;
+            System.out.println("Te quedan " + (500 - maxStat) + " para repartir.");
             nameStat = "speed";
-            maxStat += statsCustomizerChampion(maxStat, nameStat, speed);
+            speed = statsCustomizerChampion(nameStat, speed);
+            maxStat = vit + attack + defense + speed;
+            System.out.println("Te quedan " + (500 - maxStat) + " para repartir.");
         }
     }
     public static void specialChampion4or5 (int championPlayer) {
@@ -145,9 +149,8 @@ public class PracticaProgramacionEstructurada {
             } while ((special <= 0) || (special >= 4));
         }
     }
-    public static int statsCustomizerChampion(int maxStat, String nameStat, int stat) {
+    public static int statsCustomizerChampion(String nameStat, int stat) {
         Scanner in = new Scanner(System.in);
-        System.out.println("Te quedan " + (500 - maxStat) + " para repartir.");
         while ((stat > 200) || (stat <= 0)) {
             System.out.print(nameStat + ": ");
             stat = (int) in.nextDouble();
