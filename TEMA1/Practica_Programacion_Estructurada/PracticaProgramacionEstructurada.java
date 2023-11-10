@@ -190,7 +190,7 @@ public class PracticaProgramacionEstructurada {
             player = 2;
             ifPlayerSelectSpecial(player, action_2, vit_2, attack_2, defense_2, speed_2, special_2, specialCounter_2);
             gameBattle(name_1, name_2, action_1, action_2);
-            if (vit_1 == 0 || vit_2 == 0) {
+            if (vit_1 <= 0 || vit_2 <= 0) {
                 asciiWhenPlayerWins(name_1, name_2);
             }
         }
@@ -271,8 +271,8 @@ public class PracticaProgramacionEstructurada {
             vit_1 = heal(action_1,action_2,vit_1);
             vit_2 = heal(action_2,action_1,vit_2);
         } else {
-            vit_1 = battle(name_1, name_2,action_2,action_1,critical_2,vit_1,attackRandom_2,defenseRandom_1,criticalAttack_2);
-            vit_2 = battle(name_2, name_1,action_1,action_2,critical_1,vit_2,attackRandom_1,defenseRandom_2,criticalAttack_1);
+            vit_1 = battle(name_2, name_1,action_2,action_1,critical_2,vit_1,attackRandom_2,defenseRandom_1,criticalAttack_2);
+            vit_2 = battle(name_1, name_2,action_1,action_2,critical_1,vit_2,attackRandom_1,defenseRandom_2,criticalAttack_1);
             vit_2 = heal(action_2,action_1,vit_2);
             vit_1 = heal(action_1,action_2,vit_1);
         }
