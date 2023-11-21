@@ -3,61 +3,64 @@ import java.util.Scanner;
 public class ActividadesArrays {
     static Scanner in = new Scanner(System.in);
     public static void main(String[] args) {
+        exercise1();
+    }
+    public static void exercise1 () {
         int[] example = new int[5];
         int[] example2 = new int[5];
         System.out.println("a) Procedimiento que imprima el array.");
         randomNumbers(example);
-        a(example);
+        printArray(example);
 
         System.out.println("b) Función que devuelva el máximo del array.");
-        System.out.println(b(example));
+        System.out.println(maxValue(example));
 
         System.out.println("c) Función que devuelva el mínimo del array.");
-        System.out.println(c(example));
+        System.out.println(minValue(example));
 
         System.out.println("d) Función que devuelva la media");
-        System.out.println(d(example));
+        System.out.println(average(example));
 
         System.out.println("e) Función que te diga si un elemento existe en el array o no");
-        if (e(example)) {
+        if (ifExistElement(example)) {
             System.out.println("Existe");
         } else {
             System.out.println("No Existe");
         }
 
         System.out.println("f) Función que haga la suma de dos vectores (arrays)");
-        a(example);
+        printArray(example);
         System.out.println("         +");
         randomNumbers(example2);
-        a(example2);
+        printArray(example2);
         System.out.println("         =");
-        System.out.println(Arrays.toString(f(example, example2)));
+        System.out.println(Arrays.toString(additionArrays(example, example2)));
 
         System.out.println("g) Función que haga la resta de dos vectores (arrays)");
-        a(example);
+        printArray(example);
         System.out.println("         -");
         randomNumbers(example2);
-        a(example2);
+        printArray(example2);
         System.out.println("         =");
-        System.out.println(Arrays.toString(g(example, example2)));
+        System.out.println(Arrays.toString(substractionArrays(example, example2)));
 
         System.out.println("h) Función que haga el producto escalar de dos vectores (arrays)");
-        a(example);
+        printArray(example);
         System.out.println("         *");
         randomNumbers(example2);
-        a(example2);
+        printArray(example2);
         System.out.println("         =");
-        System.out.println(h(example, example2));
+        System.out.println(scalarProduct(example, example2));
     }
     public static void randomNumbers (int[] random) {
         for (int i = 0; i < random.length; i++) {
             random[i] = (int) (Math.random() * 100);
         }
     }
-    public static void a (int[] exampleA) {
+    public static void printArray (int[] exampleA) {
         System.out.println(Arrays.toString(exampleA));
     }
-    public static int b (int[] exampleB) {
+    public static int maxValue (int[] exampleB) {
         int max = exampleB[0];
         for (int j : exampleB) {
             if (j > max) {
@@ -66,7 +69,7 @@ public class ActividadesArrays {
         }
         return max;
     }
-    public static int c (int[] exampleC) {
+    public static int minValue (int[] exampleC) {
         int min = exampleC[0];
         for (int j : exampleC) {
             if (j < min) {
@@ -75,14 +78,14 @@ public class ActividadesArrays {
         }
         return min;
     }
-    public static int d (int[] exampleD) {
+    public static int average (int[] exampleD) {
         int suma = 0;
         for (int j : exampleD) {
             suma += j;
         }
         return suma / exampleD.length;
     }
-    public static boolean e (int[] exampleE) {
+    public static boolean ifExistElement (int[] exampleE) {
         boolean exist = false;
         System.out.println("Escribe el número que deseas saber si está en el array");
         int number = in.nextInt();
@@ -95,23 +98,61 @@ public class ActividadesArrays {
         }
         return exist;
     }
-    public static int[] f (int[] exampleF1, int[] exampleF2) {
-        int length = Math.max(exampleF1.length, exampleF2.length);
-        int[] result = new int[length];
-        for (int i = 0; i < length; i++) {
-            result[i] = exampleF1[i] + exampleF2[i];
+    public static int[] additionArrays (int[] array1, int[] array2) {
+        int[] result;
+        if (array1.length != array2.length) {
+            if (array1.length > array2.length) {
+                result = new int[array1.length];
+                for (int i = 0; i < array2.length; i++) {
+                    result [i] = array1[i] + array2 [i];
+                }
+                System.arraycopy(array1, array2.length, result, array2.length, array1.length - array2.length);
+            }
+            else {
+                result = new int[array2.length];
+                for (int i = 0; i < array1.length; i++) {
+                    result [i] = array2[i] + array1 [i];
+                }
+                System.arraycopy(array2, array1.length, result, array1.length, array2.length - array1.length);
+            }
+
+        } else {
+            int length = array1.length;
+            result = new int[length];
+            for (int i = 0; i < length; i++) {
+                result[i] = array1[i] + array2[i];
+            }
         }
         return result;
     }
-    public static int[] g (int[] exampleG1, int[] exampleG2) {
-        int length = Math.max(exampleG1.length, exampleG2.length);
-        int[] result = new int[length];
-        for (int i = 0; i < length; i++) {
-            result[i] = exampleG1[i] - exampleG2[i];
+    public static int[] substractionArrays (int[] array1, int[] array2) {
+        int[] result;
+        if (array1.length != array2.length) {
+            if (array1.length > array2.length) {
+                result = new int[array1.length];
+                for (int i = 0; i < array2.length; i++) {
+                    result [i] = array1[i] - array2 [i];
+                }
+                System.arraycopy(array1, array2.length, result, array2.length, array1.length - array2.length);
+            }
+            else {
+                result = new int[array2.length];
+                for (int i = 0; i < array1.length; i++) {
+                    result [i] = array2[i] - array1 [i];
+                }
+                System.arraycopy(array2, array1.length, result, array1.length, array2.length - array1.length);
+            }
+
+        } else {
+            int length = array1.length;
+            result = new int[length];
+            for (int i = 0; i < length; i++) {
+                result[i] = array1[i] - array2[i];
+            }
         }
         return result;
     }
-    public static int h (int[] exampleG1, int[] exampleH2) {
+    public static int scalarProduct (int[] exampleG1, int[] exampleH2) {
         int length = Math.max(exampleG1.length, exampleH2.length);
         int[] result = new int[length];
         int suma = 0;
