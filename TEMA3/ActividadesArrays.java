@@ -57,39 +57,39 @@ public class ActividadesArrays {
             random[i] = (int) (Math.random() * 100);
         }
     }
-    public static void printArray (int[] exampleA) {
-        System.out.println(Arrays.toString(exampleA));
+    public static void printArray (int[] array) {
+        System.out.println(Arrays.toString(array));
     }
-    public static int maxValue (int[] exampleB) {
-        int max = exampleB[0];
-        for (int j : exampleB) {
+    public static int maxValue (int[] array) {
+        int max = array[0];
+        for (int j : array) {
             if (j > max) {
                 max = j;
             }
         }
         return max;
     }
-    public static int minValue (int[] exampleC) {
-        int min = exampleC[0];
-        for (int j : exampleC) {
+    public static int minValue (int[] array) {
+        int min = array[0];
+        for (int j : array) {
             if (j < min) {
                 min = j;
             }
         }
         return min;
     }
-    public static int average (int[] exampleD) {
+    public static int average (int[] array) {
         int suma = 0;
-        for (int j : exampleD) {
+        for (int j : array) {
             suma += j;
         }
-        return suma / exampleD.length;
+        return suma / array.length;
     }
-    public static boolean ifExistElement (int[] exampleE) {
+    public static boolean ifExistElement (int[] array) {
         boolean exist = false;
         System.out.println("Escribe el número que deseas saber si está en el array");
         int number = in.nextInt();
-        for (int i : exampleE) {
+        for (int i : array) {
             if (i == number) {
                 exist = true;
                 System.out.println();
@@ -152,17 +152,25 @@ public class ActividadesArrays {
         }
         return result;
     }
-    public static int scalarProduct (int[] exampleG1, int[] exampleH2) {
-        int length = Math.max(exampleG1.length, exampleH2.length);
+    public static int scalarProduct (int[] array1, int[] array2) {
+        int length = Math.max(array1.length, array2.length);
         int[] result = new int[length];
         int suma = 0;
         for (int i = 0; i < length; i++) {
-            result[i] = exampleG1[i] * exampleH2[i];
+            result[i] = array1[i] * array2[i];
         }
         for (int i : result) {
             suma += i;
 
         }
         return suma;
+    }
+    public static int[] invertArray (int[]array) {
+        int length = array.length-1;
+        int[] array2 = array.clone();
+        for(int i = 0; i < array.length; i++) {
+            array[i] = array2[length-i];
+        }
+        return array;
     }
 }
