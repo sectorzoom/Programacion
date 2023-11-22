@@ -1,6 +1,6 @@
 import java.util.Arrays;
 import java.util.Scanner;
-public class ActividadesArrays {
+public class Actividad1 {
     static Scanner in = new Scanner(System.in);
     static Scanner sc = new Scanner(System.in);
 
