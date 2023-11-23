@@ -72,13 +72,12 @@ public class Actividad1 {
                 s) Pulsa S para salir""");
             System.out.print("Indique aquí su elección:");
             char election = in.next().charAt(0);
-            String texto;
             switch (election) {
                 case 'a':
                     printArray(array1);
                     printArray(array2);
                     System.out.println("Pulsa enter para continuar");
-                    texto = sc.nextLine();
+                    sc.nextLine();
                     break;
                 case 'b':
                     System.out.println(maxValue(array1));
@@ -90,52 +89,52 @@ public class Actividad1 {
                     System.out.println(minValue(array1));
                     System.out.println(minValue(array2));
                     System.out.println("Pulsa enter para continuar");
-                    texto = sc.nextLine();
+                    sc.nextLine();
                     break;
                 case 'd':
                     System.out.println(average(array1));
                     System.out.println(average(array2));
                     System.out.println("Pulsa enter para continuar");
-                    texto = sc.nextLine();
+                    sc.nextLine();
                     break;
                 case 'e':
                     ifElementExists(array1);
                     ifElementExists(array2);
                     System.out.println("Pulsa enter para continuar");
-                    texto = sc.nextLine();
+                    sc.nextLine();
                     break;
                 case 'f':
                     additionArrays(array1,array2);
                     System.out.println("Pulsa enter para continuar");
-                    texto = sc.nextLine();
+                    sc.nextLine();
                     break;
                 case 'g':
                     subtractArrays(array1,array2);
                     System.out.println("Pulsa enter para continuar");
-                    texto = sc.nextLine();
+                    sc.nextLine();
                     break;
                 case 'h':
                     scalarProduct(array1,array2);
                     System.out.println("Pulsa enter para continuar");
-                    texto = sc.nextLine();
+                    sc.nextLine();
                     break;
                 case 'i':
                     invertArrayUsingFunction(array1);
                     invertArrayUsingFunction(array2);
                     System.out.println("Pulsa enter para continuar");
-                    texto = sc.nextLine();
+                    sc.nextLine();
                     break;
                 case 'j':
                     invertArrayUsingVoid(array1);
                     invertArrayUsingVoid(array2);
                     System.out.println("Pulsa enter para continuar");
-                    texto = sc.nextLine();
+                    sc.nextLine();
                     break;
                 case 'k':
                     capicua(array1);
                     capicua(array2);
                     System.out.println("Pulsa enter para continuar");
-                    texto = sc.nextLine();
+                    sc.nextLine();
                     break;
                 case 's':
                     option = false;
@@ -274,7 +273,6 @@ public class Actividad1 {
         System.out.println(conditionsToScalarProduct(array1, array2));
     }
     public static int conditionsToScalarProduct(int[] array1, int[] array2) {
-        int length = Math.max(array1.length, array2.length);
         int[] result;
         int suma = 0;
         if (array1.length != array2.length) {
@@ -318,16 +316,15 @@ public class Actividad1 {
     }
     public static void invertArrayUsingVoid (int[]array) {
         System.out.println("j) Procedimiento que invierta el orden de un array");
-        invertArrayVoid(array);
+        int[]invertedArray = new int[array.length];
+        invertArrayVoid(array,invertedArray);
     }
-    public static void invertArrayVoid (int[]array) {
+    public static void invertArrayVoid (int[]array, int[]invertedArray) {
         System.out.println("La array inversa de " + Arrays.toString(array) + " es: ");
-        int length = array.length-1;
-        int[] arrayCloned = array.clone();
-        for(int i = 0; i < array.length; i++) {
-            array[i] = arrayCloned[length-i];
+        for (int i = 0; i < array.length; i++) {
+            invertedArray[i] = array[array.length-1-i];
         }
-        System.out.println(Arrays.toString(array));
+        System.out.println(Arrays.toString(invertedArray));
     }
     public static void capicua (int[]array) {
         System.out.println("k) Función que devuelva si un array es capicua");
