@@ -84,7 +84,7 @@ public class Actividad1 {
                     System.out.println(maxValue(array1));
                     System.out.println(maxValue(array2));
                     System.out.println("Pulsa enter para continuar");
-                    texto = sc.nextLine();
+                    sc.nextLine();
                     break;
                 case 'c':
                     System.out.println(minValue(array1));
