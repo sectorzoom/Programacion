@@ -13,7 +13,6 @@ public class Actividad5 {
         String[] board = {"león", "caballo", "mono", "tigre", "elefante", "gato", "perro", "rata", "cebra", "pájaro","león", "caballo", "mono", "tigre", "elefante", "gato", "perro", "rata", "cebra", "pájaro"};
         String[] invisibleBoard = new String[20];
         board(board,invisibleBoard);
-        System.out.println(Arrays.toString(board));
         coupleSelection(board,invisibleBoard);
 
     }
