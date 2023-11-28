@@ -13,6 +13,7 @@ public class Actividad5 {
         String[] board = {"león", "caballo", "mono", "tigre", "elefante", "gato", "perro", "rata", "cebra", "pájaro","león", "caballo", "mono", "tigre", "elefante", "gato", "perro", "rata", "cebra", "pájaro"};
         String[] invisibleBoard = new String[20];
         board(board,invisibleBoard);
+        System.out.println(Arrays.toString(board));
         coupleSelection(board,invisibleBoard);
 
     }
@@ -20,6 +21,7 @@ public class Actividad5 {
         for (int i = 0; i < board.length; i++) {
             invisibleBoard[i] = "X";
         }
+
         for (int i = 0; i < board.length; i++) {
             int randomIndex = random.nextInt(board.length);
             String temp = board[randomIndex];
@@ -35,7 +37,9 @@ public class Actividad5 {
             System.out.println("Ronda " + round);
             int firstCard = selectCard();
             int secondCard = selectCard();
-            count = sameCard(board,invisibleBoard,firstCard,secondCard,count);
+            if (sameCard(board,invisibleBoard,firstCard,secondCard)){
+                count++;
+            }
             notSameCard(board,invisibleBoard,firstCard,secondCard);
             System.out.println(Arrays.toString(invisibleBoard));
             round++;
@@ -51,16 +55,20 @@ public class Actividad5 {
         }
         return card;
     }
-    public static int sameCard (String[]board, String[]invisibleBoard, int firstCard, int secondCard, int count) {
-        if (Objects.equals(board[firstCard], board[secondCard])) {
+    public static boolean sameCard(String[]board, String[]invisibleBoard, int firstCard, int secondCard) {
+        boolean sameCard = false;
+        if ((Objects.equals(board[firstCard], board[secondCard])) && firstCard != secondCard) {
             System.out.println("Has acertado!");
             invisibleBoard[firstCard] = board[firstCard];
             invisibleBoard[secondCard] = board[secondCard];
-            count++;
+            sameCard = true;
         }
-        return count;
+        return sameCard;
     }
     public static void notSameCard (String[]board, String[]invisibleBoard, int firstCard, int secondCard) {
+        if (firstCard == secondCard) {
+            System.out.println("Has repetido la carta!");
+        }
         if (!Objects.equals(board[firstCard], board[secondCard])) {
             if (Objects.equals(board[firstCard], invisibleBoard[firstCard]) || Objects.equals(board[secondCard], invisibleBoard[secondCard])) {
                 System.out.println("Has repetido la carta!");
@@ -69,7 +77,7 @@ public class Actividad5 {
                 invisibleBoard[firstCard] = board[firstCard];
                 invisibleBoard[secondCard] = board[secondCard];
                 System.out.println(Arrays.toString(invisibleBoard));
-                System.out.println(); System.out.println(); System.out.println(); System.out.println(); System.out.println();
+                System.out.print("\r\n".repeat(5));
 
                 invisibleBoard[firstCard] = "X";
                 invisibleBoard[secondCard] = "X";
