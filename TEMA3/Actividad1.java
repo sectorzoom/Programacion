@@ -143,7 +143,6 @@ public class Actividad1 {
                 default:
                     System.out.println("Introduce un valor correcto");
             }
-
         }
     }
 }
