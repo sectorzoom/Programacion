@@ -7,11 +7,16 @@ public class Actividad6 {
     static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        int bomb = -1;
-        int[] invisibleBoard = new int[20];
-        Arrays.fill(invisibleBoard, 0);
+        int[] board = new int[20];
+        Arrays.fill(board, 0);
         boolean[] visibleBoard = new boolean[20];
         Arrays.fill(visibleBoard, false);
+        placeTheBombs(board);
+        game(board, visibleBoard);
+    }
+
+    public static void placeTheBombs(int[] invisibleBoard) {
+        int bomb = -1;
         int bombsSet = 0;
         while (bombsSet < 6) {
             int position = random.nextInt(20);
@@ -33,48 +38,66 @@ public class Actividad6 {
             }
         }
         System.out.println(Arrays.toString(invisibleBoard));
-        int undiscoveredPositions = 14;
-        while (undiscoveredPositions != 0) {
-            for (int i = 0; i < 20; i++) {
-                if (visibleBoard[i]) {
-                    if (invisibleBoard[i] == bomb) {
-                        System.out.print("* ");
-                    } else {
-                        System.out.print(invisibleBoard[i] + " ");
-                    }
+    }
+    public static void invisibleBoard(boolean[]playerBoard, int[]board , int bomb) {
+        for (int i = 0; i < 20; i++) {
+            if (playerBoard[i]) {
+                if (board[i] == bomb) {
+                    System.out.print("* ");
                 } else {
-                    System.out.print("? ");
+                    System.out.print(board[i] + " ");
                 }
+            } else {
+                System.out.print("? ");
             }
-            System.out.println();
+        }
+        System.out.println();
+    }
+    public static void game(int[] board, boolean[] playerBoard) {
+        int bomb = -1;
+        int undiscoveredPositions = 14;
+        boolean winner = true;
+        while (undiscoveredPositions != 0 && winner) {
+            invisibleBoard(playerBoard,board,bomb);
             System.out.print("Ingresa la posición a descubrir (1-20): ");
             int position = scanner.nextInt() - 1;
-            while(position < 0 || position >= 20) {
+            undiscoveredPositions = selectYourPosition(playerBoard, undiscoveredPositions, position);
+            winner = youLose(board,position,bomb,playerBoard,winner);
+            if (undiscoveredPositions == 0) {
+                System.out.println("\n¡Felicidades, has ganado!");
+                System.out.println(Arrays.toString(board));
+            }
+        }
+    }
+    public static int selectYourPosition(boolean[]playerBoard, int undiscoveredPositions, int position) {
+        while (position < 0 || position >= 20 || playerBoard[position]) {
+            if (position < 0 || position >= 20) {
                 System.out.println("Posición inválida. Intenta de nuevo.");
                 System.out.print("Ingresa la posición a descubrir (1-20): ");
-                position = scanner.nextInt()-1;
+                position = scanner.nextInt() - 1;
             }
-            if (visibleBoard[position]) {
+            if (playerBoard[position]) {
                 System.out.println("Ya has visto esta posición. Elige otra.");
+                position = scanner.nextInt() - 1;
             }
-            visibleBoard[position] = true;
-            if (invisibleBoard[position] == bomb) {
-                Arrays.fill(visibleBoard, true);
-                for (int i = 0; i < 20; i++) {
-                    if (invisibleBoard[i] == bomb) {
-                        System.out.print("* ");
-                    } else {
-                        System.out.print(invisibleBoard[i] + " ");
-                    }
+        }
+        undiscoveredPositions--;
+        playerBoard[position] = true;
+        return undiscoveredPositions;
+    }
+    public static boolean youLose(int[]board,int position,int bomb,boolean[]playerBoard, boolean winner) {
+        if (board[position] == bomb) {
+            Arrays.fill(playerBoard, true);
+            for (int i = 0; i < 20; i++) {
+                if (board[i] == bomb) {
+                    System.out.print("* ");
+                } else {
+                    System.out.print(board[i] + " ");
                 }
-                System.out.println("\n¡Has perdido! Había una mina en la posición " + position);
-                break;
             }
-            undiscoveredPositions--;
+            winner = false;
+            System.out.println("\n¡Has perdido! Había una mina en la posición ");
         }
-        if (undiscoveredPositions == 0) {
-            System.out.println("\n¡Felicidades, has ganado!");
-            System.out.println(Arrays.toString(invisibleBoard));
-        }
+        return winner;
     }
 }
