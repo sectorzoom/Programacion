@@ -1,3 +1,7 @@
+package Actividades_Arrays;
+
+import Actividades_Arrays.Actividad1;
+
 import java.util.Arrays;
 
 public class MyArray {
