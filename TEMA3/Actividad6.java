@@ -62,7 +62,7 @@ public class Actividad6 {
             System.out.print("Ingresa la posición a descubrir (1-20): ");
             int position = scanner.nextInt() - 1;
             undiscoveredPositions = selectYourPosition(playerBoard, undiscoveredPositions, position);
-            winner = youLose(board,position,bomb,playerBoard,winner);
+            winner = youLose(board,position,bomb,playerBoard);
             if (undiscoveredPositions == 0) {
                 System.out.println("\n¡Felicidades, has ganado!");
                 System.out.println(Arrays.toString(board));
@@ -85,7 +85,8 @@ public class Actividad6 {
         playerBoard[position] = true;
         return undiscoveredPositions;
     }
-    public static boolean youLose(int[]board,int position,int bomb,boolean[]playerBoard, boolean winner) {
+    public static boolean youLose(int[]board,int position,int bomb,boolean[]playerBoard) {
+        boolean winner = true;
         if (board[position] == bomb) {
             Arrays.fill(playerBoard, true);
             for (int i = 0; i < 20; i++) {
