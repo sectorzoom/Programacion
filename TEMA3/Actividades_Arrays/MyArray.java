@@ -1,10 +1,10 @@
 package Actividades_Arrays;
 
-import Actividades_Arrays.Actividad1;
-
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class MyArray {
+    static Scanner in = new Scanner(System.in);
 
     public static void printArray(int[] array) {
         System.out.println("a) Procedimiento que imprima el array.");
@@ -54,7 +54,7 @@ public class MyArray {
     public static boolean showIfElementExists(int[] array) {
         boolean exist = false;
         System.out.print("Escribe el número que deseas saber si está en el array\nNúmero: ");
-        int number = Actividad1.in.nextInt();
+        int number = in.nextInt();
         for (int i : array) {
             if (i == number) {
                 exist = true;
@@ -71,103 +71,77 @@ public class MyArray {
         System.out.print(" + ");
         System.out.print(Arrays.toString(array2));
         System.out.print(" = ");
-        System.out.println(Arrays.toString(conditionsForAddingArrays(array1, array2)));
+        System.out.println(Arrays.toString(howAddingArrays(array1, array2)));
     }
-
-    public static int[] conditionsForAddingArrays(int[] array1, int[] array2) {
-        int[] result;
-        if (array1.length != array2.length) {
-            if (array1.length > array2.length) {
-                result = howAddingArrays(array1, array2);
-            } else {
-                result = howAddingArrays(array2, array1);
-            }
-
-        } else {
-            result = howAddingArrays(array1, array2);
-        }
-        return result;
-    }
-
     public static int[] howAddingArrays(int[] array1, int[] array2) {
-        int[] result = new int[array1.length];
-        for (int i = 0; i < array2.length; i++) {
-            result[i] = array1[i] + array2[i];
-        }
-        if (array1.length != array2.length) {
-            System.arraycopy(array1, array2.length, result, array2.length, array1.length - array2.length);
+        int length1 = array1.length;
+        int length2 = array2.length;
+        int lengthResult = Math.max(length1, length2);
+        int[] result = new int[lengthResult];
+        for (int i = 0; i < lengthResult; i++) {
+            int value1 = 0;
+            if (i < length1) {
+                value1 = array1[i];
+            }
+            int value2 = 0;
+            if (i < length2) {
+                value2 = array2[i];
+            }
+            result[i] = value1 + value2;
         }
         return result;
     }
 
     public static void subtractArrays(int[] array1, int[] array2) {
         System.out.println("g) Función que haga la resta de dos vectores (arrays)");
-        printArray(array1);
+        System.out.println(Arrays.toString(array1));
         System.out.print(" - ");
-        printArray(array2);
+        System.out.println(Arrays.toString(array2));
         System.out.print(" = ");
-        System.out.println(Arrays.toString(conditionsToSubtractArrays(array1, array2)));
+        System.out.println(Arrays.toString(howSubtractArrays(array1, array2)));
     }
-
-    public static int[] conditionsToSubtractArrays(int[] array1, int[] array2) {
-        int[] result;
-        if (array1.length != array2.length) {
-            if (array1.length > array2.length) {
-                result = howSubtractArrays(array1, array2);
-            } else {
-                result = howSubtractArrays(array2, array1);
+    public static int[] howSubtractArrays(int[]array1, int[] array2) {
+        int length1 = array1.length;
+        int length2 = array2.length;
+        int lengthResult = Math.max(length1, length2);
+        int[] result = new int[lengthResult];
+        for (int i = 0; i < lengthResult; i++) {
+            int value1 = 0;
+            if (i < length1) {
+                value1 = array1[i];
             }
-        } else {
-            result = howSubtractArrays(array1, array2);
-        }
-        return result;
-    }
-
-    public static int[] howSubtractArrays(int[] array1, int[] array2) {
-        int[] result = new int[array1.length];
-        for (int i = 0; i < array2.length; i++) {
-            result[i] = array1[i] - array2[i];
-        }
-        if (array1.length != array2.length) {
-            System.arraycopy(array1, array2.length, result, array2.length, array1.length - array2.length);
+            int value2 = 0;
+            if (i < length2) {
+                value2 = array2[i];
+            }
+            result[i] = value1 - value2;
         }
         return result;
     }
 
     public static void scalarProduct(int[] array1, int[] array2) {
         System.out.println("h) Función que haga el producto escalar de dos vectores (arrays)");
-        printArray(array1);
+        System.out.println(Arrays.toString(array1));
         System.out.print(" * ");
-        printArray(array2);
+        System.out.println(Arrays.toString(array2));
         System.out.print(" = ");
-        System.out.println(conditionsToScalarProduct(array1, array2));
+        System.out.println(howScalarArrays(array1, array2));
     }
-
-    public static int conditionsToScalarProduct(int[] array1, int[] array2) {
-        int[] result;
-        int suma = 0;
-        if (array1.length != array2.length) {
-            if (array1.length > array2.length) {
-                result = howScalarArrays(array1, array2);
-            } else {
-                result = howScalarArrays(array2, array1);
+    public static int howScalarArrays(int[] array1, int[] array2) {
+        int length1 = array1.length;
+        int length2 = array2.length;
+        int lengthResult = Math.max(length1, length2);
+        int result = 0;
+        for (int i = 0; i < lengthResult; i++) {
+            int value1 = 0;
+            if (i < length1) {
+                value1 = array1[i];
             }
-        } else {
-            result = howScalarArrays(array1, array2);
-        }
-        for (int i : result) {
-            suma += i;
-        }
-        return suma;
-    }
-
-    public static int[] howScalarArrays(int[] array1, int[] array2) {
-        int[] result = new int[array1.length];
-        for (int i = 0; i < array2.length; i++) {
-            result[i] = array1[i] - array2[i];
-        }
-        if (array1.length != array2.length) {
-            System.arraycopy(array1, array2.length, result, array2.length, array1.length - array2.length);
+            int value2 = 0;
+            if (i < length2) {
+                value2 = array2[i];
+            }
+            result = result + (value1 * value2);
         }
         return result;
     }
@@ -178,7 +152,6 @@ public class MyArray {
     }
 
     public static int[] invertArrayFunction(int[] array) {
-
         System.out.println("La array inversa de " + Arrays.toString(array) + " es: ");
         int length = array.length - 1;
         int[] array2 = array.clone();

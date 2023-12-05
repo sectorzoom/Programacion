@@ -32,9 +32,9 @@ public class Actividad1 {
 
     public static void case2Selection() {
         System.out.println("Introduzca el tamaño del array1:");
-        int[] array1 = new int[Actividad1.in.nextInt()];
+        int[] array1 = new int[in.nextInt()];
         System.out.println("Introduzca el tamaño del array2:");
-        int[] array2 = new int[Actividad1.in.nextInt()];
+        int[] array2 = new int[in.nextInt()];
         System.out.println("Introduzca los números de tu array1:");
         personalizeArray(array1);
         System.out.println("Introduzca los números de tu array2:");
@@ -53,7 +53,7 @@ public class Actividad1 {
     public static void personalizeArray(int[] array) {
         for (int i = 0; i < array.length; i++) {
             System.out.println("Introduzca el numero en la posición " + (i + 1) + " de " + array.length);
-            array[i] = Actividad1.in.nextInt();
+            array[i] = in.nextInt();
         }
     }
     public static void showMenu(int[] array1, int[] array2) {
@@ -74,70 +74,70 @@ public class Actividad1 {
                     k) Función que devuelva si un array es capicua
                     s) Pulsa S para salir""");
             System.out.print("Indique aquí su elección:");
-            char election = Actividad1.in.next().charAt(0);
+            char election = in.next().charAt(0);
             switch (election) {
                 case 'a':
                     MyArray.printArray(array1);
                     MyArray.printArray(array2);
                     System.out.println("Pulsa enter para continuar");
-                    Actividad1.sc.nextLine();
+                    sc.nextLine();
                     break;
                 case 'b':
                     System.out.println(MyArray.maxValue(array1));
                     System.out.println(MyArray.maxValue(array2));
                     System.out.println("Pulsa enter para continuar");
-                    Actividad1.sc.nextLine();
+                    sc.nextLine();
                     break;
                 case 'c':
                     System.out.println(MyArray.minValue(array1));
                     System.out.println(MyArray.minValue(array2));
                     System.out.println("Pulsa enter para continuar");
-                    Actividad1.sc.nextLine();
+                    sc.nextLine();
                     break;
                 case 'd':
                     System.out.println(MyArray.average(array1));
                     System.out.println(MyArray.average(array2));
                     System.out.println("Pulsa enter para continuar");
-                    Actividad1.sc.nextLine();
+                    sc.nextLine();
                     break;
                 case 'e':
                     MyArray.ifElementExists(array1);
                     MyArray.ifElementExists(array2);
                     System.out.println("Pulsa enter para continuar");
-                    Actividad1.sc.nextLine();
+                    sc.nextLine();
                     break;
                 case 'f':
                     MyArray.additionArrays(array1, array2);
                     System.out.println("Pulsa enter para continuar");
-                    Actividad1.sc.nextLine();
+                    sc.nextLine();
                     break;
                 case 'g':
                     MyArray.subtractArrays(array1, array2);
                     System.out.println("Pulsa enter para continuar");
-                    Actividad1.sc.nextLine();
+                    sc.nextLine();
                     break;
                 case 'h':
                     MyArray.scalarProduct(array1, array2);
                     System.out.println("Pulsa enter para continuar");
-                    Actividad1.sc.nextLine();
+                    sc.nextLine();
                     break;
                 case 'i':
                     MyArray.invertArrayUsingFunction(array1);
                     MyArray.invertArrayUsingFunction(array2);
                     System.out.println("Pulsa enter para continuar");
-                    Actividad1.sc.nextLine();
+                    sc.nextLine();
                     break;
                 case 'j':
                     MyArray.invertArrayUsingVoid(array1);
                     MyArray.invertArrayUsingVoid(array2);
                     System.out.println("Pulsa enter para continuar");
-                    Actividad1.sc.nextLine();
+                    sc.nextLine();
                     break;
                 case 'k':
                     MyArray.capicua(array1);
                     MyArray.capicua(array2);
                     System.out.println("Pulsa enter para continuar");
-                    Actividad1.sc.nextLine();
+                    sc.nextLine();
                     break;
                 case 's':
                     option = false;
