@@ -54,7 +54,7 @@ public class Actividad1 {
     public static void personalizeArray ( int[][] array){
         for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < array[i].length; j++) {
-                System.out.println("Introduzca el numero en la posición " + "[" + (i + 1) + "]" + "[" + (j + 1) + "]");
+                System.out.println("Introduzca el numero en la posición " + "[" + (i) + "]" + "[" + (j) + "]");
                 array[i][j] = in.nextInt();
             }
         }
@@ -63,19 +63,18 @@ public class Actividad1 {
         boolean option = true;
         while (option) {
             System.out.println("""
-                        Introduzca qué ejercicio quiere hacer:
-                        a) Procedimiento que imprima la matriz.
-                        b) Función que devuelva el máximo de la matriz.
-                        c) Función que devuelva el mínimo de la matriz.
-                        d) Función que devuelva la media.
-                        e) Función que te diga si un elemento existe en la matriz o no.
-                        f) Función que haga la suma de dos matrices.
-                        g) Función que haga la resta de dos matrices.
-                        h) Función que haga el producto escalar de dos matrices.
-                        i) Función que invierta el orden de un array
-                        j) Procedimiento que invierta el orden de un array
-                        k) Función que devuelva si un array es capicua
-                        s) Pulsa S para salir""");
+                     Introduzca qué ejercicio quiere hacer:
+                     a) Procedimiento que imprima la matriz.
+                     b) Función que devuelva el máximo de la matriz.
+                     c) Función que devuelva el mínimo de la matriz.
+                     d) Función que devuelva la media.
+                     e) Función que te diga si un elemento existe en la matriz o no.
+                     f) Función que te diga cuántas veces se repite un número.
+                     g) Función que haga la suma de dos matrices.
+                     h) Función que haga la resta de dos matrices.
+                     i) función que compruebe si una matriz es la matriz unidad, es decir tiene el mismo número de filas
+                      y de columnas y tiene en su diagonal principal 1s y el resto 0s
+                     s) Pulsa S para salir""");
             System.out.print("Indique aquí su elección:");
             char election = in.next().charAt(0);
             switch (election) {
@@ -110,6 +109,8 @@ public class Actividad1 {
                     sc.nextLine();
                     break;
                 case 'f':
+                    System.out.println(MyMatrix.howManyTimesNumberRepeat(matrix1));
+                    System.out.println(MyMatrix.howManyTimesNumberRepeat(matrix2));
                     System.out.println("Pulsa enter para continuar");
                     sc.nextLine();
                     break;
@@ -124,6 +125,8 @@ public class Actividad1 {
                     sc.nextLine();
                     break;
                 case 'i':
+                    System.out.println(MyMatrix.unitMatrix(matrix1));
+                    System.out.println(MyMatrix.unitMatrix(matrix2));
                     System.out.println("Pulsa enter para continuar");
                     sc.nextLine();
                     break;

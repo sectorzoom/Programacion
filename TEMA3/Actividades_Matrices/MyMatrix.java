@@ -69,6 +69,20 @@ public class MyMatrix {
         }
         return exist;
     }
+    public static int howManyTimesNumberRepeat(int[][]matrix) {
+        System.out.println("f) Función que devuelva cuantas veces se repite un número en la matriz:\n" +
+                "introduzca el número que quiere comprobar:");
+        int number = in.nextInt();
+        int count = 0;
+        for (int[] ints : matrix) {
+            for (int anInt : ints) {
+                if (number == anInt) {
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
     public static void addMatrix(int[][]matrix1, int[][]matrix2) {
         System.out.println("g) Función que haga la suma de dos matrices");
         System.out.println(Arrays.deepToString(matrix1));
@@ -139,5 +153,29 @@ public class MyMatrix {
             }
         }
         return result;
+    }
+    public static boolean unitMatrix(int[][]matrix){
+        boolean unit = false;
+        int[][]unitMatrix = new int[matrix.length][matrix[0].length];
+        for (int i = 0; i < matrix.length; i++){
+            for (int j = 0; j < matrix[i].length; j++){
+                if(i == j){
+                    unitMatrix[i][j] = 1;
+                } else {
+                    unitMatrix[i][j] = 0;
+                }
+            }
+        }
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                if(matrix[i][j] == unitMatrix[i][j]){
+                    unit = true;
+                }else {
+                    unit = false;
+                    break;
+                }
+            }
+        }
+        return unit;
     }
 }
