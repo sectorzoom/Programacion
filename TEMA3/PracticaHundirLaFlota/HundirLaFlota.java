@@ -94,6 +94,7 @@ public class HundirLaFlota {
         return board;
     }
 
+
     //Crea el tablero del modo de juego Fácil, adjudicando la cantidad de barcos, pero no la posicion
     public static char[][] easyGameBoard(int height, int width){
         char inBoard = '0';
