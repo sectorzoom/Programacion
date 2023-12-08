@@ -89,6 +89,9 @@ public class HundirLaFlota {
             } else {
                 board[0][j] = number;
                 number++;
+                if (number == ':'){
+                    number = '1';
+                }
             }
         }
         return board;
@@ -159,8 +162,8 @@ public class HundirLaFlota {
     //Inserta los botes
     public static void insertBoat(char[][]board, int boatCounter){
         while (boatCounter != 0){
-            int i = random.nextInt(board.length);
-            int j = random.nextInt(board[0].length);
+            int i = random.nextInt(board.length-1)+1;
+            int j = random.nextInt(board[0].length-1)+1;
             if (board[i][j] == '0'){
                 board[i][j] = 'L';
                 boatCounter--;
@@ -171,8 +174,8 @@ public class HundirLaFlota {
     //Inserta los buques
     public static void insertWarShip(char[][]board, int warShipCounter){
         while (warShipCounter != 0){
-            int i = random.nextInt(board.length);
-            int j = random.nextInt(board[0].length-2);
+            int i = random.nextInt(board.length-1)+1;
+            int j = random.nextInt(board[0].length-3)+1;
             if (board[i][j] == '0' && board[i][j+1] == '0' && board[i][j+2] == '0'){
                 board[i][j] = 'B';
                 board[i][j+1] = 'B';
@@ -185,8 +188,8 @@ public class HundirLaFlota {
     //Inserta los acorazados
     public static void insertBattleship(char[][]board, int battleshipCounter){
         while (battleshipCounter != 0){
-            int i = random.nextInt(board.length);
-            int j = random.nextInt(board[0].length-3);
+            int i = random.nextInt(board.length-1)+1;
+            int j = random.nextInt(board[0].length-4)+1;
             if (board[i][j] == '0' && board[i][j+1] == '0' && board[i][j+2] == '0' && board[i][j+3] == '0'){
                 board[i][j] = 'Z';
                 board[i][j+1] = 'Z';
@@ -200,8 +203,8 @@ public class HundirLaFlota {
     //Inserta los portaaviones
     public static void insertAircraftCarrier(char[][]board, int aircraftCarrierCounter){
         while (aircraftCarrierCounter != 0){
-            int i = random.nextInt(board.length);
-            int j = random.nextInt(board[0].length-4);
+            int i = random.nextInt(board.length - 5) + 1;
+            int j = random.nextInt(board[0].length - 6) + 1;
             if (board[i][j] == '0' && board[i+1][j] == '0' && board[i+2][j] == '0' && board[i+3][j] == '0' && board[i+4][j] == '0'){
                 board[i][j] = 'P';
                 board[i+1][j] = 'P';
