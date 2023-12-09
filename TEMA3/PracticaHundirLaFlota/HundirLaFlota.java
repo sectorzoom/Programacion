@@ -12,17 +12,27 @@ public class HundirLaFlota {
     }
     public static void game(){
         int gameMode = menuGameMode();
-        int height;
-        int width;
+        int height = 0;
+        int width = 0;
         if(gameMode != 4){
             height = 11;
             width = 11;
         } else {
             System.out.println("Por favor, elige de cuánto va a ser tu tablero:");
             System.out.println("Altura:");
-            height = scanner.nextInt();
+            while (height <= 0){
+                height = scanner.nextInt();
+                if (height <= 0){
+                    System.out.println("Por favor, introduce un valor válido");
+                }
+            }
             System.out.println("Anchura:");
-            width = scanner.nextInt();
+            while (width <= 0){
+                width = scanner.nextInt();
+                if (width <= 0){
+                    System.out.println("Por favor, introduce un valor válido");
+                }
+            }
         }
         char inside = '-';
         char[][] playerBoard = createBoard(inside, height, width);
@@ -145,13 +155,37 @@ public class HundirLaFlota {
         char[][] board = createBoard(inBoard, height, width).clone();
         System.out.println("Ahora elige la cantad de barcos:");
         System.out.print("Lanchas (L): ");
-        int boatCounter = scanner.nextInt();
+        int boatCounter = 0;
+        while (boatCounter <= 0){
+            boatCounter = scanner.nextInt();
+            if (boatCounter <= 0){
+                System.out.println("Por favor, introduce un valor válido");
+            }
+        }
         System.out.print("Buques (B): ");
-        int warShipCounter = scanner.nextInt();
+        int warShipCounter = 0;
+        while (warShipCounter <= 0){
+            warShipCounter = scanner.nextInt();
+            if (warShipCounter <= 0){
+                System.out.println("Por favor, introduce un valor válido");
+            }
+        }
         System.out.print("Acorazados (Z): ");
-        int battleshipCounter = scanner.nextInt();
+        int battleshipCounter = 0;
+        while (battleshipCounter <= 0){
+            battleshipCounter = scanner.nextInt();
+            if (battleshipCounter <= 0){
+                System.out.println("Por favor, introduce un valor válido");
+            }
+        }
         System.out.print("Portaaviones (P): ");
-        int aircraftCarrierCounter = scanner.nextInt();
+        int aircraftCarrierCounter = 0;
+        while (aircraftCarrierCounter <= 0){
+            aircraftCarrierCounter = scanner.nextInt();
+            if (aircraftCarrierCounter <= 0){
+                System.out.println("Por favor, introduce un valor válido");
+            }
+        }
         insertBoat(board,boatCounter);
         insertWarShip(board,warShipCounter);
         insertBattleship(board,battleshipCounter);
@@ -218,7 +252,7 @@ public class HundirLaFlota {
 
     // Cantidad de disparos que tendrá el jugador
     public static int numberOfShots(int gameMode){
-        int shots;
+        int shots = 0;
         if (gameMode == 1){
             shots = 50;
         } else if (gameMode == 2){
@@ -227,7 +261,12 @@ public class HundirLaFlota {
             shots = 10;
         } else {
             System.out.print("Selecciona la cantidad de disparos que tendrás: ");
-            shots = scanner.nextInt();
+            while (shots <= 0){
+                shots = scanner.nextInt();
+                if (shots <= 0){
+                    System.out.println("Por favor, introduce un valor válido");
+                }
+            }
         }
         System.out.println("Muy bien, en este combate tendrás un total de " + shots + " disparos.");
         return shots;
@@ -241,15 +280,25 @@ public class HundirLaFlota {
         while(shots != 0){
             showBoard(playerBoard);
             System.out.println("Escribe en qué vertical quieres atacar (LETRA)");
-            char row = scanner.next().toUpperCase().charAt(0);
             int rowNumber = 0;
-            if (row >= 'A' && row <= 'Z') {
-                rowNumber = row - 'A' + 1;
-            } else {
-                System.out.println("Caracter inválido. Ingresa una letra de la A a la Z.");
+            boolean booleanRow = false;
+            while (!booleanRow){
+                char row = scanner.next().toUpperCase().charAt(0);
+                if (row >= 'A' && row <= boardGame[boardGame.length-1][0]) {
+                    rowNumber = row - 'A' + 1;
+                    booleanRow = true;
+                } else {
+                    System.out.println("Caracter inválido. Ingresa una letra de la A a la Z.");
+                }
             }
             System.out.println("Escribe en qué horizontal quieres atacar (NÚMERO)");
-            int columnNumber = scanner.nextInt();
+            int columnNumber = 0;
+            while (columnNumber <= 0 || columnNumber > boardGame[0].length){
+                columnNumber = scanner.nextInt();
+                if (columnNumber <= 0){
+                    System.out.println("Por favor, introduce un valor válido");
+                }
+            }
             attack(playerBoard,boardGame,rowNumber,columnNumber);
             if (!checkWins(boardGame)){
                 System.out.println("Has ganado!");
