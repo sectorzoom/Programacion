@@ -50,7 +50,7 @@ public class Actividad3 {
         int startRoom = room;
         for (int i = room; i < hotel[0].length; i++){
             if (power > 0){
-                lineOfPower(hotel,power,floor,room,floor);
+                lineOfPower(hotel,power,floor,room);
             }
             room++;
             power--;
@@ -59,14 +59,15 @@ public class Actividad3 {
         power = startPower;
         for (int i = room; i >= 0; i--){
             if (power > 0){
-                lineOfPower(hotel,power,floor,room,floor);
+                lineOfPower(hotel,power,floor,room);
             }
             room--;
             power--;
         }
         showMatrix(hotel);
     }
-    public static void lineOfPower(int[][]hotel, int power, int floor, int room, int startFloor){
+    public static void lineOfPower(int[][]hotel, int power, int floor, int room){
+        int startFloor = floor;
         for(int i = power; i != 0; i--){
             if (floor >= 0){
                 hotel[floor][room] = i;
