@@ -140,7 +140,7 @@ public class HundirLaFlota {
     public static char[][] customGameBoard(int height, int width){
         char inBoard = '0';
         char[][] board = createBoard(inBoard, height, width);
-        int maxShips = height*width;
+        int maxShips = (height-1)*(width-1);
         int boatCounter = 0;
         int warShipCounter = 0;
         int battleshipCounter = 0;
@@ -149,21 +149,21 @@ public class HundirLaFlota {
         boolean ships = true;
         while (ships){
             System.out.print("Lanchas (L): ");
-            boatCounter = validNumValue(5,1);
+            boatCounter = validNumValue(5,0);
             maxShips = maxShips - (boatCounter);
             if (maxShips >= 3){
                 System.out.print("Buques (B): ");
-                warShipCounter = validNumValue(5,1);
+                warShipCounter = validNumValue(5,0);
                 maxShips = maxShips - (warShipCounter*3);
             }
             if (maxShips >= 4){
                 System.out.print("Acorazados (Z): ");
-                battleshipCounter = validNumValue(5,1);
+                battleshipCounter = validNumValue(5,0);
                 maxShips = maxShips - (battleshipCounter*4);
             }
             if (maxShips >= 5){
                 System.out.print("Portaaviones (P): ");
-                aircraftCarrierCounter = validNumValue(2,1);
+                aircraftCarrierCounter = validNumValue(2,0);
                 maxShips = maxShips - (aircraftCarrierCounter*5);
             }
             ships = false;
@@ -258,7 +258,13 @@ public class HundirLaFlota {
         int shots = numberOfShots(gameMode);
         System.out.println("Que comience el combate!");
         System.out.println("Tienes " + shots + " disparos.");
-        while(shots != 0){
+        boolean win = false;
+        if (checkWins(boardGame)){
+            System.out.println("Has ganado!");
+            showBoard(boardGame);
+            win = true;
+        }
+        while(!win){
             showBoard(playerBoard);
             System.out.println("Escribe en qué vertical quieres atacar (LETRA)");
             char row = validCharValue('A', (char) ('A'+(boardGame.length-2)));
@@ -266,7 +272,7 @@ public class HundirLaFlota {
             System.out.println("Escribe en qué horizontal quieres atacar (NÚMERO)");
             int columnNumber = validNumValue((boardGame[0].length-1),1);
             attack(playerBoard,boardGame,rowNumber,columnNumber);
-            if (!checkWins(boardGame)){
+            if (checkWins(boardGame)){
                 System.out.println("Has ganado!");
                 showBoard(boardGame);
                 break;
@@ -275,6 +281,7 @@ public class HundirLaFlota {
             System.out.println("Te quedan " + shots + " disparos.");
             if (shots == 0){
                 System.out.println("Has perdido!");
+                win = true;
             }
         }
 
@@ -327,7 +334,7 @@ public class HundirLaFlota {
                     }
                 }
             }
-            return win;
+            return !win;
     }
 
     //Comprueba si el disparo del jugador da o no en el blanco
