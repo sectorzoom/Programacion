@@ -12,13 +12,12 @@ public class HundirLaFlota {
         game();
     }
     public static void game(){
-        int gameMode = menuGameMode();
-        int height;
-        int width;
-        if(gameMode != 4){
+        int gameMode = menuGameMode(); //Seleccionas el modo de juego
+        int height; int width;
+        if(gameMode != 4){ //Si el modo de juego no es Personalizado el tablero es 11x11
             height = 11;
             width = 11;
-        } else {
+        } else { //En caso de ser modo Personalizado
             System.out.println("Por favor, elige de cuánto va a ser tu tablero:");
             System.out.println("Altura:");
             height = (validNumValue(20,1)+1);
@@ -26,8 +25,8 @@ public class HundirLaFlota {
             width = (validNumValue(20,1)+1);
         }
         char inside = '-';
-        char[][] playerBoard = createBoard(inside, height, width);
-        char[][] boardGame = selectBoard(gameMode, height, width);
+        char[][] playerBoard = createBoard(inside, height, width); //Crea el tablero que verá el jugador
+        char[][] boardGame = selectBoard(gameMode, height, width); //Crea el tablero de juego, NO VISIBLE
         combat(gameMode,boardGame,playerBoard);
 
     }
@@ -72,9 +71,9 @@ public class HundirLaFlota {
         for (int i = 0; i < board.length; i++){
             Arrays.fill(board[i],inside);
             if (i == 0){
-                board[i][0] = ' ';
+                board[i][0] = ' '; //board[0][0] = hueco en blanco
             } else {
-                board[i][0] = capitalLetter;
+                board[i][0] = capitalLetter; // coordenada con letra
                 capitalLetter++;
             }
         }
@@ -84,9 +83,9 @@ public class HundirLaFlota {
             } else if (j == 0){
                 board[0][j] = ' ';
             } else {
-                board[0][j] = number;
+                board[0][j] = number; // coordenada con números
                 number++;
-                if (number == ':'){
+                if (number == ':'){ // en caso de ser : cambie a 1, al no saber cómo poner 10 en adelante opté por esto para que siga siendo char
                     number = '1';
                 }
             }
@@ -95,10 +94,10 @@ public class HundirLaFlota {
     }
 
 
-    //Crea el tablero del modo de juego Fácil, adjudicando la cantidad de barcos, pero no la posicion
+    //Crea el tablero del modo de juego Fácil, adjudicando la cantidad de barcos
     public static char[][] easyGameBoard(int height, int width){
         char inBoard = '0';
-        char[][] board = createBoard(inBoard, height, width).clone();
+        char[][] board = createBoard(inBoard, height, width);
         int boatCounter = 5;
         int warShipCounter = 3;
         int battleshipCounter = 1;
@@ -110,10 +109,10 @@ public class HundirLaFlota {
         return board;
     }
 
-    //Crea el tablero del modo de juego Medio, adjudicando la cantidad de barcos, pero no la posicion
+    //Crea el tablero del modo de juego Medio, adjudicando la cantidad de barcos
     public static char[][] mediumGameBoard(int height, int width){
         char inBoard = '0';
-        char[][] board = createBoard(inBoard, height, width).clone();
+        char[][] board = createBoard(inBoard, height, width);
         int boatCounter = 2;
         int warShipCounter = 1;
         int battleshipCounter = 1;
@@ -125,10 +124,10 @@ public class HundirLaFlota {
         return board;
     }
 
-    //Crea el tablero del modo de juego Difícil, adjudicando la cantidad de barcos, pero no la posicion
+    //Crea el tablero del modo de juego Difícil, adjudicando la cantidad de barcos
     public static char[][] hardGameBoard(int height, int width){
         char inBoard = '0';
-        char[][] board = createBoard(inBoard, height, width).clone();
+        char[][] board = createBoard(inBoard, height, width);
         int boatCounter = 1;
         int warShipCounter = 1;
         insertBoat(board,boatCounter);
@@ -136,47 +135,50 @@ public class HundirLaFlota {
         return board;
     }
 
-    //Crea el tablero del modo de juego Personalizado, adjudicando la cantidad de barcos, pero no la posicion
-    public static char[][] customGameBoard(int height, int width){
+    //Crea el tablero del modo de juego Personalizado
+    public static char[][] customGameBoard(int height, int width) {
+        String[] nameShips = {"Lanchas (L): ", "Buques (B): ", "Acorazados (Z): ", "Portaaviones (P): "};
         char inBoard = '0';
-        char[][] board = createBoard(inBoard, height, width);
-        int maxShips = (height-1)*(width-1);
-        int boatCounter = 0;
-        int warShipCounter = 0;
-        int battleshipCounter = 0;
-        int aircraftCarrierCounter = 0;
-        System.out.println("Ahora elige la cantidad de barcos:");
+        char[][] board = createBoard(inBoard, height, width); //Crea el tablero vacío
+        //int[] boardShips se compone de {máximo de espacios posibles para colocar barcos, nº de (L), nº de (B), nº de (Z), nº de (P)}
+        int[] boardShips = {(height - 1) * (width - 1), 0, 0, 0, 0};
+        System.out.println("Ahora elige la cantidad de barcos de cada tipo que quieres poner en el tablero");
+        amountShips(boardShips,nameShips);
+        insertBoat(board,boardShips[1]);
+        insertWarShip(board,boardShips[2]);
+        insertBattleship(board,boardShips[3]);
+        insertAircraftCarrier(board,boardShips[4]);
+        return board;
+    }
+
+    //Permite elegir la cantidad de barcos que quieres de cada tipo
+    public static void amountShips(int[]boardShips,String[]nameShips){
         boolean ships = true;
-        while (ships){
-            System.out.print("Lanchas (L): ");
-            boatCounter = validNumValue(5,0);
-            maxShips = maxShips - (boatCounter);
-            if (maxShips >= 3){
-                System.out.print("Buques (B): ");
-                warShipCounter = validNumValue(5,0);
-                maxShips = maxShips - (warShipCounter*3);
+        while (ships) {
+            //selectShips(boardShips,nameShips, tipo de Barco L,B,Z,P (boardShips), nombre del barco (nameShips), máximo de barcos que puedes poner, mínimo de barcos que puedes poner)
+            selectShips(boardShips, nameShips, 1, 0, 5, 0);
+            if (boardShips[0] >= 3) {
+                selectShips(boardShips,nameShips,2,1,5,0);
             }
-            if (maxShips >= 4){
-                System.out.print("Acorazados (Z): ");
-                battleshipCounter = validNumValue(5,0);
-                maxShips = maxShips - (battleshipCounter*4);
+            if (boardShips[0] >= 4) {
+                selectShips(boardShips,nameShips,3,2,5,0);
             }
-            if (maxShips >= 5){
-                System.out.print("Portaaviones (P): ");
-                aircraftCarrierCounter = validNumValue(2,0);
-                maxShips = maxShips - (aircraftCarrierCounter*5);
+            if (boardShips[0] >= 5) {
+                selectShips(boardShips,nameShips,4,3,2,0);
             }
             ships = false;
-            if (maxShips < 0){
+            if (boardShips[0] < 0){
                 System.out.println("No te caben tantos barcos en el tablero");
                 ships = true;
             }
         }
-        insertBoat(board,boatCounter);
-        insertWarShip(board,warShipCounter);
-        insertBattleship(board,battleshipCounter);
-        insertAircraftCarrier(board,aircraftCarrierCounter);
-        return board;
+    }
+
+    // Te permite seleccionar el nº de barcos que quieres de un tipo concreto de barco
+    public static void selectShips(int[] boardShips, String[] nameShips, int typeShip, int nameShip, int max, int min) {
+        System.out.println(nameShips[nameShip]);
+        boardShips[typeShip] = validNumValue(max, min);
+        boardShips[0] = boardShips[0] - (boardShips[typeShip]);
     }
 
     //Inserta los botes
@@ -259,7 +261,7 @@ public class HundirLaFlota {
         System.out.println("Que comience el combate!");
         System.out.println("Tienes " + shots + " disparos.");
         boolean win = false;
-        if (checkWins(boardGame)){
+        if (checkWins(boardGame)){ //Antes de nada chequea si se puede jugar, por si se intenta colocar una matrix sin barcos
             System.out.println("Has ganado!");
             showBoard(boardGame);
             win = true;
@@ -326,15 +328,15 @@ public class HundirLaFlota {
     //Comprueba si el jugador ha ganado
     public static boolean checkWins(char[][]board){
         boolean win = false;
-            for (int i = 1; i < board.length; i++) {
-                for (int j = 1; j < board[i].length; j++) {
-                    if (board[i][j] == 'L' || board[i][j] == 'B' || board[i][j] == 'Z' || board[i][j] == 'P') {
-                        win = true;
-                        break;
-                    }
+        for (int i = 1; i < board.length; i++) {
+            for (int j = 1; j < board[i].length; j++) {
+                if (board[i][j] == 'L' || board[i][j] == 'B' || board[i][j] == 'Z' || board[i][j] == 'P') {
+                    win = true;
+                    break;
                 }
             }
-            return !win;
+        }
+        return !win;
     }
 
     //Comprueba si el disparo del jugador da o no en el blanco
