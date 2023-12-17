@@ -46,52 +46,40 @@ public class Actividad3 {
 
     public static void mapOfPower(int[][] hotel, int floor, int room) {
         int power = hotel[floor][room];
-        shiftValuesUp(hotel,room,power,floor, floor);
-        shiftValuesDown(hotel,room,power,floor, floor);
-        showMatrix(hotel);
-    }
-    public static void shiftValuesUp(int[][]hotel, int room, int power, int floor, int floorPower){
-        while (room != -1) {
-            for (int i = power; i != 0; i--) {
-                hotel[floor][room] = i;
-                floor--;
-                if (floor < 0) {
-                    break;
-                }
+        int startPower = power;
+        int startRoom = room;
+        for (int i = room; i < hotel[0].length; i++){
+            if (power > 0){
+                lineOfPower(hotel,power,floor,room);
             }
-            floor = floorPower;
-            for (int i = power; i != 0; i--) {
-                hotel[floor][room] = i;
-                floor++;
-                if (floor > 11) {
-                    break;
-                }
+            room++;
+            power--;
+        }
+        room = startRoom;
+        power = startPower;
+        for (int i = room; i >= 0; i--){
+            if (power > 0){
+                lineOfPower(hotel,power,floor,room);
             }
-            floor = floorPower;
             room--;
             power--;
         }
+        showMatrix(hotel);
     }
-    public static void shiftValuesDown(int[][]hotel, int room, int power, int floor, int floorPower){
-        while (room != 5) {
-            for (int i = power; i != 0; i--) {
+    public static void lineOfPower(int[][]hotel, int power, int floor, int room){
+        int startFloor = floor;
+        for(int i = power; i != 0; i--){
+            if (floor >= 0){
                 hotel[floor][room] = i;
                 floor--;
-                if (floor < 0) {
-                    break;
-                }
             }
-            floor = floorPower;
-            for (int i = power; i != 0; i--) {
+        }
+        floor = startFloor;
+        for(int i = power; i != 0; i--){
+            if (floor < 11){
                 hotel[floor][room] = i;
                 floor++;
-                if (floor > 11) {
-                    break;
-                }
             }
-            floor = floorPower;
-            room++;
-            power--;
         }
     }
     public static void showMatrix(int[][] matrix) {
