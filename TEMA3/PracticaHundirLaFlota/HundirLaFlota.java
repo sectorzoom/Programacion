@@ -1,6 +1,7 @@
 package PracticaHundirLaFlota;
 
 import java.util.Arrays;
+import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -20,9 +21,9 @@ public class HundirLaFlota {
         } else {
             System.out.println("Por favor, elige de cuánto va a ser tu tablero:");
             System.out.println("Altura:");
-            height = scanner.nextInt();
+            height = (validNumValue(20,1)+1);
             System.out.println("Anchura:");
-            width = scanner.nextInt();
+            width = (validNumValue(20,1)+1);
         }
         char inside = '-';
         char[][] playerBoard = createBoard(inside, height, width);
@@ -39,12 +40,7 @@ public class HundirLaFlota {
                 (2) Medio 5 barcos (2 lanchas, 1 buque, 1 acorazado y 1 portaaviones) y 30 disparos.
                 (3) Difícil 2 barcos (1 lancha y 1 buque) y 10 disparos.
                 (4) Personalizado (tamaño tablero, nº barcos y nº disparos)""");
-        int gameMode = scanner.nextInt();
-        while (gameMode > 4 || gameMode < 1){
-            System.out.println("Por favor, introduzca un modo de juego válido: ");
-            gameMode = scanner.nextInt();
-        }
-        return gameMode;
+        return validNumValue(4,1);
     }
 
     //Selecciona el tablero según lo elegido en menuGameMode
@@ -142,16 +138,39 @@ public class HundirLaFlota {
     //Crea el tablero del modo de juego Personalizado, adjudicando la cantidad de barcos, pero no la posicion
     public static char[][] customGameBoard(int height, int width){
         char inBoard = '0';
-        char[][] board = createBoard(inBoard, height, width).clone();
-        System.out.println("Ahora elige la cantad de barcos:");
-        System.out.print("Lanchas (L): ");
-        int boatCounter = scanner.nextInt();
-        System.out.print("Buques (B): ");
-        int warShipCounter = scanner.nextInt();
-        System.out.print("Acorazados (Z): ");
-        int battleshipCounter = scanner.nextInt();
-        System.out.print("Portaaviones (P): ");
-        int aircraftCarrierCounter = scanner.nextInt();
+        char[][] board = createBoard(inBoard, height, width);
+        int maxShips = height*width;
+        int boatCounter = 0;
+        int warShipCounter = 0;
+        int battleshipCounter = 0;
+        int aircraftCarrierCounter = 0;
+        System.out.println("Ahora elige la cantidad de barcos:");
+        boolean ships = true;
+        while (ships){
+            System.out.print("Lanchas (L): ");
+            boatCounter = validNumValue(5,1);
+            maxShips = maxShips - (boatCounter);
+            if (maxShips >= 3){
+                System.out.print("Buques (B): ");
+                warShipCounter = validNumValue(5,1);
+                maxShips = maxShips - (warShipCounter*3);
+            }
+            if (maxShips >= 4){
+                System.out.print("Acorazados (Z): ");
+                battleshipCounter = validNumValue(5,1);
+                maxShips = maxShips - (battleshipCounter*4);
+            }
+            if (maxShips >= 5){
+                System.out.print("Portaaviones (P): ");
+                aircraftCarrierCounter = validNumValue(2,1);
+                maxShips = maxShips - (aircraftCarrierCounter*5);
+            }
+            ships = false;
+            if (maxShips < 0){
+                System.out.println("No te caben tantos barcos en el tablero");
+                ships = true;
+            }
+        }
         insertBoat(board,boatCounter);
         insertWarShip(board,warShipCounter);
         insertBattleship(board,battleshipCounter);
@@ -204,7 +223,7 @@ public class HundirLaFlota {
     public static void insertAircraftCarrier(char[][]board, int aircraftCarrierCounter){
         while (aircraftCarrierCounter != 0){
             int i = random.nextInt(board.length - 5) + 1;
-            int j = random.nextInt(board[0].length - 6) + 1;
+            int j = random.nextInt(board[0].length - 1) + 1;
             if (board[i][j] == '0' && board[i+1][j] == '0' && board[i+2][j] == '0' && board[i+3][j] == '0' && board[i+4][j] == '0'){
                 board[i][j] = 'P';
                 board[i+1][j] = 'P';
@@ -227,7 +246,7 @@ public class HundirLaFlota {
             shots = 10;
         } else {
             System.out.print("Selecciona la cantidad de disparos que tendrás: ");
-            shots = scanner.nextInt();
+            shots = validNumValue(100,1);
         }
         System.out.println("Muy bien, en este combate tendrás un total de " + shots + " disparos.");
         return shots;
@@ -241,15 +260,10 @@ public class HundirLaFlota {
         while(shots != 0){
             showBoard(playerBoard);
             System.out.println("Escribe en qué vertical quieres atacar (LETRA)");
-            char row = scanner.next().toUpperCase().charAt(0);
-            int rowNumber = 0;
-            if (row >= 'A' && row <= 'Z') {
-                rowNumber = row - 'A' + 1;
-            } else {
-                System.out.println("Caracter inválido. Ingresa una letra de la A a la Z.");
-            }
+            char row = validCharValue('A', (char) ('A'+(boardGame.length-2)));
+            int rowNumber = row - 'A' + 1;
             System.out.println("Escribe en qué horizontal quieres atacar (NÚMERO)");
-            int columnNumber = scanner.nextInt();
+            int columnNumber = validNumValue((boardGame[0].length-1),1);
             attack(playerBoard,boardGame,rowNumber,columnNumber);
             if (!checkWins(boardGame)){
                 System.out.println("Has ganado!");
@@ -263,6 +277,42 @@ public class HundirLaFlota {
             }
         }
 
+    }
+
+    //Valida la entrada de caracteres
+    public static char validCharValue(char min, char max) {
+        char answer;
+        do {
+            System.out.println("Introduzca una letra entre " + min + " y " + max);
+            answer = scanner.next().toUpperCase().charAt(0);
+            if (answer < min || answer > max) {
+                System.out.println("Opción incorrecta. Debes introducir una letra válida");
+            }
+        } while (answer < min || answer > max);
+        return answer;
+    }
+
+    //Valida los números ingresados impidiendo caracteres extraños
+    public static int validNumValue(int max, int min) {
+        int number = 0;
+        boolean isValidInput = false;
+
+        while (!isValidInput) {
+            try {
+                System.out.print("Ingresa un número entre " + min + " y " + max + ": ");
+                number = scanner.nextInt();
+
+                if (number > max || number < min){
+                    System.out.println("Por favor, ingresa un número dentro del rango permitido.");
+                } else {
+                    isValidInput = true;
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Error: Debes ingresar un número entero.");
+                scanner.next(); // Limpiar el buffer del scanner
+            }
+        }
+        return number;
     }
 
     //Comprueba si el jugador ha ganado
