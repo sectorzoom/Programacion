@@ -59,6 +59,7 @@ public class HundirLaFlota {
             case 4:
                 board = customGameBoard(height,width);
                 break;
+            default:
         }
         return board;
     }
