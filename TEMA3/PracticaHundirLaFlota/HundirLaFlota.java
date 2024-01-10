@@ -6,6 +6,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class HundirLaFlota {
+    public static final int HEIGHT = 10 + 1; // 10 casillas
     static Scanner scanner = new Scanner(System.in);
     static Random random = new Random();
     public static void main(String[] args) {
@@ -15,8 +16,8 @@ public class HundirLaFlota {
         int gameMode = menuGameMode(); //Seleccionas el modo de juego
         int height; int width;
         if(gameMode != 4){ //Si el modo de juego no es Personalizado el tablero es 11x11
-            height = 11;
-            width = 11;
+            height = HEIGHT;
+            width = 10;
         } else { //En caso de ser modo Personalizado
             System.out.println("Por favor, elige de cuánto va a ser tu tablero:");
             System.out.println("Altura:");
@@ -157,14 +158,12 @@ public class HundirLaFlota {
         while (ships) {
             //selectShips(boardShips,nameShips, tipo de Barco L,B,Z,P (boardShips), nombre del barco (nameShips), máximo de barcos que puedes poner, mínimo de barcos que puedes poner)
             selectShips(boardShips, nameShips, 1, 0, 5, 0);
-            if (boardShips[0] >= 3) {
-                selectShips(boardShips,nameShips,2,1,5,0);
-            }
-            if (boardShips[0] >= 4) {
-                selectShips(boardShips,nameShips,3,2,5,0);
-            }
             if (boardShips[0] >= 5) {
                 selectShips(boardShips,nameShips,4,3,2,0);
+            } else if (boardShips[0] == 4) {
+                selectShips(boardShips,nameShips,3,2,5,0);
+            } else if (boardShips[0] == 3) {
+                selectShips(boardShips,nameShips,2,1,5,0);
             }
             ships = false;
             if (boardShips[0] < 0){
@@ -353,8 +352,8 @@ public class HundirLaFlota {
 
     //Muestra el tablero que corresponda
     public static void showBoard (char[][]board){
-        for (char[] ints : board) {
-            System.out.println(Arrays.toString(ints));
+        for (char[] row : board) {
+            System.out.println(Arrays.toString(row));
         }
     }
 }
