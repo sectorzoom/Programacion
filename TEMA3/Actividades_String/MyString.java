@@ -4,13 +4,68 @@ import java.util.Scanner;
 
 public class MyString {
     static Scanner scanner = new Scanner(System.in);
+    static Scanner sc = new Scanner(System.in);
     public static void main(String[] args) {
-        //invertedString();
-        //sayNumOfVowels();
-        //sayTheMostLarge();
-        //sayNumOfWords();
-        //sayNumOfStringRep();
-        showFormatPhone();
+        showMenu();
+    }
+    public static void showMenu (){
+        boolean option = true;
+        while (option) {
+            System.out.println("""
+                     Introduzca qué ejercicio quiere hacer:
+                     a) Una función que reciba una cadena y devuelva esta cadena invertida y en mayúsculas.
+                     b) Una función que reciba una cadena y devuelva el número de vocales.
+                     c) Una función que reciba una cadena y devuelva la palabra de mayor longitud.
+                     d) Una función que reciba dos cadenas y devuelva el número de veces que la segunda cadena está incluida en la primera.
+                     e) Una función que reciba una cadena y devuelva el número de palabras que contiene.
+                     f) Una función que reciba un número de teléfono, por ejemplo “34555332211” y lo convierta al formato (+34)-555-332211.
+                     g) Un procedimiento que reciba una cadena y muestre por pantalla el histograma de frecuencias de las vocales (las veces que se repiten)
+                     h) Pulsa H para salir""");
+            System.out.print("Indique aquí su elección:");
+            char election = scanner.nextLine().toLowerCase().charAt(0);
+            switch (election) {
+                case 'a':
+                    invertedString();
+                    System.out.println("Pulsa enter para continuar");
+                    sc.nextLine();
+                    break;
+                case 'b':
+                    sayNumOfVowels();
+                    System.out.println("Pulsa enter para continuar");
+                    sc.nextLine();
+                    break;
+                case 'c':
+                    sayTheMostLarge();
+                    System.out.println("Pulsa enter para continuar");
+                    sc.nextLine();
+                    break;
+                case 'd':
+                    sayNumOfWords();
+                    System.out.println("Pulsa enter para continuar");
+                    sc.nextLine();
+                    break;
+                case 'e':
+                    sayNumOfStringRep();
+                    System.out.println("Pulsa enter para continuar");
+                    sc.nextLine();
+                    break;
+                case 'f':
+                    showFormatPhone();
+                    System.out.println("Pulsa enter para continuar");
+                    sc.nextLine();
+                    break;
+                case 'g':
+                    showAmountEachVowels();
+                    System.out.println("Pulsa enter para continuar");
+                    sc.nextLine();
+                    break;
+                case 'h':
+                    option = false;
+                    break;
+                default:
+                    System.out.println("Introduce un valor correcto");
+            }
+        }
     }
     public static void invertedString () {
         System.out.println("Introduzca la cadena que quiere dar la vuelta y ponerla en mayúscula");
@@ -40,7 +95,6 @@ public class MyString {
         System.out.println("Introduzca la cadena que quiere comparar y diré cuál es la palabra más larga que tiene");
         String string = scanner.nextLine();
         System.out.println("La palabra más larga es " + theMostLarge(string));
-
     }
     public static String theMostLarge(String string) {
         String[] words = string.split(" ");
@@ -69,8 +123,6 @@ public class MyString {
         }
         return numOfRep;
     }
-
-
     public static void sayNumOfWords(){
         System.out.println("Introduzca la cadena y diré cuántas palabras tiene");
         String string = scanner.nextLine();
@@ -83,7 +135,7 @@ public class MyString {
     public static void showFormatPhone(){
         System.out.println("Introduzca el número de teléfono que quiere cambiar de formato");
         System.out.println("Nota: el número debe tener 11 dígitos");
-        long number = Long.parseLong(scanner.next());
+        long number = Long.parseLong(scanner.nextLine());
 
         String phone = String.valueOf(number);
         System.out.println("El nuevo formato es: " + convertFormat(phone));
@@ -94,6 +146,36 @@ public class MyString {
         stringBuilder.insert(4,")-");
         stringBuilder.insert(9,"-");
         return stringBuilder.toString();
+    }
+    public static void showAmountEachVowels(){
+        System.out.println("Escribe la cadena y te diré cuántas vocales tiene de cada una");
+        String string = scanner.nextLine();
+        countAmountEachVowel(string);
+
+    }
+    public static void countAmountEachVowel(String string){
+        string = string.toLowerCase();
+        int[]numVowels = new int[5];
+        for (int i = 0; i < string.length(); i++) {
+            char character = string.charAt(i);
+            if (character == 'a') {
+                numVowels[0]++;
+            } else if (character == 'e') {
+                numVowels[1]++;
+            } else if (character == 'i') {
+                numVowels[2]++;
+            } else if (character == 'o') {
+                numVowels[3]++;
+            } else if (character == 'u') {
+                numVowels[4]++;
+            }
+        }
+        System.out.println("Histograma de frecuencias de vocales:");
+        System.out.println("A: " + numVowels[0]);
+        System.out.println("E: " + numVowels[1]);
+        System.out.println("I: " + numVowels[2]);
+        System.out.println("O: " + numVowels[3]);
+        System.out.println("U: " + numVowels[4]);
     }
 
 }
