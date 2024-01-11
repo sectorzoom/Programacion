@@ -8,8 +8,9 @@ public class MyString {
         //invertedString();
         //sayNumOfVowels();
         //sayTheMostLarge();
-        sayNumOfWords();
+        //sayNumOfWords();
         //sayNumOfStringRep();
+        showFormatPhone();
     }
     public static void invertedString () {
         System.out.println("Introduzca la cadena que quiere dar la vuelta y ponerla en mayúscula");
@@ -78,6 +79,21 @@ public class MyString {
     public static int countNumOfWords(String string){
         String[] words = string.split(" ");
         return words.length;
+    }
+    public static void showFormatPhone(){
+        System.out.println("Introduzca el número de teléfono que quiere cambiar de formato");
+        System.out.println("Nota: el número debe tener 11 dígitos");
+        long number = Long.parseLong(scanner.next());
+
+        String phone = String.valueOf(number);
+        System.out.println("El nuevo formato es: " + convertFormat(phone));
+    }
+    public static String convertFormat(String phone){
+        StringBuilder stringBuilder = new StringBuilder(phone);
+        stringBuilder.insert(0,"(+");
+        stringBuilder.insert(4,")-");
+        stringBuilder.insert(9,"-");
+        return stringBuilder.toString();
     }
 
 }
