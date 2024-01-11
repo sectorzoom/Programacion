@@ -5,9 +5,11 @@ import java.util.Scanner;
 public class MyString {
     static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
-        invertedString();
-        sayNumOfVowels();
-        sayTheMostLarge();
+        //invertedString();
+        //sayNumOfVowels();
+        //sayTheMostLarge();
+        sayNumOfWords();
+        //sayNumOfStringRep();
     }
     public static void invertedString () {
         System.out.println("Introduzca la cadena que quiere dar la vuelta y ponerla en mayúscula");
@@ -49,7 +51,34 @@ public class MyString {
         }
         return mostLargeWord;
     }
+    public static void sayNumOfStringRep(){
+        System.out.println("Introduce dos cadenas y te diré cuántas veces se repite la segunda en la primera");
+        System.out.println("Primera cadena: ");
+        String string1 = scanner.nextLine();
+        System.out.println("Segunda cadena: ");
+        String string2 = scanner.nextLine();
+        System.out.println("La segunda cadena se repite " + countNumOfRep(string1,string2) + " veces.");
+    }
+    public static int countNumOfRep(String string1, String string2){
+        int numOfRep = 0;
+        for (int i = 0; i < string1.length(); i++) {
+            if (string1.startsWith(string2, i)) {
+                numOfRep++;
+            }
+        }
+        return numOfRep;
+    }
 
+
+    public static void sayNumOfWords(){
+        System.out.println("Introduzca la cadena y diré cuántas palabras tiene");
+        String string = scanner.nextLine();
+        System.out.println("Tu cadena tiene " + countNumOfWords(string) + " palabras.");
+    }
+    public static int countNumOfWords(String string){
+        String[] words = string.split(" ");
+        return words.length;
+    }
 
 }
 
