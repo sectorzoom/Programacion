@@ -17,17 +17,7 @@ public class HangManGame {
         int attempts = 6;
         String[][] hangman = displayHangman();
         int counter = 1;
-        while (attempts > 0 && currentProgress.toString().contains("_")){
-            showAttemptsLeft(attempts);
-            showHangman(hangman);
-            displayCurrentProgress(currentProgress);
-            char letter = setLetter();
-            boolean letterFound = checkLetter(gameWord,currentProgress, letter);
-            if (!letterFound){
-                attempts--;
-            }
-            counter = showPartsOfHangman(gameWord,hangman,currentProgress,letter,counter);
-        }
+        attempts = loopGame(attempts,counter,currentProgress,hangman,gameWord);
         showHangman(hangman);
         showAttemptsLeft(attempts);
         displayResult(gameWord,attempts);
@@ -99,5 +89,19 @@ public class HangManGame {
         } else {
             System.out.println("Lo siento, te has quedado sin intentos. La palabra era: " + gameWord);
         }
+    }
+    public static int loopGame(int attempts, int counter, StringBuilder currentProgress, String[][]hangman, String gameWord){
+        while (attempts > 0 && currentProgress.toString().contains("_")){
+            showAttemptsLeft(attempts);
+            showHangman(hangman);
+            displayCurrentProgress(currentProgress);
+            char letter = setLetter();
+            boolean letterFound = checkLetter(gameWord,currentProgress, letter);
+            if (!letterFound){
+                attempts--;
+            }
+            counter = showPartsOfHangman(gameWord,hangman,currentProgress,letter,counter);
+        }
+        return attempts;
     }
 }
