@@ -20,20 +20,25 @@ public class Reloj {
         this.seconds = seconds;
     }
 
+
     public int getHours() {
         return hours;
     }
 
     public void setHours(int hours, int mode) {
-        if (mode == 12){
+        if (mode != 24){
             while (hours > 12){
                 hours = hours - 12;
             }
-            if (hours < 0){
-                this.hours = DEFAULT;
-            } else{
-                this.hours = hours;
+        } else {
+            while (hours >= 24){
+                hours = hours - 24;
             }
+        }
+        if (hours < 0){
+            this.hours = DEFAULT;
+        } else{
+            this.hours = hours;
         }
     }
 
@@ -70,9 +75,10 @@ public class Reloj {
         }
     }
     public void showReloj(){
-        System.out.println("En modo " + getMode() + " la hora es: " + getHours() + ":"+ getMinutes()+ ":" + getSeconds());
+        System.out.print("En modo " + getMode() + " la hora es: ");
+        System.out.printf("%02d:%02d:%02d", getHours(),getMinutes(),getSeconds());
+        System.out.println("\n");
     }
-
     public int getMode() {
         return mode;
     }
@@ -83,5 +89,8 @@ public class Reloj {
         } else {
             this.mode = mode;
         }
+    }
+    public String toString(){
+        return String.format("%02d:%02d:%02d", hours, minutes, seconds);
     }
 }

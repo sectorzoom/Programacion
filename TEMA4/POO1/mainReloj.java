@@ -19,6 +19,7 @@ public class mainReloj {
         reloj.setMinutes(minutes);
         reloj.setSeconds(seconds);
         reloj.showReloj();
+        System.out.println(reloj);
 
     }
 }
