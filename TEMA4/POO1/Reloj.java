@@ -18,6 +18,7 @@ public class Reloj {
         this.hours = hours;
         this.minutes = minutes;
         this.seconds = seconds;
+        this.mode = DEFAULTMODE;
     }
 
 

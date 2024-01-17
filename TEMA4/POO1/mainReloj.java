@@ -20,6 +20,8 @@ public class mainReloj {
         reloj.setSeconds(seconds);
         reloj.showReloj();
         System.out.println(reloj);
+        Reloj reloj1 = new Reloj(hour,minutes,seconds);
+        reloj1.showReloj();
 
     }
 }
