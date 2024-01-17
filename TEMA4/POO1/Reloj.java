@@ -4,8 +4,8 @@ public class Reloj {
     private int minutes;
     private int seconds;
     private int mode;
-    public static final int DEFAULT = 0;
-    public static final int DEFAULTMODE = 12;
+    private static final int DEFAULT = 0;
+    private static final int DEFAULTMODE = 12;
 
     public Reloj(){
         this.hours = DEFAULT;
