@@ -14,7 +14,7 @@ public class Reloj {
         this.mode = DEFAULTMODE;
 
     }
-    public Reloj(int hours, int minutes, int seconds){
+    public Reloj(int hours, int minutes, int seconds, int mode){
         this.hours = hours;
         this.minutes = minutes;
         this.seconds = seconds;
