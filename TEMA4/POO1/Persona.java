@@ -48,31 +48,28 @@ public class Persona {
     public boolean isAdult() {
         return edad >= adultAge;
     }
+    public void showIsAdult(){
+        if (isAdult()){
+            System.out.println("Es mayor de edad");
+        } else{
+            System.out.println("Es menor de edad");
+        }
+    }
 
     public boolean isRetired() {
         return edad >= retiredAge;
+    }
+    public void showIsRetired(){
+        if (isRetired()){
+            System.out.println("Está jubilado");
+        } else{
+            System.out.println("No está jubilado");
+        }
     }
     public int ageDifference(Persona otraPersona) {
         return Math.abs(this.edad - otraPersona.getEdad());
     }
     public static boolean checkDNI(String dni) {
-        return true;
-    }
-    public static Persona obtenerDatosPersona() {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("Ingrese el DNI:");
-        String dni = scanner.nextLine();
-
-        System.out.println("Ingrese el nombre:");
-        String nombre = scanner.nextLine();
-
-        System.out.println("Ingrese los apellidos:");
-        String apellidos = scanner.nextLine();
-
-        System.out.println("Ingrese la edad:");
-        int edad = scanner.nextInt();
-
-        return new Persona(dni, nombre, apellidos, edad);
+        return dni.matches("\\d{8}[A-Za-z]");
     }
 }
