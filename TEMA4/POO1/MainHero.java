@@ -2,7 +2,7 @@ package POO1;
 
 import java.util.Scanner;
 
-public class mainHero {
+public class MainHero {
     private static final int defaultExperience = 0;
     private static final int defaultLvl = 1;
 

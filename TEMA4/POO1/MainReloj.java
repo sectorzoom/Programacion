@@ -2,7 +2,7 @@ package POO1;
 
 import java.util.Scanner;
 
-public class mainReloj {
+public class MainReloj {
     static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
         System.out.println("Introduce el modo de hora (12 o 24)");

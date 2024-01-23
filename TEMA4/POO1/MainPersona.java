@@ -3,7 +3,7 @@ package POO1;
 import java.util.Scanner;
 
 
-public class mainPersona {
+public class MainPersona {
     public static void main(String[] args) {
         System.out.println("Ingresa los datos de la Persona 1");
         Persona persona1 = obtenerDatosPersona();

@@ -15,11 +15,6 @@ public class Hero {
     private static final int maxLvlUpHealth = 5;
     private static final int reset = 0;
 
-
-
-
-
-
     public Hero(String name, int lvl, int health, int maxHealth, int experience, int attack, int defense) {
         this.name = name;
         this.lvl = lvl;
