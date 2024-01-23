@@ -38,11 +38,13 @@ public class Hero {
     }
     public void attack(Hero otherHero) {
         int damage = Math.max(this.attack - otherHero.defense, 10);
-        otherHero.health = Math.max(0, otherHero.health - damage);
+        otherHero.receiveDamage(damage);
         experience += minExp;
         lvlUp();
     }
-
+    public void receiveDamage(int damage) {
+        health = Math.max(0, health - damage);
+    }
     public void lvlUp() {
         if (experience >= maxExp) {
             lvl++;
