@@ -39,7 +39,6 @@ public class PeopleAndAccountManager {
                     System.out.print("Ingrese el DNI de la persona: ");
                     dni = enterDNI();
                     Person personQuery = searchPersonByDni(people, dni, numPeople);
-
                     if (personQuery != null) {
                         showPersonData(personQuery);
                     } else {
@@ -168,8 +167,8 @@ public class PeopleAndAccountManager {
     }
     private static void instantiateObjectsOfTypeAccount(Person[] people, int numPeople){
         System.out.print("Ingrese el DNI de la persona a la que desea asociar la cuenta: ");
-        String dniPerson = enterDNI();
-        Person person = searchPersonByDni(people, dniPerson, numPeople);
+        String dni = enterDNI();
+        Person person = searchPersonByDni(people, dni, numPeople);
         if (person != null) {
             Account account = createNewAccount();
             person.addAccounts(account);
