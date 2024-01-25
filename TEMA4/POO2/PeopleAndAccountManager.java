@@ -1,11 +1,15 @@
 package POO2;
+import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 public class PeopleAndAccountManager {
     static Scanner scanner = new Scanner(System.in);
+    private static final int defaultSizeInPersonArray = 10;
+    private static final int defaultPeopleInArray = 0;
+
     public static void main(String[] args) {
-        Person[] people = new Person[10];
-        int numPeople = 0;
+        Person[] people = new Person[defaultSizeInPersonArray];
+        int numPeople = defaultPeopleInArray;
         int option;
         String dni;
 
@@ -21,7 +25,7 @@ public class PeopleAndAccountManager {
             System.out.println("0. Salir");
 
             System.out.print("Seleccione una opción: ");
-            option = scanner.nextInt();
+            option = validNumValue();
 
             switch (option) {
                 case 1:
@@ -33,12 +37,8 @@ public class PeopleAndAccountManager {
                     break;
                 case 3:
                     System.out.print("Ingrese el DNI de la persona: ");
-                    String dniQuery = scanner.next();
-                    while (validateDNI(dniQuery)) {
-                        System.out.print("DNI inválido. Por favor, ingrese un DNI válido: ");
-                        dniQuery = scanner.next();
-                    }
-                    Person personQuery = searchPersonByDni(people, dniQuery, numPeople);
+                    dni = enterDNI();
+                    Person personQuery = searchPersonByDni(people, dni, numPeople);
 
                     if (personQuery != null) {
                         showPersonData(personQuery);
@@ -162,23 +162,14 @@ public class PeopleAndAccountManager {
     }
     private static Person instantiateAnObjectOfTypePerson(){
         System.out.print("Ingrese el DNI de la persona: ");
-        String dni = scanner.next();
-        while (validateDNI(dni)) {
-            System.out.print("DNI inválido. Por favor, ingrese un DNI válido: ");
-            dni = scanner.next();
-        }
+        String dni = enterDNI();
         System.out.println("Persona creada exitosamente.");
         return new Person(dni);
     }
     private static void instantiateObjectsOfTypeAccount(Person[] people, int numPeople){
         System.out.print("Ingrese el DNI de la persona a la que desea asociar la cuenta: ");
-        String dniPerson = scanner.next();
-        while (validateDNI(dniPerson)) {
-            System.out.print("DNI inválido. Por favor, ingrese un DNI válido: ");
-            dniPerson = scanner.next();
-        }
+        String dniPerson = enterDNI();
         Person person = searchPersonByDni(people, dniPerson, numPeople);
-
         if (person != null) {
             Account account = createNewAccount();
             person.addAccounts(account);
@@ -223,7 +214,7 @@ public class PeopleAndAccountManager {
             Account account = searchAccountByNum(persona.getAccounts(), numAccount);
 
             if (account != null) {
-                account.receiveCredit(payrollAmount);
+                account.receivePayment(payrollAmount);
                 System.out.println("Nómina recibida correctamente en la cuenta " + numAccount + ". Nuevo saldo: " + account.getAvailableBalance());
             } else {
                 System.out.println("La cuenta especificada no pertenece a la persona.");
@@ -233,7 +224,7 @@ public class PeopleAndAccountManager {
         }
     }
     private static void receivePayment(Person receiver, Account receiverAccount, double paymentAmount) {
-        receiverAccount.receiveCredit(paymentAmount);
+        receiverAccount.receivePayment(paymentAmount);
         System.out.println("Pago recibido correctamente en la cuenta " + receiverAccount.getNumAccount() +
                 " del receptor " + receiver.getDni() + ". Nuevo saldo: " + receiverAccount.getAvailableBalance());
     }
@@ -243,7 +234,7 @@ public class PeopleAndAccountManager {
                                      Person receiver, Account receiverAccount, double amountTransfer) {
         if (senderAccount.getAvailableBalance() >= amountTransfer) {
             senderAccount.payBill(amountTransfer);
-            receiverAccount.receiveCredit(amountTransfer);
+            receiverAccount.receivePayment(amountTransfer);
             System.out.println("Transferencia exitosa de " + amountTransfer + " desde la cuenta " +
                     senderAccount.getNumAccount() + " del remitente " + sender.getDni() +
                     " a la cuenta " + receiverAccount.getNumAccount() + " del receptor " +
@@ -287,25 +278,31 @@ public class PeopleAndAccountManager {
         }
     }
     private static boolean validateDNI(String dni) {
-        if (dni.length() != 9) {
-            return true;
+        boolean isValid = false;
+        if (dni.length() == 9) {
+            String numbers = dni.substring(0, 8);
+            char letter = Character.toUpperCase(dni.charAt(8));
+            try {
+                int num = Integer.parseInt(numbers);
+                char calculatedLetter = calculateDniLetter(num);
+                isValid = (letter == calculatedLetter);
+            } catch (NumberFormatException ignored) {
+            }
         }
-
-        String numbers = dni.substring(0, 8);
-        char letter = dni.charAt(8);
-
-        try {
-            int num = Integer.parseInt(numbers);
-            char calculatedLetter = calculateDniLetter(num);
-            return letter != calculatedLetter;
-        } catch (NumberFormatException e) {
-            return true;
-        }
+        return !isValid;
     }
 
     private static char calculateDniLetter(int num) {
         String letters = "TRWAGMYFPDXBNJZSQVHLCKE";
         return letters.charAt(num % 23);
+    }
+    private static String enterDNI(){
+        String dniPerson = scanner.next().toUpperCase();
+        while (validateDNI(dniPerson)) {
+            System.out.print("DNI inválido. Por favor, ingrese un DNI válido: ");
+            dniPerson = scanner.next().toUpperCase();
+        }
+        return dniPerson;
     }
     private static String generateRandomAccount() {
         StringBuilder account = new StringBuilder();
@@ -317,6 +314,26 @@ public class PeopleAndAccountManager {
 
         return account.toString();
     }
+    public static int validNumValue() {
+        Scanner scanner = new Scanner(System.in);
+        boolean numeroValido = false;
+        int number = 0;
+        while (!numeroValido) {
+            try {
+                number = scanner.nextInt();
+                if (number < 0){
+                    System.out.println("Por favor, escriba un número de preguntas correcto.");
+                }else{
+                    numeroValido = true;
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Error: Debes ingresar un número entero.");
+                scanner.next();
+            }
+        }
+        return number;
+    }
+
 
 }
 

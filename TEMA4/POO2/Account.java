@@ -16,13 +16,13 @@ public class Account {
         return availableBalance;
     }
 
-    public void receiveCredit(double amount) {
-        availableBalance += amount;
+    public void receivePayment(double payment) {
+        availableBalance += payment;
         System.out.println("Abono exitoso. Saldo actual: " + availableBalance);
     }
 
-    public void payBill(double amount) {
-        availableBalance -= amount;
+    public void payBill(double payment) {
+        availableBalance -= payment;
         System.out.println("Pago de recibo exitoso. Saldo actual: " + availableBalance);
     }
 }

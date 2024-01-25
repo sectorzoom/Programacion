@@ -4,12 +4,13 @@ public class Person {
     private final String dni;
     private final Account[] accounts;
     private int numAccounts;
-    private static int maxAccountsAllowed = 3;
+    private static final int maxAccountsAllowed = 3;
+    private static final int defaultAccounts = 0;
 
     public Person(String dni) {
         this.dni = dni;
         this.accounts = new Account[maxAccountsAllowed];
-        this.numAccounts = 0;
+        this.numAccounts = defaultAccounts;
     }
 
     public String getDni() {
