@@ -20,7 +20,7 @@ public class Person {
         return accounts;
     }
     public void addAccounts(Account account) {
-        if (numAccounts < 3) {
+        if (numAccounts < maxAccountsAllowed) {
             accounts[numAccounts] = account;
             numAccounts++;
             System.out.println("Cuenta asociada correctamente.");
