@@ -1,4 +1,4 @@
-package POO2;
+package POO2_1;
 public class Account {
     private final String numAccount;
     private double availableBalance;

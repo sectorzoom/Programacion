@@ -1,4 +1,4 @@
-package POO2;
+package POO2_1;
 import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;

@@ -1,4 +1,4 @@
-package POO2;
+package POO2_1;
 
 public class Person {
     private final String dni;
