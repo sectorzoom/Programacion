@@ -19,14 +19,13 @@ public class Person {
     public Account[] getAccounts() {
         return accounts;
     }
-    public void addAccounts(Account account) {
+    public boolean addAccounts(Account account) {
         if (numAccounts < maxAccountsAllowed) {
             accounts[numAccounts] = account;
             numAccounts++;
-            System.out.println("Cuenta asociada correctamente.");
-        } else {
-            System.out.println("Este DNI ya tiene el máximo de cuentas permitidas.");
+            return true;
         }
+        return false;
     }
 
     public boolean isSlowPayer() {

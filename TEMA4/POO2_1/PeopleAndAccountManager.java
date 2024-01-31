@@ -70,8 +70,7 @@ public class PeopleAndAccountManager {
 
         scanner.close();
     }
-
-        private static Person instantiateAnObjectOfTypePerson(){
+    private static Person instantiateAnObjectOfTypePerson(){
         System.out.print("Ingrese el DNI de la persona: ");
         String dni = enterDNI();
         System.out.println("Persona creada exitosamente.");
@@ -83,7 +82,11 @@ public class PeopleAndAccountManager {
         Person person = searchPersonByDni(people, dni, numPeople);
         if (person != null) {
             Account account = createNewAccount();
-            person.addAccounts(account);
+            if (person.addAccounts(account)){
+                System.out.println("Cuenta asociada correctamente.");
+            } else {
+                System.out.println("Este DNI ya tiene el máximo de cuentas permitidas.");
+            }
         } else {
             System.out.println("No se encontró ninguna persona con ese DNI.");
         }
@@ -98,6 +101,7 @@ public class PeopleAndAccountManager {
             System.out.println("No se encontró ninguna persona con ese DNI.");
         }
     }
+
     private static void showHowEnterPayroll(Person[] people, int numPeople){
         System.out.print("Ingrese el DNI de la persona: ");
         String dni = enterDNI();
@@ -112,6 +116,7 @@ public class PeopleAndAccountManager {
             System.out.println("No se encontró ninguna persona con ese DNI.");
         }
     }
+
     private static void showHowDoAPayment(Person[] people, int numPeople){
         System.out.print("Ingrese el DNI del pagador: ");
         String dni = enterDNI();
@@ -131,6 +136,7 @@ public class PeopleAndAccountManager {
             System.out.println("No se encontró a un pagador con ese DNI.");
         }
     }
+
     private static void showHowMakeTransfer(Person[] people, int numPeople){
         System.out.print("Ingrese el DNI del remitente: ");
         String dniSender = enterDNI();
@@ -164,6 +170,7 @@ public class PeopleAndAccountManager {
             System.out.println("No se encontró al remitente con ese DNI.");
         }
     }
+
     private static Account createNewAccount(){
         String numAccount = generateRandomAccount();
         System.out.println("Su numero de cuenta es " + numAccount);
@@ -171,6 +178,7 @@ public class PeopleAndAccountManager {
         double initialBalance = validNumValue();
         return new Account(numAccount, initialBalance);
     }
+
     private static void showPersonalData(Person person) {
         System.out.println("Datos de la persona:");
         System.out.println("DNI: " + person.getDni());
@@ -183,7 +191,6 @@ public class PeopleAndAccountManager {
         }
     }
 
-
     private static Person searchPersonByDni(Person[] people, String dni, int numPeople) {
         for (int i = 0; i < numPeople; i++) {
             if (people[i].getDni().equals(dni)) {
@@ -192,6 +199,7 @@ public class PeopleAndAccountManager {
         }
         return null;
     }
+
     private static void receivePayroll(Person[] people, String dni, String numAccount, double payrollAmount, int numPeople) {
         Person persona = searchPersonByDni(people, dni, numPeople);
         if (persona != null) {
@@ -206,6 +214,7 @@ public class PeopleAndAccountManager {
             System.out.println("No se encontró ninguna persona con ese DNI.");
         }
     }
+
     private static void doPayment(Person receiver, Account receiverAccount, double paymentAmount) {
         receiverAccount.payBill(paymentAmount);
         System.out.println("Pago recibido realizado correctamente por la cuenta " + receiverAccount.getNumAccount() +
@@ -227,7 +236,6 @@ public class PeopleAndAccountManager {
         }
     }
 
-
     private static Account searchAccountByNum(Account[] accounts, String numAccount) {
         for (Account account : accounts) {
             if (account != null && account.getNumAccount().equals(numAccount)) {
@@ -236,7 +244,6 @@ public class PeopleAndAccountManager {
         }
         return null;
     }
-
 
     private static void printSlowPayerPeople(Person[] people, int numPeople) {
         boolean thereAreSlowPayer = false;
@@ -257,6 +264,7 @@ public class PeopleAndAccountManager {
             System.out.println("No hay people morosas.");
         }
     }
+
     private static boolean validateDNI(String dni) {
         boolean isValid = false;
         if (dni.length() == 9) {
@@ -276,6 +284,7 @@ public class PeopleAndAccountManager {
         String letters = "TRWAGMYFPDXBNJZSQVHLCKE";
         return letters.charAt(num % 23);
     }
+
     private static String enterDNI(){
         String dniPerson = scanner.next().toUpperCase();
         while (validateDNI(dniPerson)) {
@@ -284,6 +293,7 @@ public class PeopleAndAccountManager {
         }
         return dniPerson;
     }
+
     private static String generateRandomAccount() {
         StringBuilder account = new StringBuilder();
         Random random = new Random();
@@ -292,6 +302,7 @@ public class PeopleAndAccountManager {
         }
         return "ES" + account;
     }
+
     public static int validNumValue() {
         Scanner scanner = new Scanner(System.in);
         boolean numeroValido = false;
@@ -311,8 +322,6 @@ public class PeopleAndAccountManager {
         }
         return number;
     }
-
-
 }
 
 

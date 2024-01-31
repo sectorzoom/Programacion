@@ -18,11 +18,9 @@ public class Account {
 
     public void receivePayment(double payment) {
         availableBalance += payment;
-        System.out.println("Abono exitoso. Saldo actual: " + availableBalance);
     }
 
     public void payBill(double payment) {
         availableBalance -= payment;
-        System.out.println("Pago de recibo exitoso. Saldo actual: " + availableBalance);
     }
 }
