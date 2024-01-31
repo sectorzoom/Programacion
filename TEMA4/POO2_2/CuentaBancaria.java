@@ -8,6 +8,9 @@ public class CuentaBancaria {
     private final String surname;
     private double balance;
     private static final int maxBankOverdraft = -50;
+    private static final int contactWithTreasure = 3000;
+
+
     private double[] movements;
     private int numMovements;
 
@@ -65,9 +68,13 @@ public class CuentaBancaria {
 
     public void bankWithdrawal(double withdrawal) {
         if (withdrawal > 0 && balance >= maxBankOverdraft) {
-            balance -= withdrawal;
-            addMovement(-withdrawal);
-            negativeBalance();
+            if (balance-withdrawal > maxBankOverdraft){
+                balance -= withdrawal;
+                addMovement(-withdrawal);
+                negativeBalance();
+            } else {
+                System.out.println("No es posible hacer la operación descubierto demasiado elevado");
+            }
         }
     }
 
@@ -77,7 +84,7 @@ public class CuentaBancaria {
         }
     }
     public void notifyTreasury(double deposit){
-        if (deposit > 3000){
+        if (deposit > contactWithTreasure){
             System.out.println("AVISO: Notificar a Hacienda");
         }
     }
