@@ -8,7 +8,6 @@ public class CuentaBancaria {
     private final String surname;
     private double balance;
     private static final int maxBankOverdraft = -50;
-
     private double[] movements;
     private int numMovements;
 
@@ -37,9 +36,8 @@ public class CuentaBancaria {
         return balance;
     }
 
-
     public double[] getMovements() {
-        return Arrays.copyOf(movements, numMovements);
+        return movements;
     }
     private void ensureCapacity() {
         if (numMovements == movements.length) {
