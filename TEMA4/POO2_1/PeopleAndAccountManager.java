@@ -1,4 +1,5 @@
 package POO2_1;
+
 import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
@@ -8,6 +9,21 @@ public class PeopleAndAccountManager {
     private static final int defaultPeopleInArray = 0;
 
     public static void main(String[] args) {
+        program();
+    }
+    private static void showMenu(){
+        System.out.println("\nMenú:");
+        System.out.println("1. Instanciar objetos de tipo Persona");
+        System.out.println("2. Instanciar objetos de tipo Cuenta y asociarlos a una persona");
+        System.out.println("3. Mostrar datos de una persona (por su DNI)");
+        System.out.println("4. Recibir la nómina mensual de una persona (por DNI y número de cuenta)");
+        System.out.println("5. Hacer un pago (por DNI y número de cuenta)");
+        System.out.println("6. Realizar transferencia entre cuentas");
+        System.out.println("7. Imprimir las personas morosas");
+        System.out.println("0. Salir");
+        System.out.print("Seleccione una opción: ");
+    }
+    private static void program(){
         Person[] people = new Person[defaultSizeInPersonArray];
         int numPeople = defaultPeopleInArray;
         int option;
@@ -54,19 +70,8 @@ public class PeopleAndAccountManager {
 
         scanner.close();
     }
-    private static void showMenu(){
-        System.out.println("\nMenú:");
-        System.out.println("1. Instanciar objetos de tipo Persona");
-        System.out.println("2. Instanciar objetos de tipo Cuenta y asociarlos a una persona");
-        System.out.println("3. Mostrar datos de una persona (por su DNI)");
-        System.out.println("4. Recibir la nómina mensual de una persona (por DNI y número de cuenta)");
-        System.out.println("5. Hacer un pago (por DNI y número de cuenta)");
-        System.out.println("6. Realizar transferencia entre cuentas");
-        System.out.println("7. Imprimir las personas morosas");
-        System.out.println("0. Salir");
-        System.out.print("Seleccione una opción: ");
-    }
-    private static Person instantiateAnObjectOfTypePerson(){
+
+        private static Person instantiateAnObjectOfTypePerson(){
         System.out.print("Ingrese el DNI de la persona: ");
         String dni = enterDNI();
         System.out.println("Persona creada exitosamente.");
@@ -285,7 +290,7 @@ public class PeopleAndAccountManager {
         for (int i = 0; i < 20; i++) {
             account.append(random.nextInt(10));
         }
-        return account.toString();
+        return "ES" + account;
     }
     public static int validNumValue() {
         Scanner scanner = new Scanner(System.in);
