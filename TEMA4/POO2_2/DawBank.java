@@ -60,6 +60,11 @@ public class DawBank {
                 case 6:
                     System.out.println("Introduzca la cantidad a retirar");
                     double withdrawal = validNumValue();
+                    if (account.bankWithdrawal(withdrawal)){
+                        System.out.println("Operación realizada");
+                    } else {
+                        System.out.println("No es posible hacer la operación, descubierto demasiado elevado");
+                    }
                     account.bankWithdrawal(withdrawal);
                     break;
                 case 7:

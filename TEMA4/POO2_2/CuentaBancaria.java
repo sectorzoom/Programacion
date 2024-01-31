@@ -66,16 +66,16 @@ public class CuentaBancaria {
         }
     }
 
-    public void bankWithdrawal(double withdrawal) {
+    public boolean bankWithdrawal(double withdrawal) {
         if (withdrawal > 0 && balance >= maxBankOverdraft) {
             if (balance-withdrawal > maxBankOverdraft){
                 balance -= withdrawal;
                 addMovement(-withdrawal);
                 negativeBalance();
-            } else {
-                System.out.println("No es posible hacer la operación descubierto demasiado elevado");
+                return true;
             }
         }
+        return false;
     }
 
     public void negativeBalance(){
