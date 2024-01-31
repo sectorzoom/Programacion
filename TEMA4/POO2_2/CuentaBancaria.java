@@ -1,5 +1,7 @@
 package POO2_2;
 
+import java.util.Arrays;
+
 public class CuentaBancaria {
     private final String iban;
     private final String name;
@@ -8,14 +10,15 @@ public class CuentaBancaria {
     private static final int maxBankOverdraft = -50;
 
     private double[] movements;
+    private int numMovements;
 
 
-    public CuentaBancaria(String iban, String name, String surname, double[] movements) {
+    public CuentaBancaria(String iban, String name, String surname) {
         this.iban = iban;
         this.name = name;
         this.surname = surname;
         this.balance = 0;
-        this.movements = movements;
+        this.movements = new double[1];
     }
 
     public String getIban() {
@@ -34,33 +37,42 @@ public class CuentaBancaria {
         return balance;
     }
 
-    public void setBalance(double balance) {
-            this.balance = balance;
-    }
 
     public double[] getMovements() {
-        return movements;
+        return Arrays.copyOf(movements, numMovements);
+    }
+    private void ensureCapacity() {
+        if (numMovements == movements.length) {
+            movements = Arrays.copyOf(movements, movements.length + 1);
+        }
     }
 
-    public void setMovements(double[] movements) {
-        this.movements = movements;
+    public void addMovement(double amount) {
+        ensureCapacity();
+        if (numMovements < 100) {
+            movements[numMovements++] = amount;
+        } else {
+            System.out.println("AVISO: Límite de movimientos alcanzado. No se pueden realizar más movimientos.");
+        }
     }
-    public void bankDeposit(double deposit, int numMovement, double[] movements){
-        if (deposit > 0){
-            balance = balance + deposit;
-            movements[numMovement] = deposit;
+
+
+    public void bankDeposit(double deposit) {
+        if (deposit > 0) {
+            balance += deposit;
+            addMovement(deposit);
             notifyTreasury(deposit);
         }
     }
-    public void bankwithdrawal(double deposit, int numMovement, double[] movements){
-        if (deposit > 0){
-            if (balance >= maxBankOverdraft){
-                balance = balance - deposit;
-                movements[numMovement] = balance;
-                negativeBalance();
-            }
+
+    public void bankWithdrawal(double withdrawal) {
+        if (withdrawal > 0 && balance >= maxBankOverdraft) {
+            balance -= withdrawal;
+            addMovement(-withdrawal);
+            negativeBalance();
         }
     }
+
     public void negativeBalance(){
         if (balance < 0){
             System.out.println("AVISO: Saldo Negativo");

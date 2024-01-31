@@ -7,7 +7,6 @@ import java.util.Scanner;
 
 public class DawBank {
     static Scanner scanner = new Scanner(System.in);
-    private static final int maxMovements = 100;
 
     public static void main(String[] args) {
         CuentaBancaria account = createClient();
@@ -20,9 +19,9 @@ public class DawBank {
         System.out.println("Apellidos Titular: ");
         String surname = scanner.nextLine();
         String iban = generateRandomAccount();
-        double[] movements = new double[maxMovements];
-        return new CuentaBancaria(iban, name, surname, movements);
+        return new CuentaBancaria(iban, name, surname);
     }
+
     private static void showMenu(){
         System.out.println("\nMenú:");
         System.out.println("1. Datos de la cuenta. Mostrará el IBAN, el titular y el saldo.");
@@ -36,7 +35,6 @@ public class DawBank {
         System.out.print("Seleccione una opción: ");
     }
     private static void program(CuentaBancaria account){
-        int numMovements = 0;
         double option;
         do {
             showMenu();
@@ -57,14 +55,12 @@ public class DawBank {
                 case 5:
                     System.out.println("Introduzca el depósito");
                     double deposit = validNumValue();
-                    account.bankDeposit(deposit, numMovements, account.getMovements());
-                    numMovements++;
+                    account.bankDeposit(deposit);
                     break;
                 case 6:
                     System.out.println("Introduzca la cantidad a retirar");
                     double withdrawal = validNumValue();
-                    account.bankwithdrawal(withdrawal, numMovements, account.getMovements());
-                    numMovements++;
+                    account.bankWithdrawal(withdrawal);
                     break;
                 case 7:
                     System.out.println(Arrays.toString(account.getMovements()));
@@ -86,7 +82,7 @@ public class DawBank {
             try {
                 number = scanner.nextInt();
                 if (number < 0){
-                    System.out.println("Por favor, escriba un número de preguntas correcto.");
+                    System.out.println("Por favor, escriba un número positivo.");
                 }else{
                     numeroValido = true;
                 }
