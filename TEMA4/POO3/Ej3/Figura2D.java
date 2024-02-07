@@ -1,23 +1,17 @@
 package POO3.Ej3;
 
-class Figura2D {
-    public double area() {
-        return 0;
-    }
+abstract class Figura2D {
+    public abstract double area();
 
-    public double perimetro() {
-        return 0;
-    }
+    public abstract double perimetro();
 
     @Override
-    public String toString() {
-        return "Figura2D";
-    }
+    public abstract String toString();
 
 }
 
 class Cuadrado extends Figura2D {
-    private double lado;
+    private final double lado;
 
     public Cuadrado(double lado) {
         this.lado = lado;
@@ -40,8 +34,8 @@ class Cuadrado extends Figura2D {
 }
 
 class Rectangulo extends Figura2D {
-    private double base;
-    private double altura;
+    private final double base;
+    private final double altura;
 
     public Rectangulo(double base, double altura) {
         this.base = base;
@@ -65,8 +59,8 @@ class Rectangulo extends Figura2D {
 }
 
 class Triangulo extends Figura2D {
-    private double base;
-    private double altura;
+    private final double base;
+    private final double altura;
 
     public Triangulo(double base, double altura) {
         this.base = base;
@@ -90,7 +84,7 @@ class Triangulo extends Figura2D {
 }
 
 class Circulo extends Figura2D {
-    private double radio;
+    private final double radio;
 
     public Circulo(double radio) {
         this.radio = radio;
