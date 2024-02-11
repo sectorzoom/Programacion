@@ -1,6 +1,6 @@
-package POO3.Ej5;
+package POO3.Ej5_Ej6;
 
-public class PublicationVideo implements IPublication, IOpenPublication {
+public class PublicationVideo implements IPublication, IOpenPublication, IPostWithReaction {
     private final String video;
 
     public PublicationVideo(String video) {
@@ -20,6 +20,12 @@ public class PublicationVideo implements IPublication, IOpenPublication {
     @Override
     public void open() {
         System.out.println("Abriendo video: " + video);
+    }
+
+    @Override
+    public void reaction() {
+        System.out.println("Video reaccionado: " + video);
+
     }
 }
 

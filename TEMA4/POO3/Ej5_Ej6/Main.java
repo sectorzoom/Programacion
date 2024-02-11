@@ -1,4 +1,4 @@
-package POO3.Ej5;
+package POO3.Ej5_Ej6;
 
 public class Main {
     public static void main(String[] args) {

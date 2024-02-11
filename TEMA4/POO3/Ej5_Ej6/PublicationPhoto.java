@@ -1,7 +1,7 @@
-package POO3.Ej5;
+package POO3.Ej5_Ej6;
 
 
-public class PublicationPhoto implements IPublication, IOpenPublication {
+public class PublicationPhoto implements IPublication, IOpenPublication, IPostWithReaction {
     private final String photo;
 
     public PublicationPhoto(String photo) {
@@ -21,5 +21,10 @@ public class PublicationPhoto implements IPublication, IOpenPublication {
     @Override
     public void open() {
         System.out.println("Abriendo foto: "+ photo);
+    }
+
+    @Override
+    public void reaction() {
+        System.out.println("Crear reaccion: "+ photo);
     }
 }
