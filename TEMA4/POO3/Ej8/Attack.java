@@ -14,7 +14,9 @@ public abstract class Attack implements IAdvancedAttack {
         return manaCost + physicalEffort;
     }
 
+    @Override
     public abstract void throwAttack();
 
+    @Override
     public abstract int[] damageInflicted();
 }
