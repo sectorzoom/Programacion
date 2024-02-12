@@ -1,11 +1,10 @@
 package POO3.Ej8;
 
 public class SwordBlow extends Attack {
-    private final int physicalDamage;
 
-    public SwordBlow(int manaCost, int physicalEffort, int physicalDamage) {
-        super(manaCost, physicalEffort);
-        this.physicalDamage = physicalDamage;
+
+    public SwordBlow(int manaCost, int physicalEffort, int magicDamage, int physicalDamage) {
+        super(manaCost, physicalEffort, magicDamage, physicalDamage);
     }
 
     @Override

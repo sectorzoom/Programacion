@@ -1,11 +1,9 @@
 package POO3.Ej8;
 
 public class EnchantedSword extends SwordBlow {
-    private final int magicDamage;
 
-    public EnchantedSword(int manaCost, int physicalEffort, int physicalDamage, int magicDamage) {
-        super(manaCost, physicalEffort, physicalDamage);
-        this.magicDamage = magicDamage;
+    public EnchantedSword(int manaCost, int physicalEffort, int magicDamage, int physicalDamage) {
+        super(manaCost, physicalEffort, magicDamage, physicalDamage);
     }
 
     @Override
@@ -15,6 +13,6 @@ public class EnchantedSword extends SwordBlow {
 
     @Override
     public int[] damageInflicted() {
-        return new int[]{magicDamage, super.damageInflicted()[1]}; // Devuelve daño mágico y físico
+        return new int[]{magicDamage, physicalDamage};
     }
 }

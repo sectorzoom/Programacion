@@ -1,11 +1,10 @@
 package POO3.Ej8;
 
 public class Fireball extends Attack{
-    private final int magicDamage;
 
-    public Fireball(int manaCost, int physicalEffort, int magicDamage) {
-        super(manaCost, physicalEffort);
-        this.magicDamage = magicDamage;
+
+    public Fireball(int manaCost, int physicalEffort, int magicDamage, int physicalDamage) {
+        super(manaCost, physicalEffort, magicDamage, physicalDamage);
     }
 
     @Override
@@ -15,6 +14,6 @@ public class Fireball extends Attack{
 
     @Override
     public int[] damageInflicted() {
-        return new int[]{magicDamage, 0};
+        return new int[]{super.magicDamage, 0};
     }
 }
