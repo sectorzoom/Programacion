@@ -2,7 +2,6 @@ package POO3.Ej8;
 
 public class SwordBlow extends Attack {
 
-
     public SwordBlow(int manaCost, int physicalEffort, int magicDamage, int physicalDamage) {
         super(manaCost, physicalEffort, magicDamage, physicalDamage);
     }
@@ -15,6 +14,9 @@ public class SwordBlow extends Attack {
     @Override
     public int[] damageInflicted() {
         return new int[]{0, physicalDamage};
+    }
+    public CostOfAttack costOfAttack() {
+        return new CostOfAttack(manaCost,physicalEffort);
     }
 
 }

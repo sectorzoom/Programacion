@@ -30,4 +30,5 @@ public abstract class Attack implements IAdvancedAttack {
 
     @Override
     public abstract int[] damageInflicted();
+    public abstract CostOfAttack costOfAttack();
 }

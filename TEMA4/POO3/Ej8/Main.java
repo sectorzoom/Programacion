@@ -15,6 +15,7 @@ public class Main {
         attack.throwAttack();
         int cost = CostOfAttack.calculateCost(attack);
         System.out.println("Costo del ataque: " + cost);
+        System.out.println("Costo del ataque de otra manera: " + attack.costOfAttack().calculateCost2(attack.manaCost,attack.physicalEffort));
         int[] damage = attack.damageInflicted();
         System.out.println("Daño mágico: " + damage[0]);
         System.out.println("Daño físico: " + damage[1]);

@@ -17,4 +17,9 @@ public class Fireball extends Attack{
         return new int[]{super.magicDamage, 0};
     }
 
+    @Override
+    public CostOfAttack costOfAttack() {
+        return new CostOfAttack(manaCost,physicalEffort);
+    }
+
 }
