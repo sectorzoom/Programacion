@@ -14,7 +14,7 @@ public class CostOfAttack {
         int manaCost = attack.getManaCost();
         return physicalEffort + manaCost;
     }
-    public int calculateCost2(int manaCost, int physicalEffort){
+    public static int calculateCost2(int manaCost, int physicalEffort){
         return physicalEffort + manaCost;
     }
 }
