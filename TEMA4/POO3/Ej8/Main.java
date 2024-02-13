@@ -13,7 +13,8 @@ public class Main {
 
     public static void executeAttack(Attack attack) {
         attack.throwAttack();
-        System.out.println("Costo del ataque: " + attack.costOfAttack());
+        int cost = CostOfAttack.calculateCost(attack);
+        System.out.println("Costo del ataque: " + cost);
         int[] damage = attack.damageInflicted();
         System.out.println("Daño mágico: " + damage[0]);
         System.out.println("Daño físico: " + damage[1]);

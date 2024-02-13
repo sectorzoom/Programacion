@@ -16,4 +16,5 @@ public class SwordBlow extends Attack {
     public int[] damageInflicted() {
         return new int[]{0, physicalDamage};
     }
+
 }

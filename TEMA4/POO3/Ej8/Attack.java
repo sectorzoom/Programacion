@@ -2,11 +2,12 @@ package POO3.Ej8;
 
 public abstract class Attack implements IAdvancedAttack {
     protected int manaCost;
+
     protected int physicalEffort;
+
     protected int magicDamage;
+
     protected int physicalDamage;
-
-
 
     public Attack(int manaCost, int physicalEffort, int magicDamage, int physicalDamage) {
         this.manaCost = manaCost;
@@ -15,9 +16,13 @@ public abstract class Attack implements IAdvancedAttack {
         this.physicalDamage = physicalDamage;
     }
 
+    public int getPhysicalEffort() {
+        return physicalEffort;
+    }
+
     @Override
-    public int costOfAttack() {
-        return manaCost + physicalEffort;
+    public int getManaCost() {
+        return manaCost;
     }
 
     @Override

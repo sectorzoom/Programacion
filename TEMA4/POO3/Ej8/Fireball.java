@@ -16,4 +16,5 @@ public class Fireball extends Attack{
     public int[] damageInflicted() {
         return new int[]{super.magicDamage, 0};
     }
+
 }
