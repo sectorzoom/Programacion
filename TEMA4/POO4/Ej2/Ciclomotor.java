@@ -1,8 +1,8 @@
 package POO4.Ej2;
 
 public class Ciclomotor extends Vehiculo{
-    public Ciclomotor(int ruedas, int momentoEntrada, int momentoSalida) {
-        super(ruedas, momentoEntrada, momentoSalida);
+    public Ciclomotor(int momentoEntrada, int momentoSalida) {
+        super(momentoEntrada, momentoSalida);
     }
 
     @Override

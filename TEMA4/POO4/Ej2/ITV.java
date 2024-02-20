@@ -9,17 +9,21 @@ public class ITV {
         Random random = new Random();
         int momentoActual = 1;
         for (int i = 0; i < 10; i++) {
-            int tipoVehiculo = random.nextInt(3);
+            int tipoVehiculo = random.nextInt(5);
             switch (tipoVehiculo) {
                 case 0:
-                    vehiculosEnEspera.add(new Turismo(4,momentoActual,momentoActual+1));
+                    vehiculosEnEspera.add(new Turismo(momentoActual,momentoActual+1));
                     break;
                 case 1:
-                    vehiculosEnEspera.add(new Camion(8,momentoActual,momentoActual+1));
+                    vehiculosEnEspera.add(new Camion(momentoActual,momentoActual+1));
                     break;
                 case 2:
-                    vehiculosEnEspera.add(new Ciclomotor(2,momentoActual,momentoActual+1));
+                    vehiculosEnEspera.add(new Ciclomotor(momentoActual,momentoActual+1));
                     break;
+                case 3:
+                    vehiculosEnEspera.add(new Avion(momentoActual,momentoActual+1));
+                case 4:
+                    vehiculosEnEspera.add(new Barco(momentoActual, momentoActual+1));
             }
             momentoActual++;
         }

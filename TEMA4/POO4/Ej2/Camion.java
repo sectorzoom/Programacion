@@ -1,8 +1,8 @@
 package POO4.Ej2;
 
 public class Camion extends Vehiculo{
-    public Camion(int ruedas, int momentoEntrada, int momentoSalida) {
-        super(ruedas, momentoEntrada, momentoSalida);
+    public Camion(int momentoEntrada, int momentoSalida) {
+        super(momentoEntrada, momentoSalida);
     }
 
     @Override

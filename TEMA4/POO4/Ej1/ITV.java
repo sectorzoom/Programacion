@@ -21,6 +21,7 @@ public class ITV {
                     vehiculosEnEspera.add(new Ciclomotor(2,momentoActual,momentoActual+1));
                     break;
             }
+
             momentoActual++;
         }
 

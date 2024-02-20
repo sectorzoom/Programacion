@@ -1,8 +1,8 @@
 package POO4.Ej2;
 
 public class Turismo extends Vehiculo{
-    public Turismo(int ruedas, int momentoEntrada, int momentoSalida) {
-        super(ruedas, momentoEntrada, momentoSalida);
+    public Turismo(int momentoEntrada, int momentoSalida) {
+        super(momentoEntrada, momentoSalida);
     }
 
     @Override
