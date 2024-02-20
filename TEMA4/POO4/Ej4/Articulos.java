@@ -9,4 +9,8 @@ public abstract class Articulos {
         this.codigoArticulo = codigoArticulo;
         this.titulo = titulo;
     }
+
+    public void setCodigoArticulo(int codigoArticulo) {
+        this.codigoArticulo = codigoArticulo;
+    }
 }

@@ -9,4 +9,13 @@ public class DVD extends Articulos {
         this.genero = genero;
         this.duracion = duracion;
     }
+
+    @Override
+    public String toString() {
+        return "El DVD tiene los siguientes datos:\n" +
+                "Código = " + super.codigoArticulo +
+                "\nTítulo = " + super.titulo +
+                "\nGénero = " + genero +
+                "\nDuración = " + duracion;
+    }
 }
