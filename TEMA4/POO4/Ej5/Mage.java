@@ -4,11 +4,11 @@ import java.util.Random;
 
 public class Mage implements ICombatiente {
     private int life;
-    private int baseDamage;
-    private int meleeDefense;
-    private int rangedDefense;
-    private int fighterNumber;
-    private String typeOfFighter;
+    private final int baseDamage;
+    private final int meleeDefense;
+    private final int rangedDefense;
+    private final int fighterNumber;
+    private final String typeOfFighter;
     static Random random = new Random();
 
     public Mage(int life, int baseDamage, int meleeDefense, int rangedDefense, int fighterNumber, String typeOfFighter) {

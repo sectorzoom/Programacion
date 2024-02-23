@@ -3,11 +3,11 @@ import java.util.Random;
 
 public class Berserker implements ICombatiente {
     private int life;
-    private int baseDamage;
-    private int meleeDefense;
-    private int rangedDefense;
-    private int fighterNumber;
-    private String typeOfFighter;
+    private final int baseDamage;
+    private final int meleeDefense;
+    private final int rangedDefense;
+    private final int fighterNumber;
+    private final String typeOfFighter;
     static Random random = new Random();
 
     public Berserker(int life, int baseDamage, int meleeDefense, int rangedDefense, int fighterNumber, String typeOfFighter) {
@@ -26,7 +26,8 @@ public class Berserker implements ICombatiente {
             System.out.println("¡El ataque del combatiente " + typeOfFighter + " número " + fighterNumber + " ha fallado!");
             return null;
         } else {
-            int damage = baseDamage + random.nextInt(0,(100-life)/2); //Más daño cuanto menos vida tiene
+            int randomDamage = random.nextInt(100);
+            int damage = baseDamage + Math.abs((randomDamage-life)/2); //Más daño cuanto menos vida tiene
             System.out.println("¡El ataque del combatiente " + typeOfFighter + " número " + fighterNumber + " ha sido un éxito!");
             return new Attack(damage, Attack.TypeOfDamage.PHYSICAL, Attack.TypeOfAttack.MELEE);
         }
