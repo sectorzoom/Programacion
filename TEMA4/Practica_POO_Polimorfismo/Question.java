@@ -17,7 +17,7 @@ public abstract class Question {
         this.answered = false;
     }
 
-    // Método abstracto para la verificación si ha sido respondida
+    // Método para la verificación si ha sido respondida
     public boolean verifyIfIsGoodAnswer(String answer) {
         answered = true;
         return answer.trim().equalsIgnoreCase(correctAnswer);

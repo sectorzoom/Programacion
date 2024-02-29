@@ -91,22 +91,22 @@ public class GameContest {
         ArrayList<Question> availableQuestions = new ArrayList<>();
 
         availableQuestions.add(new TrueFalseQuestion("¿Verdadero o Falso? - La Tierra es Plana", false));
-        availableQuestions.add(new OpenEndedQuestion("¿Quién escribió la obra \"Cien años de soledad\"?", "gabriel garcía márquez"));
-        availableQuestions.add(new MultiAnswerQuestion("¿Cuál es la capital de Japón?", new String[]{"París", "Londres", "Madrid", "Roma"}, "tokio"));
+        availableQuestions.add(new OpenEndedQuestion("¿Quién escribió la obra \"Cien años de soledad\"?", "gabriel garcia marquez"));
+        availableQuestions.add(new MultiAnswerQuestion("¿Cuál es la capital de Japón?", new String[]{"París", "Tokio", "Madrid", "Roma"}, "2"));
         availableQuestions.add(new FillInBlankQuestion("El capital de España es ____________.", "Madrid"));
 
-        availableQuestions.add(new MultiAnswerQuestion("¿Cuántos planetas hay en el Sistema Solar?", new String[]{"7", "8", "9", "6"}, "8"));
+        availableQuestions.add(new MultiAnswerQuestion("¿Cuántos planetas hay en el Sistema Solar?", new String[]{"7", "8", "9", "6"}, "2"));
         availableQuestions.add(new OpenEndedQuestion("¿Cuál es la fórmula química del agua?", "h2o"));
         availableQuestions.add(new TrueFalseQuestion("¿Verdadero o Falso? - El Sol es una estrella", true));
-        availableQuestions.add(new MultiAnswerQuestion("¿Cuál es el océano más grande del mundo?", new String[]{"Océano Atlántico", "Océano Índico", "Océano Pacífico", "Océano Antártico"}, "Océano Pacífico"));
+        availableQuestions.add(new MultiAnswerQuestion("¿Cuál es el océano más grande del mundo?", new String[]{"Océano Atlántico", "Océano Índico", "Océano Pacífico", "Oceano Antartico"}, "3"));
 
         availableQuestions.add(new OpenEndedQuestion("¿Quién pintó la Mona Lisa?", "leonardo da vinci"));
         availableQuestions.add(new TrueFalseQuestion("¿Verdadero o Falso? - La Luna es más grande que la Tierra", false));
         availableQuestions.add(new FillInBlankQuestion("El número de lados en un triángulo equilátero es ____________.", "3"));
-        availableQuestions.add(new MultiAnswerQuestion("¿Cuál es el río más largo del mundo?", new String[]{"Yangtse", "Nilo", "Missisipi", "Amazonas"}, "Amazonas"));
+        availableQuestions.add(new MultiAnswerQuestion("¿Cuál es el río más largo del mundo?", new String[]{"Yangtse", "Nilo", "Missisipi", "Amazonas"}, "4"));
 
         availableQuestions.add(new FillInBlankQuestion("La fórmula química del agua es H__________O.", "2"));
-        availableQuestions.add(new MultiAnswerQuestion("¿De qué color era el caballo blanco de Santiago?", new String[]{"Gris", "Blanco", "Verde", "No existe tal caballo"}, "Blanco"));
+        availableQuestions.add(new MultiAnswerQuestion("¿De qué color era el caballo blanco de Santiago?", new String[]{"Gris", "Blanco", "Verde", "No existe tal caballo"}, "2"));
         availableQuestions.add(new OpenEndedQuestion("¿Cómo se llama Tony Stark cuando se enfunda su traje?", "ironman"));
         availableQuestions.add(new TrueFalseQuestion("¿Verdadero o Falso? - Programación puede llegar a ser muy frustrante cuando no te sale POO y Polimorfismo", true));
 
@@ -124,7 +124,6 @@ public class GameContest {
         return questions;
     }
 
-
     //Método estático que genera objetos Premio aleatorios para meterlos en las celdas
     public static Prize[][] generatePrizes() {
         Prize[][] prizes = new Prize[4][4];
@@ -134,7 +133,6 @@ public class GameContest {
                 prizes[i][j] = new Prize();
             }
         }
-
         return prizes;
     }
 }
