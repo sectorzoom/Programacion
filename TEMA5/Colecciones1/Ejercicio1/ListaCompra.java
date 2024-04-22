@@ -1,4 +1,4 @@
-package tema5.Ejercicio1;
+package Colecciones1.Ejercicio1;
         import java.util.HashSet;
         import java.util.Set;
 public class ListaCompra {
