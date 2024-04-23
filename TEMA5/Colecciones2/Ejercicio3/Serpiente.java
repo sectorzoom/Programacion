@@ -22,7 +22,7 @@ public class Serpiente {
 
     public void decrecer() {
         if (!cuerpo.isEmpty()) {
-            cuerpo.removeLast();
+            cuerpo.remove(cuerpo.size()-1);
         }
     }
 
@@ -50,4 +50,9 @@ public class Serpiente {
     public List<Anilla> getCuerpo() {
         return cuerpo;
     }
+
+    //public vivir
+    //  if > 10 crezco si < años sisi
+    // mangosta aquí o en el nido
+    // suma año
 }
