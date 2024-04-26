@@ -5,8 +5,7 @@ import java.util.Queue;
 
 public class GestionColas {
 
-    private final Queue<Usuario> cola;
-    // cambia queue por list
+    private final LinkedList<Usuario> cola;
 
     public GestionColas() {
         cola = new LinkedList<>();
