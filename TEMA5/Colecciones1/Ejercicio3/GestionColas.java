@@ -1,24 +1,24 @@
 package Colecciones1.Ejercicio3;
 
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GestionColas {
 
-    private final LinkedList<Usuario> cola;
+    private final List<Usuario> cola;
 
     public GestionColas() {
-        cola = new LinkedList<>();
+        cola = new ArrayList<>();
     }
 
     public void agregarACola(Usuario usuario) {
-        cola.offer(usuario);
+        cola.add(usuario); // Agregar al final de la lista
         System.out.println(usuario.getNombre() + " ha sido añadido a la cola.");
     }
 
     public void quitarPrimeroDeCola() {
-        Usuario usuarioAtendido = cola.poll();
-        if (usuarioAtendido != null) {
+        if (!cola.isEmpty()) {
+            Usuario usuarioAtendido = cola.removeFirst(); // Eliminar y retornar el primer elemento
             System.out.println(usuarioAtendido.getNombre() + " ha sido atendido.");
         } else {
             System.out.println("La cola está vacía.");
@@ -42,6 +42,3 @@ public class GestionColas {
         }
     }
 }
-
-
-
