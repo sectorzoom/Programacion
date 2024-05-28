@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class FunkoStore {
-    private final List<Funko> funkos;
+    private final ArrayList<Funko> funkos;
     private final String csvPath;
 
     public FunkoStore(String csvPath) {

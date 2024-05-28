@@ -3,7 +3,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class FunkoStore2 {
-    private List<Funko> funkos;
+    private ArrayList<Funko> funkos;
     private final String binaryFilePath;
 
     public FunkoStore2(String binaryFilePath) {
@@ -14,7 +14,7 @@ public class FunkoStore2 {
 
     private void loadFunkos() {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(binaryFilePath))) {
-            funkos = (List<Funko>) ois.readObject();
+            funkos = (ArrayList<Funko>) ois.readObject();
             System.out.println("Funkos cargados correctamente desde el archivo binario.");
         } catch (FileNotFoundException e) {
             System.out.println("No se encontró el archivo binario. Se creará uno nuevo.");
