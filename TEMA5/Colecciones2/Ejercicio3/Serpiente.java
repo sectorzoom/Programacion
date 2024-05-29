@@ -22,7 +22,7 @@ public class Serpiente {
 
     public void decrecer() {
         if (!cuerpo.isEmpty()) {
-            cuerpo.remove(cuerpo.size()-1);
+            cuerpo.removeLast();
         }
     }
 

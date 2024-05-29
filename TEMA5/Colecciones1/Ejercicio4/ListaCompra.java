@@ -41,25 +41,14 @@ public class ListaCompra {
         }
     }
 
-    public void mostrarProductosPendientes() {
+    public void mostrarProductosPendientesLista() {
         Set<String> pendientes = new HashSet<>(listaCompra);
         pendientes.removeAll(carroCompra);
         if (pendientes.isEmpty()) {
-            System.out.println("No hay productos pendientes de añadir a la lista.");
+            System.out.println("No hay productos pendientes de añadir de la lista.");
         } else {
-            System.out.println("Productos pendientes de añadir a la lista:");
+            System.out.println("Productos pendientes de añadir de la lista:");
             for (String producto : pendientes) {
-                System.out.println("- " + producto);
-            }
-        }
-    }
-
-    public void mostrarProductosComprados() {
-        if (carroCompra.isEmpty()) {
-            System.out.println("No has comprado ningún producto.");
-        } else {
-            System.out.println("Productos comprados:");
-            for (String producto : carroCompra) {
                 System.out.println("- " + producto);
             }
         }

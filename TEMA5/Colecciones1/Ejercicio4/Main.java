@@ -14,9 +14,8 @@ public class Main {
             System.out.println("1. Añadir producto a la lista de compra");
             System.out.println("2. Añadir producto al carro de la compra");
             System.out.println("3. Mostrar productos en el carro de la compra");
-            System.out.println("4. Mostrar productos pendientes de añadir a la lista");
-            System.out.println("5. Mostrar productos comprados");
-            System.out.println("6. Salir");
+            System.out.println("4. Mostrar productos pendientes de añadir de la lista");
+            System.out.println("5. Salir");
             System.out.print("Seleccione una opción: ");
             int opcion = scanner.nextInt();
             scanner.nextLine();
@@ -36,12 +35,9 @@ public class Main {
                     lista.mostrarCarroCompra();
                     break;
                 case 4:
-                    lista.mostrarProductosPendientes();
+                    lista.mostrarProductosPendientesLista();
                     break;
                 case 5:
-                    lista.mostrarProductosComprados();
-                    break;
-                case 6:
                     System.out.println("Saliendo...");
                     scanner.close();
                     System.exit(0);
