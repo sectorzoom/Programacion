@@ -1,9 +1,10 @@
 import java.sql.*;
         import java.text.SimpleDateFormat;
+import java.util.List;
 
 public class EjemploReal {
     public static void main(String[] args) {
-        String urlConexion = "jdbc:postgresql://pruebaf1.ci66saah1axn.us-east-1.rds.amazonaws.com:5432/f12006";
+        String urlConexion = "jdbc:postgresql://david.c9avrrmzhkv1.us-east-1.rds.amazonaws.com:5432/f12006";
         String usuario = "postgres";
         String password = "Qwertyuiop";
 
